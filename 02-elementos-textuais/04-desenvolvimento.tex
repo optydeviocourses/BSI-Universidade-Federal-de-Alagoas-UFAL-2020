@@ -1,0 +1,754 @@
+%
+% Documento: Desenvolvimento
+%
+
+\chapter{DESENVOLVIMENTO}
+
+Neste capítulo iremos utilizar \`{a}s teorias do capítulo 2 (Revis\~{a}o liter\'{a}ria) juntamente com as t\'{e}cnicas de Kimball R. e Ross, M. (2013), que se baseiam na modelagem dimensional e iremos teorizar as ferramentas de banco de dados PostgreSQL e Pentaho, para que tenhamos uma base de conhecimento s\'olida em rela\c{c}\~{a}o ao uso e funcionalidades destas ferramentas.
+
+O objetivo deste capítulo \'{e} a implementa\c{c}\~{a}o de um BI/DW, partindo da infraestrutura b\'{a}sica, cria\c{c}\~{a}o do Banco de dados de nome: ``DW\_181'' no PostgreSQL, ETL dos dados de três meses  (janeiro, fevereiro e mar\c{c}o de 2020) de transa\c{c}\~{o}es, provindos do arquivo no formato ``.XLS'' do \textit{Microsoft Excel},  extraído do SISGOU, na op\c{c}\~{a}o consulta do disque denúncia, que ser\'{a} processada usando uma das ferramentas do suite Pentaho, o PDI (\textit{Pentaho Data Integration}).
+
+No PDI iremos criar as transforma\c{c}\~{o}es que criaram as tabelas de dimens\~{a}o dentro do Banco de dados, al\'{e}m do PDI iremos demonstrar o uso das outras ferramentas do Pentaho como: PAC (\textit{Pentaho Administration Console}), PUC (\textit{Pentaho User Console}), PSW (\textit{Pentaho schema workbench}) e o PRD (\textit{Pentaho Report Designer}) e finalmente ap\'os os dados serem processados ser\~{a}o armazenados no PostgreSQL, SGBD relacional, onde ficar\'{a} o DW da aplica\c{c}\~{a}o de BI.
+
+\section{Infraestrutura}
+
+A infraestrutura utilizada neste trabalho \'{e} baseada em ferramentas de softwares gratuitos ou \textit{freeware} , da suite de BI ao SGDB relacional, para a base de dados, usamos oPostgreSQL, como dito no t\'opico anterior, juntamente com a Plataforma Pentaho na vers\~{a}o 9.0 \textit{Community} (sem custos), adquirida no site da Hitachi Vantara atualmente \'{e} detentora dos direitos da plataforma e o Java SE \textit{Runtime Environment} vers\~{a}o 1.8.0-151-b12, toda estrutura instalada localmente em um ambiente de desenvolvimento, em um notebook MacBook Pro da Apple (mem\'oria de 16 gb de ram e SSD de 1 Tb), com Sistema Operacional macOS Catalina vers\~{a}o 10.15.6.
+
+\section{SISGOU}
+
+O sistema de processamentos de transa\c{c}\~{o}es de onde se extraíram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'odulo "Aplicativos", "Disque Denúncia" e "Consultar Denúncias", conforme figura abaixo.
+
+% figuras
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{SISGOU (Sistema de Gerenciamento Operacional Unificado}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-13}
+    \label{fig:ilustfig13}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Disponível em: <https://https://www.sisgou.seds.al.gov.br>. Acesso em: 13 ago. 2020.}}\\
+
+% FERRAMENTAS
+
+\section{Ferramentas}
+
+% SGDB POSTGRESQL
+
+\subsection{SGDB PostgreSQL}
+
+O PostgreSQL \'{e} um sistema de gerenciamento de banco de dados relacional de objeto (ORDBMS) baseado no PostgreSQL, vers\~{a}o 4.2, desenvolvido no Departamento de Ciência da Computa\c{c}\~{a}o da Universidade da Calif\'ornia em \textit{Berkeley}. O PostgreSQL foi pioneiro em muitos conceitos que s\'o se tornaram disponíveis em alguns sistemas de bancos de dados comerciais muito depois.
+
+Al\'{e}m disso, o PostgreSQL pode ser estendido pelo usu\'{a}rio de v\'{a}rias maneiras, por exemplo, adicionando tipos de dados, fun\c{c}\~{o}es, operadores, fun\c{c}\~{o}es agregadas, m\'{e}todos de índice e uma linguagens processuais. Que n\~{a}o ser\~{a}o especificados nesse trabalho.
+
+E por causa da licen\c{c}a liberal, o PostgreSQL pode ser usado, modificado e distribuído gratuitamente por qualquer pessoa, seja para fins particulares, comerciais ou acadêmicos.
+
+Em nosso trabalho a cria\c{c}\~{a}o, modelagem e o armazenamento dos dados do \textit{Data Warehouse} foi utilizado o PostgreSQL, vers\~{a}o 9.5, e com gerenciador administrativo o aplicativo ``pgAdmin'' vers\~{a}o 4. 
+
+Para gerenciar o PostgreSQL, podemos fazê-lo de duas maneiras: uma por meio de uma s\'{e}rie de comandos SQL e ou atrav\'{e}s do aplicativo ``pgAdmin''. Neste trabalho enfocaremos o artifício da cria\c{c}\~{a}o do banco de dados, suas tabelas e \textit{constraints}, usando a interface gr\'{a}fica do aplicativo acima, e tamb\'{e}m atrav\'{e}s do PDI, que gera \textit{scripts} com as instru\c{c}\~{o}es para a cria\c{c}\~{a}o da tabela, atrav\'{e}s do processo de transforma\c{c}\~{a}o, criado no PDI, que ser\'{a} mencionado em um t\'opico específico.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Ferramenta ``pgAdmin' vers\~{a}o 4 para o PostgreSQL}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-14}
+    \label{fig:ilustfig14}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% PENTAHO
+
+\subsection{Plataforma Pentaho}
+
+Outra ferramenta fundamental neste trabalho \'{e} a Plataforma de Integra\c{c}\~{a}o de Dados e An\'{a}lise Pentaho, nele iremos implementar todos os conceitos de DW/BI. Para isso precisamos conhecer um pouco sobre essa ferramenta, conforme figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Pentaho Business Analytics Platform}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-15}
+    \label{fig:ilustfig15}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Disponível em: <https://https://www.hitachivantara.com/en\_us/pdf/datasheet/pentaho-business-analytics-platform-datasheet.pdf>. Acesso em: 16 ago. 2020.}}\\
+
+Os produtos Pentaho s\~{a}o abrangentes e usados para acessar, integrar, manipular, visualizar e analisar seus dados. Quer os dados sejam armazenados em um arquivo simples, banco de dados relacional, \textit{cluster Hadoop}, banco de dados NoSQL, banco de dados analítico, fluxos de mídia social, lojas operacionais ou na nuvem, os produtos Pentaho podem ajud\'{a}-lo a descobrir, analisar e visualizar dados para encontrar as respostas que você precisa, mesmo se você n\~{a}o tiver experiência em codifica\c{c}\~{a}o. 
+Usu\'{a}rios avan\c{c}ados com experiência em programa\c{c}\~{a}o podem usar nossa ampla API\index{API}\footnote{API: Ë um conjunto de rotinas e padr\~{o}es de programa\c{c}\~{a}o para acesso a um aplicativo de software ou plataforma baseado na Web. A sigla API refere-se ao termo em inglês ``\textit{Application Programming Interface}'' que significa em tradu\c{c}\~{a}o para o português "Interface de Programa\c{c}\~{a}o de Aplicativos".} para personalizar relat\'orios, consultas e transforma\c{c}\~{o}es para estender a funcionalidade.
+
+Os produtos Pentaho incluem componentes baseados na web e ferramentas de \textit{design}. Os componentes e ferramentas que você usa dependem do seu fluxo de trabalho e do que seu ambiente oferece suporte
+
+Toda plataforma est\'{a} dividida em duas partes: Componentes baseados na web e as Ferramentas de \textit{Design}.
+
+Os componentes baseados na web s\~{a}o:
+
+\begin{itemize}
+    \item Console de usu\'{a}rio: O \textit{Pentaho User Console} (PUC) \'{e} um ambiente de design para acessar \textit{Analyzer}, Relat\'orios Interativos e \textit{Dashboard Designer}. \textit{Pentaho User Console} tamb\'{e}m oferece recursos de administra\c{c}\~{a}o do sistema para configurar seu servidor Pentaho.
+    
+    \item Analisador: O \textit{Analyzer} ajuda a visualizar dados para tomar decis\~{o}es de neg\'ocios informadas. Você pode criar visualiza\c{c}\~{o}es geogr\'{a}ficas, gr\'{a}fico de dispers\~{a}o, grade de calor e múltiplos gr\'{a}ficos. Você tamb\'{e}m pode filtrar dados, adicionar parâmetros de consulta, configurar links de pesquisa detalhada, aplicar formata\c{c}\~{a}o condicional e gerar \textit{hiperlinks}. Em nosso trabalho iremos utilizar dois analisadores: o \textit{Saiku} e o \textit{JPivo}t.
+    
+    \item Relat\'orios Interativos: Relat\'orios interativos s\~{a}o uma interface de design usada para criar relat\'orios operacionais simples e sob demanda, sem depender de TI ou desenvolvedores de relat\'orios. Você pode adicionar rapidamente elementos ao seu relat\'orio e format\'{a}-los da maneira que desejar.
+    
+    \item \textit{Dashboard Designer}: O \textit{Dashboard Designer} \'{e} usado para escolher modelos de layout, temas e conteúdo para criar pain\'{e}is visualmente atraentes que ajudam os tomadores de decis\~{a}o a obter conhecimento crítico rapidamente. Você pode combinar uma ampla variedade de conteúdo, incluindo relat\'orios interativos, visualiza\c{c}\~{o}es do \textit{Analyzer} e conteúdo colaborativo.
+    
+    \item CTools: CTools \'{e} uma estrutura orientada pela comunidade para a cria\c{c}\~{a}o de pain\'{e}is usando tecnologias da web, como \textit{JavaScript}, CSS e HTML. Você pode criar facilmente pain\'{e}is dinâmicos para os usu\'{a}rios explorarem e entenderem grandes quantidades de dados usando uma variedade de gr\'{a}ficos, tabelas e outros componentes.
+    
+    \item Assistente de fonte de dados: O \textit{Data Source Wizard} ajuda a definir uma fonte de dados que cont\'{e}m suas informa\c{c}\~{o}es e o orienta na cria\c{c}\~{a}o de seus primeiros modelos relacionais ou multidimensionais para uso na cria\c{c}\~{a}o de relat\'orios e an\'{a}lises.
+    
+    \item Editor de modelo de fonte de dados: O Editor de modelo de fonte de dados ajuda a ajustar e refinar modelos de dados relacionais e multidimensionais. Você pode arrastar campos para seus locais apropriados, misturar e combinar campos de diferentes tabelas, adicionar campos a mais de uma categoria ou remover um campo.
+\end{itemize}
+
+As ferramentas de design da Pentaho s\~{a}o usadas para desenvolver e refinar como os valores dos dados s\~{a}o relatados, modelados, transformados e armazenados. Elas s\~{a}o:
+
+\begin{itemize}
+   \item Integra\c{c}\~{a}o de dados: \textit{Pentaho Data Integration} (PDI) fornece acesso a um motor de Extra\c{c}\~{a}o, Transforma\c{c}\~{a}o e Carregamento (ETL) que captura os dados certos, limpa os dados e armazena os dados usando um formato uniforme que \'{e} acessível e relevante para os usu\'{a}rios finais e tecnologias IoT\index{NewR}\footnote{IoT: \textit{Internet Of Tink} ou Internet das coisas \'{e} um conceito que se refere \`{a} interconex\~{a}o digital de objetos cotidianos com a internet, conex\~{a}o dos objetos mais do que das pessoas. Em outras palavras, a internet das coisas nada mais \'{e} que uma rede de objetos físicos capaz de reunir e de transmitir dados.}
+   
+   \item \textit{Report Designer}: O \textit{Report Designer} \'{e} usado para gerar relat\'orios detalhados e perfeitos em pixels, usando virtualmente qualquer fonte de dados. Ele permite que os profissionais de \textit{business intelligence} criem relat\'orios altamente detalhados e com qualidade de impress\~{a}o, com base em dados preparados de maneira adequada.
+
+   \item Designer de agrega\c{c}\~{a}o: O \textit{Aggregation Designer} fornece uma interface simples que permite criar tabelas agregadas de níveis dentro das dimens\~{o}es que você especificar. Use esta ferramenta para melhorar o desempenho de seus cubos OLAP \textit{Pentaho Analysis} (Mondrian).
+
+   \item Editor de Metadados: O Editor de Metadados simplifica a constru\c{c}\~{a}o de relat\'orios. Use o Editor de Metadados para construir domínios e modelos de metadados Pentaho. Um \textit{Pentaho Metadata Model} mapeia a estrutura física do seu banco de dados em um modelo de neg\'ocio l\'ogico.
+
+    \item \textit{Schema Workbench}: \textit{Schema Workbench} permite editar e criar modelos multidimensionais (Mondrian). Você pode criar modelos Mondrian graficamente ou defini-los codificando manualmente os arquivos XML.
+\end{itemize}
+
+Nesta plataforma est\~{a}o disponíveis componentes para execu\c{c}\~{a}o de processos de ETL, que fazem carga de \textit{Data Warehouses}, cria\c{c}\~{a}o de relat\'orios pr\'{e}-formatados e ad hoc, cubos OLAP, pain\'{e}is de instrumentos (\textit{Dashboards}) e garimpagem de dados (\textit{Data Mining}). 
+
+Todos esses recursos podem ser combinados e acionados sequencialmente para cria\c{c}\~{a}o de solu\c{c}\~{o}es mais sofisticadas. Al\'{e}m disso, a plataforma executa todas as solu\c{c}\~{o}es de BI como servi\c{c}os e, por isso, \'{e} possível prover acesso \`{a}s solu\c{c}\~{o}es para sistemas externos, via \textit{web services}, atrav\'{e}s de um mecanismo baseado em SOAP/WSDL/UDDI.
+
+Por\'{e}m, n\~{a}o iremos neste trabalho nos deter em todos estes recurso, apenas o mínimo para uma solu\c{c}\~{a}o vi\'{a}vel para o servi\c{c}o do 181.
+
+% DESENVOLVENDO A SOLU\c{c}\~{a}O
+
+\section{Desenvolvimento da Solu\c{c}\~{a}o}
+
+Com base nos conceitos do capitulo de Fundamenta\c{c}\~{a}o, e as t\'{e}cnicas de Kimball(2013), iremos aplicar estes conhecimentos na implementa\c{c}\~{a}o de um BI/DW, que ser\'{a} desenvolvido sobre um servidor local, usando todo o potencial e simplicidade da Plataforma Pentaho, desde o download do arquivo no formato ".XLS", com os dados de denúncias consultadas na aplica\c{c}\~{a}o web SISGOU, ao processamento ETL usando o PDI do Pentaho, e o OLAP usando o \textit{Saiku Analytics} e at\'{e} o \textit{dashboard} (painel) usando o CTOOLS e a cria\c{c}\~{a}o de um relat\'orio com o PRD.
+
+% Banco de dados
+\subsection{Criando nosso Banco de dados}
+
+O nosso trabalho ir\'{a} precisar de um Banco de dados no SGBD PostgreSQL, que podemos criar via terminal do macOSX, por\'{e}m, usamos o aplicativo ``pgAdmin'' vers\~{a}o 4 que gerencia todos o banco de dados visualmente, economizando tempo de digita\c{c}\~{a}o, conforme figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Script} do Banco de dados da solu\c{c}\~{a}o}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-16}
+    \label{fig:ilustfig16}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Acessando o ``pdAmin'', e digitando esse comando da figura acima e basta apenas executar o mesmo na ferramenta que o Banco de dados ser\'{a} criando. Iniciando assim o primeiro passado para criarmos nossa ETL.
+
+\subsection{Criando o processo de ETL}
+
+Ap\'os termos dado o primeiro passo, teremos como base do processo de Extra\c{c}\~{a}o o arquivo no formato do \textit{Microsoft Excel} denominado ``181.xls'', lembrando que o mesmo foi exportado ``do Aplicativo Web SISGOU'' na op\c{c}\~{a}o de consulta. 
+Ele ter\'{a} o mesmo formado da figura abaixo, como suas linhas e colunas totalmente sem normatiza\c{c}\~{a}o aparente e sem nenhum tratamento nos dados.
+
+% FALTA A figura
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Arquivo extraído da consulta do Disque denúncia do  SISGOU}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-arquivo-xls}
+    \label{fig:ilustfigxls}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Para criarmos nosso processo de ETL no arquivo acima, precisamos usar o \textit{Pentaho Data Integration}, para isso precisamos instalar o mesmo junto com toda Plataforma Pentaho. E ap\'os instalado,  clicaremos com o mouse no ícone do \textint{Data Integration}, a tela de boas vindas do PDI aparece, de acordo com a figura abaixo e depois surge a interface da aplica\c{c}\~{a}o que ser\'{a} usada para a configura\c{c}\~{a}o dos processo de ETL, que transformar\~{a}o os dados em \textit{Microsoft Excel} com dados formatado por um SGBD relacional.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{tela de Boas Vinda e a Interface do PDI (\textit{Pentaho Data Integration}).}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-pdi}
+    \label{fig:ilustfigpentaho-pdi}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+O \textit{Pentaho Data Integration}, fornece os recursos \textit{Extract, Transform e Load} (ETL) que facilitam o processo de captura, limpeza e armazenamento de dados usando um formato uniforme e consistente que \'{e} acessível e relevante para os usu\'{a}rios finais e tecnologias IoT.
+
+O PDI \'{e} formado por duas categorias de artefatos, \textit{Jobs} e Transforma\c{c}\~{o}es, e estes artefatos s\~{a}o construídos por meio de sua interface gr\'{a}fica, o \textit{Spoon}. 
+
+O \textit{Spoon} \'{e} a interface gr\'{a}fica do \textit{Pentaho Data Integration} que facilita na concep\c{c}\~{a}o de rotinas e l\'ogica ETL. Abaixo na figura apresentamos a interface do PDI.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Spoon do PDI (\textit{Pentaho Data Integration}).}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-pdi-spoon}
+    \label{fig:ilustfigpentaho-pdi-spoon}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Que ser\~{a}o nomeadas no banco de dados ``DW\_181'' como: dim\_bairro, dim\_cidade, dim\_origem, dim\_tipo-denncia, dim\_data, dim\_hora e o fato\_denuncia.
+
+Quando todas as transforma\c{c}\~{o}es das dimens\~{o}es e do fato forem desenvolvidas iremos uní-las em um processo denominado \textit{Job}, que agregar\'{a} todas as transforma\c{c}\~{o}es para uma execu\c{c}\~{a}o única de toda ETL.
+
+O primeiro passo \'{e} criar a conex\~{a}o usando o componente \textit{Database Connection}, em nosso trabalho usaremos o nome ``CNN\_DW\_181'' para a conex\~{a}o com o banco de dados local ``DW\_181'', na porta de número: ``5432'', usu\'{a}rio: ``postgres'', conforme figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Database Connection - ``CNN\_DW\_181''}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-database-connection}
+    \label{fig:ilustfigpentaho-database-connection}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% TRANSFORMA\c{c}\~{o}ES
+\subsubsection{Criando as transforma\c{c}\~{o}es no PDI}
+
+Ap\'os a termos criado no t\'opico anterior a conex\~{a}o ``CNN\_DW\_181'', iniciaremos a desenvolvimento das transforma\c{c}\~{o}es. Para isso se faz necess\'{a}rio o uso de alguns \textint{steps}. que iniciam do do acesso aos dados no arquivo com os dados a serem transformado at\'{e} a cria\c{c}\~{a}o e carga da dimens\~{a}o que far\~{a}o parte do modelo Dimensional Estrela j\'{a} definido neste trabalho.
+
+Para criarmos as transforma\c{c}\~{o}es que ao final sejam geradas \`{a}s dimens\~{o}es, precisamos usar a aba \textit{Design} e os componentes nela presentes.
+
+Para melhorar o entendimento padronizamos um nomenclatura para os arquivos das transforma\c{c}\~{o}es, formato ``.ktr'', e do \textit{Job}\index{job}\footnote{\textit{Job}: \'{e} o processo que une todas \`{a}s transforma\c{c}\~{o}es para uma execu\c{c}\~{a}o de todas dentro do PDI}, formato ``.kjb'', para ajudar no desenvolvimento do DW/BI. Para transforma\c{c}\~{o}es de dimens\~{o}es: ``dim\_nome da dimens\~{a}o.ktr'' e para o fato: ``fato\_nome do fato.ktr
+''.
+
+Na constru\c{c}\~{a}o das nossas transforma\c{c}\~{o}es e nesta fase de ETL como um todo utilizaremos o componente de step: \textit{Microsoft Excel Input}, figura abaixo, que est\'{a} localizado na barra lateral de Design do \textit{Spoon}, na categoria \textit{input}. Este componente em especial ser\'{a} o padr\~{a}o para o acesso aos dados da planilha em no formato do \textit{Microsoft Excel}, e nome ``181.xls'' em todas as transforma\c{c}\~{o}es.
+
+O \textit{step Microsoft Excel Input} tem como principais fun\c{c}\~{o}es dar acesso ao dados e fazer ajustes nos nomes, tipos e tamanhos das colunas.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Barra lateral do PDI e o Componente \textit{step Microsoft Excel Input}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-pdi-step-mei}
+    \label{fig:ilustfigpentahopdistepmei}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Quando acessamos o \textit{step Microsoft Excel Input} temos acesso a tela conforme da figura abaixo, nela temos as abas \textit{Files, Sheets, Content, Error Handing, Fields e Additional output fields}. Por\'{e}m, vamos apenas nos focar na aba \textit{Fields} que cont\'{e}m os campos providos da fonte de dados. 
+
+Nela podemos fazer os ajustes necess\'{a}rios para que a transforma\c{c}\~{a}o ao longo dos \textit{steps Select values, Sort rows, Unique rows, Value Mapper, Add sequence, Table output} recebam os dados n\~{a}o transformados que ser\~{a}o ao longo dos \textit{steps} ajustados para que ao final tenhamos a dimens\~{a}o pretendida com os dados padronizados .
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Componente \textit{step Microsoft Excel Input}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-pdi-step-meis}
+    \label{fig:ilustfigpentahopdistepmeis}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% Transforma\c{c}\~{o}es
+
+% dim\_bairros.ktr
+\subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_bairro.ktr''}
+
+Os componentes que far\~{a}o parte da transforma\c{c}\~{a}o ``dim\_bairro.ktr'', ser\~{a}o: \textit{Microsoft Excel Input, Select values, Sort rows, Unique rows, Value Mapper, Add sequence} e finalmente \textit{Table Table output} conforme figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Componente \textit{step Microsoft Excel Input.}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-bairro}
+    \label{fig:ilustfigdimbairro}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Primeiramente iremos configurar o \textit{step Select Value} (Selecione o Valor), e na aba \textit{Select & Alter}, na op\c{c}\~{a}o \textit{Fields, Rename to}, iremos modificar o nome Bairro para ``ds\_bairro'', nesse componente ser\'{a} apenas essa a altera\c{c}\~{a}o, conforme figura do quadro tela do \textit{step Select Value}.
+
+Ap\'os  componente \textit{Select Value}, iremos configurar o \textit{step Sort rows} (Organizar a linha), na op\c{c}\~{a}o \textit{Fields}, \textit{Ascending} como ``S'', para que os dados fiquem organizado de forma ascendente, figura do quadro tela do \textit{step Sort rows}.
+
+O pr\'oximo componente \'{e} \textit{Unique rows} que tem a característica de selecionar apenas os valores únicos das linhas, ou seja, evitar a duplica\c{c}\~{a}o, nesse componente h\'{a} apenas a necessidade de configurar o nome do campo ou \textit{Fieldname}, conforme a figura da tela do \textit{step Unique rows}.
+
+O componente \textit{Value Mapper}, em síntese tem como fun\c{c}\~{a}o trocar os valores vindos da linha da fonte de dados que ser\~{a}o comparados no \textit{Source Value}, e ap\'os encontrar o mesmo ela ser\'{a} trocado pelo informado em \textit{Target value}, conforme a figura da tela do \textit{step Value Mapper}.
+
+Ap\'os transformarmos os dados brutos da linha Bairro da fonte de dado em Ms \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única altera\c{c}\~{a}o ser\'{a} no op\c{c}\~{a}o Nome do valor, que foi mudado para ``id\_bairro'', conforme figura da tela do \textit{Add sequence}.
+
+Finalizando a transforma\c{c}\~{a}o ``dim\_bairro.ktr'', usaremos o componente \textit{Table output} nele iremos alterar as op\c{c}\~{o}es \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_bairro'' que ser\'{a} criada ap\'os finalizar essa etapa de configura\c{c}\~{a}o dos componentes da transforma\c{c}\~{a}o, conforme \`{a} figura da tela do \textit{step Table output}.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Configurando os \textit{steps} da Transforma\c{c}\~{a}o ``dim\_bairros.ktr''(passo-a-passo).}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-passos-dim-bairros}
+    \label{fig:ilustfigpassasdimbairros}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ap\'os ter ajustado a configura\c{c}\~{a}o do \textit{step Table output}, selecionaremos o bot\~{a}o SQL, e aparecer\'{a} a tela da figura abaixo, tela \textit{Simple SQL editor}. Na tela do \textit{Simple SQL editor} , selecionando o bot\~{a}o \textit{Execute}, e surgir\'{a} a tela \textit{Results of the SQL statements}, conforme figura abaixo, abaixo. E finalmente criamos o tabela ``dim\_bairro'', dentro do banco de dados 
+``DW\_181''.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Criando a tabela ``dim\_bairro'' no banco de dados usando o \textit{step Table output}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-bairro}
+    \label{fig:ilustfigtbdimbairros}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% dim\_cidade.ktr
+\subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_cidade.ktr''}
+
+Os componentes que far\~{a}o parte da transforma\c{c}\~{a}o ``dim\_cidade.ktr'', ser\~{a}o: \textit{Microsoft Excel Input, Select values, Sort rows, Unique rows, Value Mapper, Add sequence} e finalmente \textit{Table Table output} conforme figura sabaixo. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Transforma\c{c}\~{a}o ``dim\_cidade.ktr''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-transf-dim-cidade}
+    \label{fig:ilustfigtransfdimcidade}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Primeiramente iremos configurar o \textit{step Select Value} (Selecione o Valor), e na aba \textit{Select & Alter}, na op\c{c}\~{a}o \textit{Fields, Rename to}, teremos que modificar o nome Bairro para ``ds\-bairro'', nesse componente ser\'{a} apenas essa a altera\c{c}\~{a}o, conforme figura do quadro tela do \textit{step Select Value}.
+
+Ap\'os  componente \textit{Select Value}, iremos configurar o \textit{step Sort rows} (Organizar a linha), na op\c{c}\~{a}o \textit{Fields, Ascending} como ``S'', para que os dados fiquem organizado de forma ascendente, figura do quadro tela do \textit{step Sort rows}.
+
+O pr\'oximo componente \'{e} \textit{Unique rows} que tem a característica de selecionar apenas os valores únicos das linhas, ou seja, evitar a duplica\c{c}\~{a}o, nesse componente h\'{a} apenas a necessidade de configurar o nome do campo ou \textit{Fieldname}, conforme a figura da tela do \textit{step Unique rows}.
+
+O componente \textit{Value Mapper}, em síntese tem como fun\c{c}\~{a}o trocar os valores vindos da linha da fonte de dados que ser\~{a}o comparados no \textit{Source Value}, e ap\'os encontrar o mesmo ela ser\'{a} trocado pelo informado em \textit{Target value}, conforme a figura do quadro tela do \textit{step Value Mapper}.
+
+Ap\'os transformarmos os dados brutos da linha ``Cidade'' da fonte de dado em \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única altera\c{c}\~{a}o ser\'{a} no op\c{c}\~{a}o Nome do valor, que foi mudado para ``id\_cidade'', conforme figura da tela do \textit{Add sequence}.
+
+Finalizando a transforma\c{c}\~{a}o ``dim\_cidade.ktr'', usaremos o componente Table output nele iremos alterar as op\c{c}\~{o}es \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_cidade'' que ser\'{a} criada ap\'os finalizar essa etapa de configura\c{c}\~{a}o dos componentes da transforma\c{c}\~{a}o, conforme a figura da tela do \textit{step Table output}.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Configurando os \textit{steps} da Transforma\c{c}\~{a}o ``dim\_cidade.ktr'' (passo-a-passo)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-step-dim-cidade}
+    \label{fig:ilustfigstepdimcidade}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Criando a tabela ``dim\_cidade'' no banco de dados usando o \textit{step Table output}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-cidade}
+    \label{fig:ilustfigtbdimcidade}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ao final dos processos quando executamos a transforma\c{c}\~{a}o, conforme figura abaixo, na parte posterior da tela do PDI, em ``Execution Results''. aparecer\'{a} na aba ``Preview data'', os dados padronizados dos campos: ``ds\_cidade'' e ``id\_cidade''. O pr\'oximo passo ser\'{a} percorrer a grade com os resultado e perceber se o processo de transforma\c{c}\~{a}o e carga sai conforme planejado. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Executando a transforma\c{c}\~{a}o ``dim\_cidade.ktr'' (passo-a-passo)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-exec-dim-cidade}
+    \label{fig:ilustfigexecdimcidade}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Para termos a certeza de que a tabela ``dim\_cidade'', obteve a ETL correta, precisamos abrir a tabela ``dim\_cidade'' no aplicativo ``pgAdmin 4'', que \'{e} instalado junto ao PostgreSQL, conforme figura abaixo, nela podemos analisar os dados processados pela transforma\c{c}\~{a}o criada no PDI: ``dim\_cidade.ktr''.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela ``dim\_cidade''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-result-dim-cidade}
+    \label{fig:ilustfigresultdimcidade}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% dim\_tipo\_denuncia.ktr
+\subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_tipo-denuncia.ktr''}
+
+Os componentes que far\~{a}o parte da transforma\c{c}\~{a}o ``dim\_tipo\_denuncia.ktr'', ser\~{a}o: \textit{Microsoft Excel Input, Select values, Sort rows, Unique rows, Value Mapper, Add sequence} e finalmente \textit{Table Table output} conforme figura abaixo. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Transforma\c{c}\~{a}o ``dim\_tipo\_denuncia.ktr'' do BI do 181.}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-tipo-denuncia}
+    \label{fig:ilustfigrdimtipodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Primeiramente iremos configurar o \textit{step Select Value} (Selecione o Valor), e na aba \textit{Select & Alter}, na op\c{c}\~{a}o \textit{Fields, Rename to}, iremos modificar o nome Bairro para ``ds\_tipo\_denuncia'', nesse componente ser\'{a} apenas essa a altera\c{c}\~{a}o, conforme figura da tela da \textit{step Select Value}.
+
+Ap\'os  componente \textit{Select Value}, iremos configurar o \textit{step Sort rows} (Organizar a linha), na op\c{c}\~{a}o \textit{Fields, Ascending} como ``S'', para que os dados fiquem organizado de forma ascendente, figura da tela do \textit{step Sort rows}.
+
+O pr\'oximo componente \'{e} \textit{Unique rows} que tem a característica de selecionar apenas os valores únicos das linhas, ou seja, evitar a duplica\c{c}\~{a}o, nesse componente h\'{a} apenas a necessidade de configurar o nome do campo ou \textit{Fieldname}, conforme a figura da tela do \textit{step Unique rows}.
+
+O componente \textit{Value Mapper}, em síntese tem como fun\c{c}\~{a}o trocar os valores vindos da linha da fonte de dados que ser\~{a}o comparados no \textit{Source Value}, e ap\'os encontrar o mesmo ela ser\'{a} trocado pelo informado em \textit{Target value}, conforme a figura da tela do \textit{step Value Mapper}.
+
+Ap\'os transformarmos os dados brutos da linha ``tipo\ denuncia'' da fonte de dado em \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única altera\c{c}\~{a}o ser\'{a} no op\c{c}\~{a}o Nome do valor, que foi mudado para ``id\_tipo\_denuncia'', conforme figura da tela do \textit{Add sequence}.
+
+Finalizando a transforma\c{c}\~{a}o ``dim\_tipo\_denuncia.ktr'', usaremos o componente \textit{Table output} nele iremos alterar as op\c{c}\~{o}es \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_tipo\_denuncia'' que ser\'{a} criada ap\'os finalizar essa etapa de configura\c{c}\~{a}o dos componentes da transforma\c{c}\~{a}o, conforme a figura da tela do \textit{step Table output}.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Configurando os \testit{steps} da Transforma\c{c}\~{a}o ``dim\_tipo\_denuncia.ktr'' (passo-a-passo)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-tipo-denuncia-passo-a-passo}
+    \label{fig:ilustfigrdimtipodenunciapassoapasso}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Criando a tabela ``dim\_tipo\_denuncia'' no banco de dados usando o \testit{step Table output}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-tipo-denuncia}
+    \label{fig:ilustfigtbdimtipodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ao final dos processos quando executamos a transforma\c{c}\~{a}o, conforme figura 48, na parte posterior da tela do PDI, em \textit{Execution Results}. aparecer\'{a} na aba \textit{Preview data}, os dados padronizados dos campos: ``ds\_tipo\_denuncia'' e ``id\_tipo\_denuncia''. O pr\'oximo passo ser\'{a} percorrer a grade com os resultado e perceber se o processo de transforma\c{c}\~{a}o e carga sai conforme planejado. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Executando a transforma\c{c}\~{a}o ``dim\_tipo\_denuncia.ktr''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-trans-tipo-denuncia}
+    \label{fig:ilustfigtranstipodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Para se ter certeza de que a tabela ``dim\_tipo\_denuncia'', obteve a ETL correta, precisamos abrir a tabela ``dim\_tipo\_denuncia'' no aplicativo pgAdmin vers\~{a}o 4, que \'{e} instalado junto ao PostgreSQL, conforme figura 49, nela podemos analisar os dados processados pela transforma\c{c}\~{a}o criada no PDI: ``dim\_tipo\_denuncia.ktr''.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela ``dim\_tipo\_denuncia''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-res-tipo-denuncia}
+    \label{fig:ilustfigrestipodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% dim_origem
+\subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_origem.ktr''}
+
+Os componentes que farão parte da transformação ``dim\_origem.ktr'', serão: \textit{Microsoft Excel Input, Select values, Sort rows, Unique rows, Value Mapper, Add sequence} e finalmente \textit{Table Table output} conforme figura abaixo. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Transformação ``dim\_origem.ktr'' do BI 181}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-origem}
+    \label{fig:ilustfigrdimorigem}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Primeiramente iremos configurar o \textit{step Select Value} (Selecione o Valor), e na aba \textit{Select & Alter}, na opção \textit{Fields, Rename to}, iremos modificar o nome Bairro para ``ds\_origem'', nesse componente será apenas essa a alteração, conforme figura da tela do \textit{step Select Value}.
+
+Ap/'{o}s componente \textit{Select Value}, iremos configurar o \textit{step Sort rows} (Organizar a linha), na opção \textit{Fields, Ascending} como ``S'', para que os dados fiquem organizado de forma ascendente, figura da tela do \textit{step Sort rows}.
+
+O pr/'{o}ximo componente é \textit{Unique rows} que tem a característica de selecionar apenas os valores únicos das linhas, ou seja, evitar a duplicação, nesse componente há apenas a necessidade de configurar o nome do campo ou \textit{Fieldname}, conforma a figura da tela do \textit{step Unique rows}.
+
+O componente \textit{Value Mapper}, em síntese tem como função trocar os valores vindos da linha da fonte de dados que serão comparados no \textit{Source Value}, e ap/'{o}s encontrar o mesmo ela será trocado pelo informado em \textit{Target value}, conforme a figura da tela do \textit{step Value Mapper}.
+
+Ap/'{o}s transformarmos os dados brutos da linha "origem'' da fonte de dado em \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única alteração será no opção Nome do valor, que foi mudado para ``id\_origem'', conforme figura 51 na tela do \textit{Add sequence}.
+
+Finalizando a transformação ``dim\_origem.ktr'', usaremos o componente \textit{Table output} nele iremos alterar as opções \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_origem'' que será criada ap/'{o}s finalizar essa etapa de configuração dos componentes da transformação, conforme a figura da tela do \textit{step Table output}.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Configurando os \textit{steps} da Transformação ``dim\_origem.ktr'' (passo-a-passo)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-origem-passo-a-passo}
+    \label{fig:ilustfigdimorigempassoapasso}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Criando a tabela ``dim\_origem'' no banco de dados usando o \textit{step Table output}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-origem}
+    \label{fig:ilustfigtbdimorigem}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ao final dos processos quando executamos a transformação, conforme figura 53, na parte posterior da tela do PDI, em ``Execution Results''. aparecerá na aba ``Preview data'', os dados padronizados dos campos: ``id\_origem'' e ``ds\_origem''. O pr/'{o}ximo passo será percorrer a grade com os resultado e perceber se o processo de transformação e carga sai conforme planejado. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Executando a transformação ``dim\_origem.ktr''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-res-tipo-denuncia}
+    \label{fig:ilustfigrestipodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Para se ter certeza de que a tabela ``dim\_origem'', obteve a ETL correta, precisamos abrir a tabela ``dim\_origem'' no aplicativo pgAdmin4, que é instalado junto ao PostgreSQL, conforme figura abaixo, nela podemos analisar os dados processados pela transformação criada no PDI: ``dim\_origem.ktr''.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Resultado da transformação e carga no Banco de Dados ``DW\_181'' na tabela ``dim\_origem''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-res-dim-origem}
+    \label{fig:ilustfigresdimorigem}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_data.ktr''}
+
+... A FAZER ...
+
+\subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_hora.ktr''}
+
+... A FAZER ...
+
+% FATO
+\subsubsection{Criando a transforma\c{c}\~{a}o ``fato\_denuncia.ktr''}
+
+Ap\'os criarmos todas as transforma\c{c}\~{o}es nos t\'opicos anteriores, precisamos criar a transforma\c{c}\~{a}o que criar\'{a} a tabela fato\_denuncia, que ser\'{a} o centro do modelo estrela segundo Machado (2000), conectada com as dimens\~{o}es j\'{a} criadas nas transforma\c{c}\~{o}es dos t\'opicos anteriores.
+
+Na figura abaixo, podemos destacar o uso de um componente novo no contexto desse trabalho, \'{e} o \textit{step Database lookup}, os outros componentes j\'{a} foram usando em t\'opicos anteriores.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{A transforma\c{c}\~{a}o ``fato\_denuncia.ktr''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-fato}
+    \label{fig:ilustfigfato}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+O uso de componente \textit{Database lookup}, \'{e} o detalhe mais importante para que a transforma\c{c}\~{a}o ``fato\_denuncia,ktr'', posso atingir o objetivo principal que \'{e} inserir os dados corretos dentro da tabela ``fato\_denuncia'' dentro do ``DW\_181''. 
+
+O mesmo, precisar ser configurado conforme a abaixo, abaixo, no campo \textit{connection}, deve-se inserir o nome da conex\~{a}o com o SGDB, no campo tabela \testit{Lookup}, devemos determinar a tabela que servir\'{a} de pesquisa no \textit{grid}; a chave(s) para examinar o valor(s): devemos inserir os campos de compara\c{c}\~{a}o na figura abaixo, a compara\c{c}\~{a}o ficou por conta dos campos: ``ds\_dia''  da tabela de pesquisa, na campo do \textit{Grid} ``Campo da tabela'', no campo ``Comparador'', escolhemos a op\c{c}\~{a}o de ``='', e no ``Campo1'', colocamos o campo provindo e configurado no \textit{step Select values}. Quando a compara\c{c}\~{a}o entre os campos \'{e} verificada e encontrada o step retorna o valor configurado no \textit{Grid} Valores a serem retornados da tabela \textit{lookup}, que est\'{a} no campo 
+``campo'' do \textit{Grid} acima, conforme figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Componente de \textit{Grid step Database Lookup} - ``dim\_dia''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dl-dim-dia}
+    \label{fig:ilustfigdldimdia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+O padr\~{a}o da figura acima ser\'{a} adotada como padr\~{a}o pelos \textit{steps Database lookup} de todas as dimens\~{o}es, sem a necessidade de repetir esses passo aqui nesse t\'opico, assim a tabela de ``fato\_denuncia'' ser\'{a} povoada com os identificadores de cada dimens\~{a}o.
+
+Outra característica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr`` \'{e} o uso do \textit{Step Calculator}, como na figura do t\'opico: "Criando a transforma\c{c}\~{a}o ``dim\_data.ktr'' e  de dois componentes de \textit{step Select values}, o primeiro com os campos do arquivo do ``181.xls'' no formato do textit{Microsoft Excel} e o outro que ap\'os passar por v\'{a}rios \textit{steps} possui os futuros campos da tabela de fato 
+``fato\_denuncia'' que ser\'{a} criada e receber\'{a} os dados conforme o processo de ETL configurado nesta transforma\c{c}\~{a}o.
+
+... A FAZER ...
+
+O resultado final da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'', ap\'os ser executada \'{e} apresentada na figura 85, abaixo, \'{e} percebermos os campos da tabela ``fato\_denuncia'', com os c\'odigos de cada tabela de dimens\~{a}o.
+Assim, o objetivo desta transforma\c{c}\~{o}es foi alcan\c{c}ado.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela fato-denuncia}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-resultado-fato-denuncia}
+    \label{fig:ilustfigresultadofatodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% JOBS
+\subsubsection{Criando o \testit{JOB} (job\_denuncia)}
+
+Ap\'os termos todas as transforma\c{c}\~{o}es serem criadas e devidamente testadas, faz-se necess\'{a}rio unir todas as transforma\c{c}\~{o}es das dimens\~{o}es e a do fato em processo o "Job" e nomeado como: ``job\_denuncia.kjb''. 
+
+A \textit{priori} inserimos o componente \textit{start} e logo ap\'os cada transforma\c{c}\~{a}o lembrando que o último ser\'{a} o (\textit{Transformation} - fato-denuncia) conforme \`{a} figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Jobs} ou Tarefas ``job\_denuncia.kjb'') do BI 181}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-job}
+    \label{fig:ilustfigjob}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Quando executamos o ``job\_denuncia.kjb'', o resultado aparece na tela inferior a \textit{Execution Results} se a execu\c{c}\~{a}o for bem sucedida em cada componente \textit{Transformation} o  componente \textit{Success} aparecer\'{a} conforme a figura abaixo ``Sucesso na execu\c{c}\~{a}o'', abaixo em caso contr\'{a}rio o fluxo ser\'{a} desviado para o componente \textit{Mail} e o componente que obteve o erro ter\'{a} a aparência do figura ``Erro na execu\c{c}\~{a}o de alguma transforma\c{c}\~{a}o''.
+
+% MODELO DIMENSIONAL
+\subsubsection{O modelo Dimensional do BI/DW do 181}
+
+Ap\'os a conclus\~{a}o de todas as transforma\c{c}\~{o}es, usando o PDI para desenvolver toda ETL teremos ao final o ``modelo estrela'', conforme figura abaixo, com destaque para o conjunto de dimens\~{o}es que comp\~{o}em o tempo (dim\_ano, dim\_mes, dim\_dia, dim\_semana, dim\_hora, dim\_minuto, dim\_semestre e a dim\_trimestre) que ser\'{a} essencial quando na fase de analíse dos dados usando o \textit{plugin Saiku}. Este modelo \'{e} a base de nosso 
+``DW\_181' e atrav\'{e}s dele nosso BI ser\'{a} funcional e poderemos extrair dele as an\'{a}lises que precisaremos para as tomadas de decis\~{o}es.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Modelo Dimensional do BI/DW do 181}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-moddim}
+    \label{fig:ilustfigmoddim}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} 
+
+% CUBO OLAP
+\subsection{Criando o CUBO OLAP}
+
+Em nosso trabalho n\~{a}o iremos nos deter no uso do PSW(\textit{Pentaho Schema Workbench} ou Mondrian), apenas iremos demonstrar como poderemos criar um cubo usando essa ferramenta que faz parte do pacote do Pentaho sem muitos detalhes, pois, podemos criar o cubo dentro do PUC(\textit{Pentaho User Console}), como mostraremos nos pr\'oximos t\'opicos.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{tela do PSW (\textit{Pentaho Schema Workbench} ou Mondrian)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-psw}
+    \label{fig:ilustfigpentaho-psw}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% PENTAHO
+\subsection{Iniciando o Servidor Pentaho}
+
+Ap\'os a fase de ETL utilizando o PDI (Pentaho Data Integration), a mesma sendo testada no SGBD Postgres, e logo ap\'os a cria\c{c}\~{a}o do cubo atrav\'{e}s do PSW (\textit{Pentaho Schema Workbench}) iremos para a fase de implementa\c{c}\~{a}o do BI com objetivo de usarmos o PUC (\textit{Pentaho User Console}).
+
+Inicialmente executaremos o servidor \textit{Tomcat} conforme a figura 90, e para isso devemos usar o terminal em linha de comando do Sistema Operacional MacOSX Catalina, e nos direcionando via comando do console para a pasta:
+
+"Applications/Pentaho/pentaho-server" usando o comando "cd" e se localizar na pasta "pentaho-server", usaremos o comando: "./start-pentaho.sh".
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Comando no Terminal para iniciar o servidor \textit{Tomcat}.}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pserver}
+    \label{fig:ilustfigpserver}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ap\'os executarmos o comando do par\'{a}grafo anterior a aparece na tela do console as informa\c{c}\~{o}es de conex\~{a}o com o servidor \textit{Tomcat}, conforme figura logo abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Comando no Terminal para iniciar o servidor \textit{Tomcat}.}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pserver-iniciando}
+    \label{fig:ilustfigpserveriniciando}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ap\'os os procedimentos e comandos realizados nos par\'{a}grafos acima, devemos acompanhar o pr\'oximo t\'opico destinado ao uso do PUC (\textit{Pentaho User Console}).
+
+% PUC
+
+\subsection{Utilizando o PUC}
+
+O princípio do uso do \textit{Pentaho User Console} tem a similaridade de quando usamos as ferramentas de gerenciamento de arquivos ou qualquer navegador da Web, \'{e} como se estiv\'{e}ssemos usando o PUC. \'{e} essa a analogia em rela\c{c}\~{a}o ao Console de Usu\'{a}rios Pentaho (PUC) que devemos ter em mente para usar esse console. Assim para se familiarizar com as diferentes p\'{a}ginas e controles da PUC, nesse t\'opico iremos detalhar seu uso de uma forma simplificada seguindo o padr\~{a}o do manual do Pentaho (2020).
+
+Primeiramente iniciaremos o navegador que pode ser qualquer um, por\'{e}m, em nosso trabalho iremos usar o navegador web denominado Safari, que \'{e} o padr\~{a}o dos SOs, iOS e macOSX da Apple, e usaremos a URL do servidor Pentaho em nosso trabalho ser\'{a}: "http://localhost:8080".  Ao digitarmos a p\'{a}gina carrega uma tela introdut\'oria com uma se\c{c}\~{a}o de login, como na figura , abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{tela do PUC (\textit{Pentaho User Console})}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc}
+    \label{fig:ilustfigpuc}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% PENTAHO REPORT DESIGER
+
+\subsection{Utilizando o \textit{Pentaho Report Designer}}
+
+O Report Designer \'{e} uma das v\'{a}rias maneiras de criar relat\'orios com o software Pentaho. Em nosso trabalho, n\~{a}o iremos nos deter nessa ferramenta. Basta apenas saber que, por meio do console do usu\'{a}rio Pentaho baseado na Web do servidor Pentaho, poderemos usar a interface de relat\'orios interativos ou integrar o mecanismo de relat\'orios Pentaho (no qual o \textit{Report Designer} \'{e} construído) ao seu pr\'oprio software.
+
+Para criar um relat\'orio no \textit{Report Designer}, precisamos seguir estes passos:
+
+\begin{itemize}
+    \item Conecte-se a uma fonte de dados (geralmente um banco de dados, mas você tamb\'{e}m pode extrair dados de um arquivo simples);
+    \item Obtenha seus dados com uma consulta;
+    \item Organize os elementos de dados no espa\c{c}o de trabalho do \textit{Report Designer};
+    \item Aplique a formata\c{c}\~{a}o aos elementos do relat\'orio;
+    \item Adicione elementos do gr\'{a}fico;
+    \item Crie f\'ormulas ou campos calculados usando os dados recuperados da sua consulta;e;finalmente;
+    \item Publique o relat\'orio no servidor Pentaho ou localmente como um PDF ou outro formato de arquivo suportado. 
+\end{itemize}
+
+Assim quando criamos um relat\'orio ele consistir\'{a} principalmente de dados recuperados de uma consulta ao banco de dados que você criar\'{a} atrav\'{e}s do Assistente de Design de Relat\'orios, \textit{SQL Query Designer}, \textit{MQL Query Builder} ou manualmente. 
+
+Depois de ter um conjunto de dados, você pode restringi-lo ainda mais para mostrar detalhes específicos e depois passar para o layout e design do relat\'orio. Na figura abaixo, temos a janela \textit{Welcome} (bem-vindo).
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{tela \textit{Welcome do Pentaho Report Designer}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-welcome-prd}
+    \label{fig:ilustfigwelcomeprd}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+ 
+Na  pr\'oxima figura, temos a tela do PRD, local onde podemos ajustar nossos relat\'orio de acordo com as nossas
+necessidades.
+
+Assim quando criamos um relat\'orio ele consistir\'{a} principalmente de dados recuperados de uma consulta ao banco de dados que você criar\'{a} atrav\'{e}s do Assistente de Design de Relat\'orios, \textit{SQL Query Designer}, \textit{MQL Query Builder} ou manualmente. 
+
+Depois de ter um conjunto de dados, você pode restringi-lo ainda mais para mostrar detalhes específicos e depois passar para o layout e design do relat\'orio. Na pr\'oxima figura , temos a tela do PRD, local onde podemos ajustar nossos relat\'orio de acordo com as nossas necessidades.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{PRD (\textit{Pentaho Report Designer})}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-prd}
+    \label{fig:ilustfigpentahoprd}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% DASHBOARDS
+
+\subsection{Criando \textit{Dashboards}}
+
+Para construirmos nossos \textit{Dashboards} precisaremos utilizar o  Community Dashboard Editor (CDE) e suas tecnologias subjacentes (CDF, CDA e CCC) permitem o r\'{a}pido desenvolvimento e implementa\c{c}\~{a}o dos pain\'{e}is do Pentaho CTools. 
+
+A ferramenta CDE foi criada para simplificar os processos de cria\c{c}\~{a}o, design e renderiza\c{c}\~{a}o dos pain\'{e}is do CTools.
+
+O CDE uma ferramenta poderosa e completa, integrando perfeitamente a interface do usu\'{a}rio com fontes de dados e componentes personalizados.
+
+\subsubsection{Utilizando o \textit{Dashboard Designer} e CTools}
+
+O \textit{Community Dashboard Editor} (CDE) ajuda você a criar e adicionar facilmente pain\'{e}is do CTools. A ferramenta CDE \'{e} um editor de painel gr\'{a}fico que fornece acesso aos componentes do painel no \textit{Community Dashboard Framework} (CDF). Essa ferramenta usa uma grade para o layout que permite criar seus pr\'oprios pain\'{e}is sem precisar de muita experiência em JavaScript ou HTML. Antes de come\c{c}ar, certifique-se de ter ativado o plugin CDE.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{tela do CDE (\textit{Community Dashboard Editor})}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-cde}
+    \label{fig:ilustfigcde}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Usando nossos dados padronizados providos do ``DW\_181'', criamos nossos \textit{Dashboards} o primeiro deles foi o ``Cidades x Denúncias'', conforme figura abaixo. Nele temos na primeira coluna o cruzamento dos dados das cidades, denúncias em um determinado ano.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Dashboard}: ``Cidades x Denúncias''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dashboard-cxd}
+    \label{fig:ilustfigdcxd}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+O parâmetro passado \'{e} o campo ano, que est\'{a} no combo box, no lado esquerdo e na parte alta desta coluna. Na segunda coluna h\'{a} o cruzamento dos dados das cidades, denúncias e meses das mesmas, com o parâmetro cidade sendo passado nesta coluna.
