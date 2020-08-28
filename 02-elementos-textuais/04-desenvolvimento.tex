@@ -16,7 +16,7 @@ A infraestrutura utilizada neste trabalho \'{e} baseada em ferramentas de softwa
 
 \section{SISGOU}
 
-O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'odulo "Aplicativos", "Disque Denúncia'' e "Consultar Denúncias", conforme figura abaixo.
+O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'odulo "Aplicativos", ``disque Denúncia'' e "Consultar Denúncias", conforme figura abaixo.
 
 % figuras
 \begin{figure}[H]
@@ -459,7 +459,7 @@ O componente \textit{Value Mapper}, em s\'{i}ntese tem como fun\c{c}\~{a}o troca
 
 Ap/'{o}s transformarmos os dados brutos da linha "origem'' da fonte de dado em \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única altera\c{c}\~{a}o ser\'{a} no op\c{c}\~{a}o Nome do valor, que foi mudado para ``id\_origem'', conforme figura 51 na tela do \textit{Add sequence}.
 
-Finalizando a transforma\c{c}\~{a}o ``dim\_origem.ktr'', usaremos o componente \textit{Table output} nele iremos alterar as op\c{c}ões \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_origem'' que ser\'{a} criada ap/'{o}s finalizar essa etapa de configura\c{c}\~{a}o dos componentes da transforma\c{c}\~{a}o, conforme a figura da tela do \textit{step Table output}.
+Finalizando a transforma\c{c}\~{a}o ``dim\_origem.ktr'', usaremos o componente \textit{Table output} nele iremos alterar as op\c{c}\~{o}es \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_origem'' que ser\'{a} criada ap/'{o}s finalizar essa etapa de configura\c{c}\~{a}o dos componentes da transforma\c{c}\~{a}o, conforme a figura da tela do \textit{step Table output}.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -507,12 +507,12 @@ Para se ter certeza de que a tabela ``dim\_origem'', obteve a ETL correta, preci
 
 \subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_data.ktr''}
 
-Diferente das transforma\c{c}ões dos t\'{o}picos anteriores, a transforma\c{c}\~{a}o ``dim\_data.ktr'', 
+Diferente das transforma\c{c}\~{o}es dos t\'{o}picos anteriores, a transforma\c{c}\~{a}o ``dim\_data.ktr'', 
 \'{e} muito mais complexa, nela iremos usar componentes de step, como o Calculator e o String cut. 
 Na figura abaixo, podemos perceber que esta transforma\c{c}\~{a}o tem como prioridade criar 
 as tabelas ``dim\_dia'', ``dim\_semana'', ``dim\_mes'', ``dim\_trimestre'', ``dim\_semestre'' e 
 a ``dim\_ano'', ao final de todo processo iremos produzir um DW, e criar an\'{a}lises que podem 
-usar essas dimensões/tabelas.
+usar essas dimens\~{o}es/tabelas.
 Iremos, passo a passo e atrav\'{e}s de figuras construir a ETL da transforma\c{c}\~{a}o ``dim\_data.ktr''.
 
 \begin{figure}[H]
@@ -531,17 +531,17 @@ A novidade nessa transforma\c{c}\~{a}o s\~{a}o os steps: \textit{String Cut, Cal
 entre o \textit{step Sort rows} e o \textit{Unique rows 2 2}, conforme a figura abaixo que apresenta um 
 pequeno \'{i}cone de c\'{o}pia, que na verdade, sai do padr\~{a}o da configura\c{c}\~{a}o b\'{a}sica, que \'{e} o movimento
 de dados, pelo m\'{e}todo \textit{Round-robin}\index{RoundRobin}\footnote{Round-robin s\~{a}o estas etapas que ser\~{a}o 
-executadas em paralelo, o padr\~{a}o nas transforma\c{c}ões do PDI, e n\~{a}o de uma forma sequencial como na dados para os pr\'{o}ximos steps. 
+executadas em paralelo, o padr\~{a}o nas transforma\c{c}\~{o}es do PDI, e n\~{a}o de uma forma sequencial como na dados para os pr\'{o}ximos steps. 
 } de cada \textit{step} entre seu \textit{hop} e o pr\'{o}ximo \textit{step}, sem configurar para ``copia dados para os pr\'{o}ximos steps'' 
 os dados transformados para cada dimens\~{a}o n\~{a}o trar\'{a} o resultado esperado ao final do processo.
 
-Nas figuras abaixo que se seguem para cada ramifica\c{c}\~{a}o temos a cria\c{c}\~{a}o das dimensões que a transforma\c{c}\~{a}o 
+Nas figuras abaixo que se seguem para cada ramifica\c{c}\~{a}o temos a cria\c{c}\~{a}o das dimens\~{o}es que a transforma\c{c}\~{a}o 
 ``dim\_data.ktr'' ir\~{a} criar como as: dim\_dia, dim\_semana, dim\_mes, dim\_trimestre, 
 dim\_semestre e dim\_ano, iremos desvendar a particularidade de cada uma, 
 pois, quando estivermos analisando os dados ao final desse trabalho teremos 
 um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida dentro do contexto do BI.
 
-% transforma\c{c}\~{a}o dim\_data.ktr
+% TRANSFORMA\C{C}\~{A}O DIM\_DATA.ktr
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
@@ -566,7 +566,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_dia'' no banco de dados usando o step Table dim\_dia}
+    \caption{Criando a tabela ``dim\_dia'' no banco de dados usando o \textit{step Table} dim\_dia}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-dia}
     \label{fig:ilustfigtbdimdia}
 \end{figure}
@@ -574,7 +574,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 % dim\_semana
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_semana'' atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
@@ -584,18 +584,18 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_semana'' no banco de dados usando o step Table dim\_semana}
+    \caption{Criando a tabela ``dim\_semana'' no banco de dados usando o \textit{step Table} dim\_semana}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-semana}
-    \label{fig:ilustfigdimsemana}
+    \label{fig:ilustfigtbdimsemana}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 % dim\_mes
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_mes" atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
@@ -605,10 +605,10 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-begin{figure}[H]
+]begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_semana'' no banco de dados usando o step Table dim\_semana}
+    \caption{Criando a tabela ``dim\_semana'' no banco de dados usando o \textit{step Table} dim\_semana}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-mes}
     \label{fig:ilustfigtbdimmes}
 \end{figure}
@@ -616,7 +616,7 @@ begin{figure}[H]
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 % dim\_trimestre
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_trimestre" atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
@@ -626,10 +626,10 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_trimestre" no banco de dados usando o step Table dim\_trimestre}
+    \caption{Criando a tabela ``dim\_trimestre" no banco de dados usando o \textit{step Table} dim\_trimestre}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-trimestre}
     \label{fig:ilustfigtbdimtrimestre}
 \end{figure}
@@ -637,7 +637,7 @@ begin{figure}[H]
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 % dim\_semestre
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_semestre" atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
@@ -647,10 +647,10 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_semestre" no banco de dados usando o step Table dim\_semestre}
+    \caption{Criando a tabela ``dim\_semestre" no banco de dados usando o \textit{step Table} dim\_semestre}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-semestre}
     \label{fig:ilustfigtbdimsemestre}
 \end{figure}
@@ -658,7 +658,7 @@ begin{figure}[H]
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 % dim\_ano
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_ano'' atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
@@ -668,10 +668,10 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_ano'' no banco de dados usando o step Table dim\_ano}
+    \caption{Criando a tabela ``dim\_ano'' no banco de dados usando o \textit{step Table} dim\_ano}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-ano}
     \label{fig:ilustfigtbdimano}
 \end{figure}
@@ -680,10 +680,10 @@ begin{figure}[H]
 
 Ao final dos processos quando executamos a transforma\c{c}\~{a}o, conforme figura abaixo, na se\c{c}\~{a}o posterior da tela do PDI, 
 em "Execution Results". aparecer\'{a} na aba ``Preview data'', os dados padronizados dos campos: 
-"dt_denuncia'', "ds_dia''e "id_dia''. O pr\'{o}ximo passo ser\'{a} percorrer a grade com os resultado e 
-perceber se o processo de transforma\c{c}\~{a}o e carga sai conforme planejado para todas as transforma\c{c}ões. 
+``dt_denuncia'', ``ds_dia''e ``id_dia''. O pr\'{o}ximo passo ser\'{a} percorrer a grade com os resultado e 
+perceber se o processo de transforma\c{c}\~{a}o e carga sai conforme planejado para todas as transforma\c{c}\~{o}es. 
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Executando a transforma\c{c}\~{a}o ``dim\_data.ktr''}
@@ -697,7 +697,7 @@ Para se ter certeza de que as tabelas:
 ``dim\_dia dim\_semana, dim\_mes, dim\_trimestre, dim\_semestre e dim\_ano'', obteve a ETL corretas, 
 precisamos abrir as tabelas acima citada no aplicativo pgAdmin4, conforme figura abaixo.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela ``dim\_ano''}
@@ -711,16 +711,16 @@ begin{figure}[H]
 \subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_hora.ktr''}
 
 A transforma\c{c}\~{a}o ``dim\_hora.ktr'', \'{e} um pouco semelhante a transforma\c{c}\~{a}o ``dim\_data.ktr'', por\'{e}m menos complexa, 
-nela iremos usar o step String cut, nesta n\~{a}o houve a necessidade do uso de componentes como o Calculator. 
+nela iremos usar o \textit{step String cut}, nesta n\~{a}o houve a necessidade do uso de componentes como o \textit{Calculator}. 
 
-O único detalhe \'{e} a movimenta\c{c}\~{a}o dos dados entre o step Sort rows para o Unique rows, principais, 
+O único detalhe \'{e} a movimenta\c{c}\~{a}o dos dados entre o \textit{step Sort rows} para o \textit{Unique rows}, principais, 
 que \'{e} : ``Copiar dados para os pr\'{o}ximos steps''. Na figura abaixo, podemos perceber que esta transforma\c{c}\~{a}o tem como 
 prioridade criar as tabelas ``dim\_hora'' e a ``dim\_minuto'', ao final de todo processo. 
 
-Assim, iremos produzir dentro do ``DW\_181'', duas novas dimensões para que possamos criar an\'{a}lises que podem usar estas dimensões.
+Assim, iremos produzir dentro do ``DW\_181'', duas novas dimens\~{o}es para que possamos criar an\'{a}lises que podem usar estas dimens\~{o}es.
 Iremos, passo a passo e atrav\'{e}s de figuras construir a ETL da transforma\c{c}\~{a}o ``dim\_hora.ktr''.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Transforma\c{c}\~{a}o (dim\_hora.ktr) do BI 181}
@@ -730,13 +730,13 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Dividimos a transforma\c{c}ões em três caminhos, um caminho como sendo o principal que parte do 
-step Microsoft Excel Input at\'{e} o componente Unique rows e dois caminhos que  levam a cria\c{c}\~{a}o das tabelas de cada 
+Dividimos a transforma\c{c}\~{o}es em três caminhos, um caminho como sendo o principal que parte do \textit{
+step Microsoft Excel Input} at\'{e} o componente Unique rows e dois caminhos que  levam a cria\c{c}\~{a}o das tabelas de cada 
 dimens\~{a}o: ``dim\_hora'' e ``dim\_minuto'', conforme as figura acima.
 
-a figura 72 logo abaixo, demonstra a configura\c{c}\~{a}o dos steps do caminho principais.
+A figura logo abaixo, demonstra a configura\c{c}\~{a}o dos steps do caminho principais.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Configurando os \textit{steps} da Transforma\c{c}\~{a}o ``dim\_hora.ktr'' (passo-a-passo)}
@@ -749,7 +749,7 @@ begin{figure}[H]
 Como comentado anteriormente, dividimos em dois caminhos, um deles \'{e} formado pelos steps da figura abaixo, 
 que representa os componentes que ap\'{o}s execu\c{c}\~{a}o criar\'{a} a tabela ``dim\_hora'' dentro do ``DW\_181''.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_hora'' atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_hora.ktr''}
@@ -764,36 +764,36 @@ a figura 74 aparecer\'{a} a tela do \textit{Simple SQL editor}, e ap\'{o}s, aces
 aparece a tela do \textit{Results of the SQL statements} nos revela o resultado da 
 cria\c{c}\~{a}o f\'{i}sica da tabela ``dim\_hora'' dentro do SGDB. 
 
- begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_hora'' no banco de dados usando o \textit{step Table} dim\_hora.}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-hora}
-    \label{fig:ilustfigresdimano}
+    \label{fig:ilustfigtbdimhora}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 % dim\_minuto
 O outro caminho \'{e} formado pelos \textit{steps} da figura abaixo, que representa os componentes 
-que ap\'{o}s execu\c{c}\~{a}o, homologamente ao anterior, criar\'(a} a tabela ``dim\_minuto'' dentro do DW.
+que ap\'{o}s execu\c{c}\~{a}o, homologamente ao anterior, criar\'{a} a tabela ``dim\_minuto'' dentro do DW.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_minuto'' atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-minuto}
-    \label{fig:ilustfigresdimanodim-minuto}
+    \label{fig:ilustfigdimanodimminuto}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Tendo como base a configura\c{c}\~{a}o do \textit{step Table} dim\_hora, configuramos o step Table dim\_minuto, 
-acessando o bot\~{a}o ``SQL'' na tela do \textit{step} , a figura abaixo, na sequência aparecer\'(a} a tela do \textit{Simple 
+Tendo como base a configura\c{c}\~{a}o do \textit{step Table} dim\_hora, configuramos o \textit{step Table} dim\_minuto, 
+acessando o bot\~{a}o ``SQL'' na tela do \textit{step}, a figura abaixo, na sequência aparecer\'{a} a tela do \textit{Simple 
 SQL editor}, e ap\'{o}s, acesso ao bot\~{a}o execute desta tela, a tela do \textit{Results of the SQL statements} 
 nos mostra o resultado da cria\c{c}\~{a}o da tabela f\'{i}sica ``dim\_hora'' dentro do SGDB. 
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Criando a tabela ``dim\_minuto'' no banco de dados usando o \textit{step Table} dim\_minuto}
@@ -804,9 +804,9 @@ begin{figure}[H]
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 E finalmente, executando a transforma\c{c}\~{a}o ``dim\_hora.ktr'', o resultado do 
-processo aparecer\'(a} no quadro ``Execution Results'' da figura seguinte.
+processo aparecer\'{a} no quadro ``Execution Results'' da figura seguinte.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Executando a transforma\c{c}\~{a}o ``dim\_hora.ktr''}
@@ -819,9 +819,9 @@ begin{figure}[H]
 Para se ter certeza de que as tabelas ``dim\_hora'' e ``dim\_minuto'', obtiveram a ETL correta. Para isso como nos t\'{o}picos anteriores 
 precisamos abrir a tabela ``dim\_hora'' ou a tabela ``dim\_minuto'' no aplicativo pgAdmin4, do SGDB PostgreSQL, conforme 
 as proximas figuras, nelas podemos analisar os dados processados pela transforma\c{c}\~{a}o criada no PDI, ``dim\_hora.ktr'' 
-que gerou duas dimensões com os dados padronizados inseridos nelas.
+que gerou duas dimens\~{o}es com os dados padronizados inseridos nelas.
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela ``dim\_hora''}
@@ -831,7 +831,7 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-begin{figure}[H]
+\begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{ Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela ``dim\_minuto''.}
@@ -841,14 +841,16 @@ begin{figure}[H]
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-
 % TRANSFORMA\C{C}\~{A}O: FATO\_DEN\]'{U}CIA
 \subsubsection{Criando a transforma\c{c}\~{a}o ``fato\_denuncia.ktr''}
 
 Ap\'os criarmos todas as transforma\c{c}\~{o}es nos t\'opicos anteriores,
- precisamos criar a transforma\c{c}\~{a}o que criar\'{a} a tabela fato\_denuncia, que ser\'{a} o centro do modelo estrela segundo Machado (2000), conectada com as dimens\~{o}es j\'{a} criadas nas transforma\c{c}\~{o}es dos t\'opicos anteriores.
+ precisamos criar a transforma\c{c}\~{a}o que criar\'{a} a tabela fato\_denuncia, 
+ que ser\'{a} o centro do modelo estrela segundo Machado (2000), conectada com as dimens\~{o}es j\'{a} 
+ criadas nas transforma\c{c}\~{o}es dos t\'opicos anteriores.
 
-Na figura abaixo, podemos destacar o uso de um componente novo no contexto desse trabalho, \'{e} o \textit{step Database lookup}, os outros componentes j\'{a} foram usando em t\'opicos anteriores.
+Na figura abaixo, podemos destacar o uso de um componente novo no contexto desse trabalho, \'{e} o 
+\textit{step Database lookup}, os outros componentes j\'{a} foram usando em t\'opicos anteriores.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -860,10 +862,18 @@ Na figura abaixo, podemos destacar o uso de um componente novo no contexto desse
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-O uso de componente \textit{Database lookup}, \'{e} o detalhe mais importante para que a transforma\c{c}\~{a}o ``fato\_denuncia,ktr'', posso atingir o objetivo principal que \'{e} inserir os dados corretos dentro da tabela ``fato\_denuncia'' dentro do ``DW\_181''. 
+O uso de componente \textit{Database lookup}, \'{e} o detalhe mais importante para que a transforma\c{c}\~{a}o 
+``fato\_denuncia,ktr'', posso atingir o objetivo principal que \'{e} inserir os dados corretos dentro da tabela 
+``fato\_denuncia'' dentro do ``DW\_181''. 
 
-O mesmo, precisar ser configurado conforme a abaixo, abaixo, no campo \textit{connection}, deve-se inserir o nome da conex\~{a}o com o SGDB, no campo tabela \testit{Lookup}, devemos determinar a tabela que servir\'{a} de pesquisa no \textit{grid}; a chave(s) para examinar o valor(s): devemos inserir os campos de compara\c{c}\~{a}o na figura abaixo, a compara\c{c}\~{a}o ficou por conta dos campos: ``ds\_dia''  da tabela de pesquisa, na campo do \textit{Grid} ``Campo da tabela'', no campo ``Comparador'', escolhemos a op\c{c}\~{a}o de ``='', e no ``Campo1'', colocamos o campo provindo e configurado no \textit{step Select values}. Quando a compara\c{c}\~{a}o entre os campos \'{e} verificada e encontrada o step retorna o valor configurado no \textit{Grid} Valores a serem retornados da tabela \textit{lookup}, que est\'{a} no campo 
-``campo'' do \textit{Grid} acima, conforme figura abaixo.
+O mesmo, precisar ser configurado conforme a abaixo, abaixo, no campo \textit{connection}, deve-se inserir o 
+nome da conex\~{a}o com o SGDB, no campo tabela \testit{Lookup}, devemos determinar a tabela que servir\'{a} de 
+pesquisa no \textit{grid}; a chave(s) para examinar o valor(s): devemos inserir os campos de compara\c{c}\~{a}o na 
+figura abaixo, a compara\c{c}\~{a}o ficou por conta dos campos: ``ds\_dia''  da tabela de pesquisa, na campo do 
+\textit{Grid} ``Campo da tabela'', no campo ``Comparador'', escolhemos a op\c{c}\~{a}o de ``='', e no 
+``Campo1'', colocamos o campo provindo e configurado no \textit{step Select values}. Quando a compara\c{c}\~{a}o 
+entre os campos \'{e} verificada e encontrada o step retorna o valor configurado no \textit{Grid} Valores a serem 
+retornados da tabela \textit{lookup}, que est\'{a} no campo ``campo'' do \textit{Grid} acima, conforme figura abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -875,14 +885,20 @@ O mesmo, precisar ser configurado conforme a abaixo, abaixo, no campo \textit{co
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-O padr\~{a}o da figura acima ser\'{a} adotada como padr\~{a}o pelos \textit{steps Database lookup} de todas as dimens\~{o}es, sem a necessidade de repetir esses passo aqui nesse t\'opico, assim a tabela de ``fato\_denuncia'' ser\'{a} povoada com os identificadores de cada dimens\~{a}o.
+O padr\~{a}o da figura acima ser\'{a} adotada como padr\~{a}o pelos \textit{steps Database lookup} de 
+todas as dimens\~{o}es, sem a necessidade de repetir esses passo aqui nesse t\'opico, assim a tabela de 
+``fato\_denuncia'' ser\'{a} povoada com os identificadores de cada dimens\~{a}o.
 
-Outra caracter\'{i}stica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr`` \'{e} o uso do \textit{Step Calculator}, como na figura do t\'opico: "Criando a transforma\c{c}\~{a}o ``dim\_data.ktr'' e  de dois componentes de \textit{step Select values}, o primeiro com os campos do arquivo do ``181.xls'' no formato do textit{Microsoft Excel} e o outro que ap\'os passar por v\'{a}rios \textit{steps} possui os futuros campos da tabela de fato 
+Outra caracter\'{i}stica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr`` \'{e} o uso do \textit{Step Calculator}, 
+como na figura do t\'opico: "Criando a transforma\c{c}\~{a}o ``dim\_data.ktr'' e  de dois componentes de 
+\textit{step Select values}, o primeiro com os campos do arquivo do ``181.xls'' no formato do 
+\textit{Microsoft Excel} e o outro que ap\'os passar por v\'{a}rios \textit{steps} possui os futuros campos da tabela de fato 
 ``fato\_denuncia'' que ser\'{a} criada e receber\'{a} os dados conforme o processo de ETL configurado nesta transforma\c{c}\~{a}o.
 
 ... A FAZER ...
 
-O resultado final da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'', ap\'os ser executada \'{e} apresentada na figura 85, abaixo, \'{e} percebermos os campos da tabela ``fato\_denuncia'', com os c\'odigos de cada tabela de dimens\~{a}o.
+O resultado final da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'', ap\'os ser executada \'{e} apresentada na figura 85, abaixo, 
+\'{e} percebermos os campos da tabela ``fato\_denuncia'', com os c\'odigos de cada tabela de dimens\~{a}o.
 Assim, o objetivo desta transforma\c{c}\~{o}es foi alcan\c{c}ado.
 
 \begin{figure}[H]
@@ -898,27 +914,37 @@ Assim, o objetivo desta transforma\c{c}\~{o}es foi alcan\c{c}ado.
 % JOBS
 \subsubsection{Criando o \testit{JOB} (job\_denuncia)}
 
-Ap\'os termos todas as transforma\c{c}\~{o}es serem criadas e devidamente testadas, faz-se necess\'{a}rio unir todas as transforma\c{c}\~{o}es das dimens\~{o}es e a do fato em processo o "Job" e nomeado como: ``job\_denuncia.kjb''. 
+Ap\'os termos todas as transforma\c{c}\~{o}es serem criadas e devidamente testadas, faz-se necess\'{a}rio unir 
+todas as transforma\c{c}\~{o}es das dimens\~{o}es e a do fato em processo o ``Job'' e nomeado como: ``job\_denuncia.kjb''. 
 
-A \textit{priori} inserimos o componente \textit{start} e logo ap\'os cada transforma\c{c}\~{a}o lembrando que o último ser\'{a} o (\textit{Transformation} - fato-denuncia) conforme \`{a} figura abaixo.
+A \textit{priori} inserimos o componente \textit{start} e logo ap\'os cada transforma\c{c}\~{a}o lembrando que o último 
+ser\'{a} o (\textit{Transformation} - fato-denuncia) conforme \`{a} figura abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{\textit{Jobs} ou Tarefas ``job\_denuncia.kjb'') do BI 181}
+    \caption{\textit{Jobs} ou Tarefas ``job\_denuncia.kjb'' do BI 181}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-job}
     \label{fig:ilustfigjob}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Quando executamos o ``job\_denuncia.kjb'', o resultado aparece na tela inferior a \textit{Execution Results} se a execu\c{c}\~{a}o for bem sucedida em cada componente \textit{Transformation} o  componente \textit{Success} aparecer\'{a} conforme a figura abaixo ``Sucesso na execu\c{c}\~{a}o'', abaixo em caso contr\'{a}rio o fluxo ser\'{a} desviado para o componente \textit{Mail} e o componente que obteve o erro ter\'{a} a aparência do figura ``Erro na execu\c{c}\~{a}o de alguma transforma\c{c}\~{a}o''.
+Quando executamos o ``job\_denuncia.kjb'', o resultado aparece na tela inferior a \textit{Execution Results} se a execu\c{c}\~{a}o 
+for bem sucedida em cada componente \textit{Transformation} o  componente \textit{Success} aparecer\'{a} conforme a 
+figura abaixo ``Sucesso na execu\c{c}\~{a}o'', abaixo em caso contr\'{a}rio o fluxo ser\'{a} desviado para o 
+componente \textit{Mail} e o componente que obteve o erro ter\'{a} a aparência do figura ``Erro na execu\c{c}\~{a}o de 
+alguma transforma\c{c}\~{a}o''.
 
 % MODELO DIMENSIONAL
 \subsubsection{O modelo Dimensional do BI/DW do 181}
 
-Ap\'os a conclus\~{a}o de todas as transforma\c{c}\~{o}es, usando o PDI para desenvolver toda ETL teremos ao final o ``modelo estrela'', conforme figura abaixo, com destaque para o conjunto de dimens\~{o}es que comp\~{o}em o tempo (dim\_ano, dim\_mes, dim\_dia, dim\_semana, dim\_hora, dim\_minuto, dim\_semestre e a dim\_trimestre) que ser\'{a} essencial quando na fase de anal\'{i}se dos dados usando o \textit{plugin Saiku}. Este modelo \'{e} a base de nosso 
-``DW\_181' e atrav\'{e}s dele nosso BI ser\'{a} funcional e poderemos extrair dele as an\'{a}lises que precisaremos para as tomadas de decis\~{o}es.
+Ap\'os a conclus\~{a}o de todas as transforma\c{c}\~{o}es, usando o PDI para desenvolver toda ETL teremos ao final o ``modelo estrela'', 
+conforme figura abaixo, com destaque para o conjunto de dimens\~{o}es que comp\~{o}em o tempo (dim\_ano, dim\_mes, dim\_dia, dim\_semana, 
+dim\_hora, dim\_minuto, dim\_semestre e a dim\_trimestre) que ser\'{a} essencial quando na fase de anal\'{i}se dos dados usando o \textit{plugin Saiku}. 
+
+Este modelo \'{e} a base de nosso ``DW\_181' e atrav\'{e}s dele nosso BI ser\'{a} 
+funcional e poderemos extrair dele as an\'{a}lises que precisaremos para as tomadas de decis\~{o}es.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
