@@ -457,7 +457,7 @@ O pr/'{o}ximo componente \'{e} \textit{Unique rows} que tem a caracter\'{i}stica
 
 O componente \textit{Value Mapper}, em s\'{i}ntese tem como fun\c{c}\~{a}o trocar os valores vindos da linha da fonte de dados que ser\~{a}o comparados no \textit{Source Value}, e ap/'{o}s encontrar o mesmo ela ser\'{a} trocado pelo informado em \textit{Target value}, conforme a figura da tela do \textit{step Value Mapper}.
 
-Ap/'{o}s transformarmos os dados brutos da linha "origem'' da fonte de dado em \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única altera\c{c}\~{a}o ser\'{a} no op\c{c}\~{a}o Nome do valor, que foi mudado para ``id\_origem'', conforme figura 51 na tela do \textit{Add sequence}.
+Ap/'{o}s transformarmos os dados brutos da linha ``origem'' da fonte de dado em \textit{Microsoft Excel}, iremos criar um campo sequencial, para isso usaremos o componente \textit{Add sequence}, a única altera\c{c}\~{a}o ser\'{a} no op\c{c}\~{a}o Nome do valor, que foi mudado para ``id\_origem'', conforme figura na tela do \textit{Add sequence}.
 
 Finalizando a transforma\c{c}\~{a}o ``dim\_origem.ktr'', usaremos o componente \textit{Table output} nele iremos alterar as op\c{c}\~{o}es \textit{Connection, Target schema, Target table, truncate table}, e na aba \textit{Database fields}, incluiremos os Campos ou colunas da tabela ``dim\_origem'' que ser\'{a} criada ap/'{o}s finalizar essa etapa de configura\c{c}\~{a}o dos componentes da transforma\c{c}\~{a}o, conforme a figura da tela do \textit{step Table output}.
 
@@ -505,6 +505,7 @@ Para se ter certeza de que a tabela ``dim\_origem'', obteve a ETL correta, preci
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
+% TRANSFORMA\C{C}\~{A}O DIM\_DATA.KTL
 \subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_data.ktr''}
 
 Diferente das transforma\c{c}\~{o}es dos t\'{o}picos anteriores, a transforma\c{c}\~{a}o ``dim\_data.ktr'', 
@@ -518,8 +519,8 @@ Iremos, passo a passo e atrav\'{e}s de figuras construir a ETL da transforma\c{c
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Transforma\c{c}\~{a}o ``dim\_\data.ktr'' do BI 181}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-data.png}
+    \caption{Transforma\c{c}\~{a}o ``dim\_data.ktr'' do BI 181}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-data}
     \label{fig:ilustfigresdimdata}
 \end{figure}
 \vspace*{-0,9cm}
@@ -541,7 +542,7 @@ dim\_semestre e dim\_ano, iremos desvendar a particularidade de cada uma,
 pois, quando estivermos analisando os dados ao final desse trabalho teremos 
 um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida dentro do contexto do BI.
 
-% TRANSFORMA\C{C}\~{A}O DIM\_DATA.ktr
+% dim\_data.ktr
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
@@ -680,7 +681,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 
 Ao final dos processos quando executamos a transforma\c{c}\~{a}o, conforme figura abaixo, na se\c{c}\~{a}o posterior da tela do PDI, 
 em "Execution Results". aparecer\'{a} na aba ``Preview data'', os dados padronizados dos campos: 
-``dt_denuncia'', ``ds_dia''e ``id_dia''. O pr\'{o}ximo passo ser\'{a} percorrer a grade com os resultado e 
+``dt\_denuncia'', ``ds\_dia''e ``id\_dia''. O pr\'{o}ximo passo ser\'{a} percorrer a grade com os resultado e 
 perceber se o processo de transforma\c{c}\~{a}o e carga sai conforme planejado para todas as transforma\c{c}\~{o}es. 
 
 \begin{figure}[H]
