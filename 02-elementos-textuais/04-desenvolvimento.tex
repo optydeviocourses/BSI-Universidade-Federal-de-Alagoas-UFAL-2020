@@ -948,7 +948,7 @@ Assim, o objetivo desta transformações foi alcançado.
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Resultado da transformação e carga no Banco de Dados ``DW\_181'' na tabela fato\_denuncia"}
+    \caption{Resultado da transformação e carga no Banco de Dados ``DW\_181'' na tabela fato\_denuncia}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-res-fato-denuncia}
     \label{fig:ilustfigresfatodenuncia}
 \end{figure}
@@ -967,9 +967,9 @@ ser\'{a} o (\textit{Transformation} - fato-denuncia) conforme \`{a} figura abaix
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{\textit{Jobs} ou Tarefas ``job\_denuncia.kjb'' do BI 181}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-job}
-    \label{fig:ilustfigjob}
+    \caption{\textit{Jobs} ``job\_denuncia.kjb'' do BI 181}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-job-denuncia}
+    \label{fig:ilustfigjobdenuncia}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
@@ -977,8 +977,34 @@ ser\'{a} o (\textit{Transformation} - fato-denuncia) conforme \`{a} figura abaix
 Quando executamos o ``job\_denuncia.kjb'', o resultado aparece na tela inferior a \textit{Execution Results} se a execu\c{c}\~{a}o 
 for bem sucedida em cada componente \textit{Transformation} o  componente \textit{Success} aparecer\'{a} conforme a 
 figura abaixo ``Sucesso na execu\c{c}\~{a}o'', abaixo em caso contr\'{a}rio o fluxo ser\'{a} desviado para o 
-componente \textit{Mail} e o componente que obteve o erro ter\'{a} a aparência do figura ``Erro na execu\c{c}\~{a}o de 
+componente \textit{Mail} e o componente que obteve o erro ter\'{a} a apar\^{e}ncia do figura ``Erro na execu\c{c}\~{a}o de 
 alguma transforma\c{c}\~{a}o''.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Jobs}  ``job\_denuncia.kjb'' do BI 181 com erro}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-job-denuncia-erro}
+    \label{fig:ilustfigjobdenunciaerro}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+
+Quando executamos o ``job\_denuncia.kjb'' \'{e} o mesmo não tem nenhum erro no fluxo das transformações, 
+este job se apresentará conforme a figura logo abaixo:
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Executando o \textit{Jobs} ``job\_denuncia.kjb'' do BI 181 no \textit{Spoon}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-exec-job-denuncia}
+    \label{fig:ilustfigexecjobdenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Neste t\ó{o}pico finalizamos a fase de ETL usando o PDI, e seus recursos usando os componentes de \textit{Steps, Transformations e Jobs}.
 
 % MODELO DIMENSIONAL
 \subsubsection{O modelo Dimensional do BI/DW do 181}
@@ -1020,7 +1046,7 @@ Em nosso trabalho n\~{a}o iremos nos deter no uso do PSW(\textit{Pentaho Schema 
 
 Ap\'os a fase de ETL utilizando o PDI (Pentaho Data Integration), a mesma sendo testada no SGBD Postgres, e logo ap\'os a cria\c{c}\~{a}o do cubo atrav\'{e}s do PSW (\textit{Pentaho Schema Workbench}) iremos para a fase de implementa\c{c}\~{a}o do BI com objetivo de usarmos o PUC (\textit{Pentaho User Console}).
 
-Inicialmente executaremos o servidor \textit{Tomcat} conforme a figura 90, e para isso devemos usar o terminal em linha de comando do Sistema Operacional MacOSX Catalina, e nos direcionando via comando do console para a pasta:
+Inicialmente executaremos o servidor \textit{Tomcat} conforme a figura abaixo, e para isso devemos usar o terminal em linha de comando do Sistema Operacional MacOSX Catalina, e nos direcionando via comando do console para a pasta:
 
 "Applications/Pentaho/pentaho-server'' usando o comando "cd" e se localizar na pasta ``Pentaho-server'', usaremos o comando: "./start-pentaho.sh".
 
