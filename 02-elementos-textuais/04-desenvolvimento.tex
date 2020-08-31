@@ -867,9 +867,11 @@ O uso de componente \textit{Database lookup}, \'{e} o detalhe mais importante pa
 ``fato\_denuncia,ktr'', posso atingir o objetivo principal que \'{e} inserir os dados corretos dentro da tabela 
 ``fato\_denuncia'' dentro do ``DW\_181''. 
 
-O mesmo, precisar ser configurado conforme a abaixo, abaixo, no campo \textit{connection}, deve-se inserir o 
-nome da conex\~{a}o com o SGDB, no campo tabela \textit{Lookup}, devemos determinar a tabela que servir\'{a} de 
-pesquisa no \textit{grid}; a chave(s) para examinar o valor(s): devemos inserir os campos de compara\c{c}\~{a}o na 
+O mesmo, precisar ser configurado conforme a abaixo, no campo \textit{connection}, devemos inserir o 
+nome da conex\~{a}o com o SGDB, no campo tabela \textit{Lookup}. Logo ap\'{o}s determinar a tabela que servir\'{a} de 
+pesquisa no \textit{grid}.
+
+A chave para examinar o valor: devemos inserir os campos de compara\c{c}\~{a}o na 
 figura abaixo, a compara\c{c}\~{a}o ficou por conta dos campos: ``ds\_dia''  da tabela de pesquisa, na campo do 
 \textit{Grid} ``Campo da tabela'', no campo ``Comparador'', escolhemos a op\c{c}\~{a}o de ``='', e no 
 ``Campo1'', colocamos o campo provindo e configurado no \textit{step Select values}. Quando a compara\c{c}\~{a}o 
@@ -880,34 +882,75 @@ retornados da tabela \textit{lookup}, que est\'{a} no campo ``campo'' do \textit
 	\vspace*{0,2cm}
     \centering
     \caption{Componente de \textit{Grid step Database Lookup} - ``dim\_dia''}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dl-dim-dia}
-    \label{fig:ilustfigdldimdia}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-step-dl-dim-dia}
+    \label{fig:ilustfigstepdldimdia}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-O padr\~{a}o da figura acima ser\'{a} adotada como padr\~{a}o pelos \textit{steps Database lookup} de 
-todas as dimens\~{o}es, sem a necessidade de repetir esses passo aqui nesse t\'opico, assim a tabela de 
-``fato\_denuncia'' ser\'{a} povoada com os identificadores de cada dimens\~{a}o.
-
-Outra caracter\'{i}stica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr`` \'{e} o uso do \textit{Step Calculator}, 
-como na figura do t\'opico: "Criando a transforma\c{c}\~{a}o ``dim\_data.ktr'' e  de dois componentes de 
-\textit{step Select values}, o primeiro com os campos do arquivo do ``181.xls'' no formato do 
-\textit{Microsoft Excel} e o outro que ap\'os passar por v\'{a}rios \textit{steps} possui os futuros campos da tabela de fato 
-``fato\_denuncia'' que ser\'{a} criada e receber\'{a} os dados conforme o processo de ETL configurado nesta transforma\c{c}\~{a}o.
-
-... A FAZER ...
-
-O resultado final da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'', ap\'os ser executada \'{e} apresentada na figura 85, abaixo, 
-\'{e} percebermos os campos da tabela ``fato\_denuncia'', com os c\'odigos de cada tabela de dimens\~{a}o.
-Assim, o objetivo desta transforma\c{c}\~{o}es foi alcan\c{c}ado.
+Outra caracter\'{i}stica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'' é o uso do \textit{step Calculator}, como no 
+t\'{o}pico ``Criando a transforma\c{c}\~{a}o ``dim\_data.ktr'' '' e  de dois componentes de \textit{step Select values}, o primeiro com os 
+campos do arquivo do ``181.xls'' no formato do \textit{Microsoft Excel} e o outro que ap\'{o}s passar por v\'{a}rios \textit{steps} possui 
+os futuros campos da tabela de fato ``fato\_denuncia'' que será criada e receberá os dados conforme o processo de ETL configurado nesta transformação.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela fato-denuncia}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-resultado-fato-denuncia}
-    \label{fig:ilustfigresultadofatodenuncia}
+    \caption{\textit{Step Select values} - fato\_denuncia}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-step-sv-fato-denuncia}
+    \label{fig:ilustfigstepsvfatodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{\textit{Step Table output} - fato\_denuncia}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-step-to-fato-denuncia}
+    \label{fig:ilustfigsteptofatodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Depois da configura\c{c}\~{a}o do \textit{step Table output} - fato\_denuncia, clicando no botão ``SQL'' na tela do \textit{step}, 
+da figura abaixo, na sequência aparecer\'{a} a tela do \textit{Simple SQL editor}, e ap\'{o}s, um clique no bot\~{a}o ``execute'' 
+desta tela, a tela do \textit{Results of the SQL statements} apresenta o resultado da cria\c{c}\~{a}o f\í{i}sica da tabela 
+``fato\_denuncia'' dentro do ``DW\_181'' no Postgres. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Criando a tabela ``fato\_denuncia'' no banco de dados usando o \textit{step Table output}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-fato-denuncia}
+    \label{fig:ilustfigtbfatodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ao ser executada a transformação ``fato\_denuncia.ktr'', o resultado do 
+processo aparecerá no quadro "Execution Results" da figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Executando a transformação ``fato\_denuncia.ktr''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-trans-fato-denuncia}
+    \label{fig:ilustfigtransfatodenuncia}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+O resultado final da transformação ``fato\_denuncia.ktr'', após ser executada é apresentada na Figura 85, 
+abaixo, é percebermos os campos da tabela ``fato\_denuncia'', com os códigos de cada tabela de dimensão.
+Assim, o objetivo desta transformações foi alcançado.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Resultado da transformação e carga no Banco de Dados ``DW\_181'' na tabela fato\_denuncia"}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-res-fato-denuncia}
+    \label{fig:ilustfigresfatodenuncia}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
