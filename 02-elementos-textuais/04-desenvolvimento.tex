@@ -16,7 +16,7 @@ A infraestrutura utilizada neste trabalho \'{e} baseada em ferramentas de softwa
 
 \section{SISGOU}
 
-O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'odulo "Aplicativos", ``disque Denúncia'' e "Consultar Denúncias", conforme figura abaixo.
+O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'odulo ``Aplicativos``, ``disque Denúncia'' e ``Consultar Denúncias``, conforme figura abaixo.
 
 % figuras
 \begin{figure}[H]
@@ -37,15 +37,20 @@ O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os da
 
 \subsection{SGDB PostgreSQL}
 
-O PostgreSQL \'{e} um sistema de gerenciamento de banco de dados relacional de objeto (ORDBMS) baseado no PostgreSQL, vers\~{a}o 4.2, desenvolvido no Departamento de Ciência da Computa\c{c}\~{a}o da Universidade da Calif\'ornia em \textit{Berkeley}. O PostgreSQL foi pioneiro em muitos conceitos que s\'o se tornaram dispon\'{i}veis em alguns sistemas de bancos de dados comerciais muito depois.
+O PostgreSQL \'{e} um sistema de gerenciamento de banco de dados relacional de objeto (ORDBMS) baseado no 
+PostgreSQL, vers\~{a}o 4.2, desenvolvido no Departamento de Ciência da Computa\c{c}\~{a}o da Universidade da Calif\'ornia em \textit{Berkeley}. O PostgreSQL foi pioneiro em muitos conceitos que s\'{o} se tornaram dispon\'{i}veis em alguns sistemas de bancos de dados comerciais muito depois.
 
-Al\'{e}m disso, o PostgreSQL pode ser estendido pelo usu\'{a}rio de v\'{a}rias maneiras, por exemplo, adicionando tipos de dados, fun\c{c}\~{o}es, operadores, fun\c{c}\~{o}es agregadas, m\'{e}todos de \'{i}ndice e uma linguagens processuais. Que n\~{a}o ser\~{a}o especificados nesse trabalho.
+Al\'{e}m disso, o PostgreSQL pode ser estendido pelo usu\'{a}rio de v\'{a}rias maneiras, por exemplo, 
+adicionando tipos de dados, fun\c{c}\~{o}es, operadores, fun\c{c}\~{o}es agregadas, m\'{e}todos de \'{i}ndice e uma linguagens processuais. Que n\~{a}o ser\~{a}o especificados nesse trabalho.
 
-E por causa da licen\c{c}a liberal, o PostgreSQL pode ser usado, modificado e distribu\'{i}do gratuitamente por qualquer pessoa, seja para fins particulares, comerciais ou acadêmicos.
+E por causa da licen\c{c}a liberal, o PostgreSQL pode ser usado, modificado e distribu\'{i}do gratuitamente por 
+qualquer pessoa, seja para fins particulares, comerciais ou acadêmicos.
 
-Em nosso trabalho a cria\c{c}\~{a}o, modelagem e o armazenamento dos dados do \textit{Data Warehouse} foi utilizado o PostgreSQL, vers\~{a}o 9.5, e com gerenciador administrativo o aplicativo ``pgAdmin'' vers\~{a}o 4. 
+Em nosso trabalho a cria\c{c}\~{a}o, modelagem e o armazenamento dos dados do \textit{Data Warehouse} foi 
+utilizado o PostgreSQL, vers\~{a}o 9.5, e com gerenciador administrativo o aplicativo ``pgAdmin'' vers\~{a}o 4. 
 
-Para gerenciar o PostgreSQL, podemos fazê-lo de duas maneiras: uma por meio de uma s\'{e}rie de comandos SQL e ou atrav\'{e}s do aplicativo ``pgAdmin''. Neste trabalho enfocaremos o artif\'{i}cio da cria\c{c}\~{a}o do banco de dados, suas tabelas e \textit{constraints}, usando a interface gr\'{a}fica do aplicativo acima, e tamb\'{e}m atrav\'{e}s do PDI, que gera \textit{scripts} com as instru\c{c}\~{o}es para a cria\c{c}\~{a}o da tabela, atrav\'{e}s do processo de transforma\c{c}\~{a}o, criado no PDI, que ser\'{a} mencionado em um t\'opico espec\'{i}fico.
+Para gerenciar o PostgreSQL, podemos fazê-lo de duas maneiras: uma por meio de uma 
+s\'{e}rie de comandos SQL e ou atrav\'{e}s do aplicativo ``pgAdmin''. Neste trabalho enfocaremos o artif\'{i}cio da cria\c{c}\~{a}o do banco de dados, suas tabelas e \textit{constraints}, usando a interface gr\'{a}fica do aplicativo acima, e tamb\'{e}m atrav\'{e}s do PDI, que gera \textit{scripts} com as instru\c{c}\~{o}es para a cria\c{c}\~{a}o da tabela, atrav\'{e}s do processo de transforma\c{c}\~{a}o, criado no PDI, que ser\'{a} mencionado em um t\'opico espec\'{i}fico.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -73,10 +78,19 @@ Outra ferramenta fundamental neste trabalho \'{e} a Plataforma de Integra\c{c}\~
 \vspace*{-0,9cm}
 {\raggedright \fonte{Dispon\'{i}vel em: <https://https://www.hitachivantara.com/en\_us/pdf/datasheet/pentaho-business-analytics-platform-datasheet.pdf>. Acesso em: 16 ago. 2020.}}\\
 
-Os produtos Pentaho s\~{a}o abrangentes e usados para acessar, integrar, manipular, visualizar e analisar seus dados. Quer os dados sejam armazenados em um arquivo simples, banco de dados relacional, \textit{cluster Hadoop}, banco de dados NoSQL, banco de dados anal\'{i}tico, fluxos de m\'{i}dia social, lojas operacionais ou na nuvem, os produtos Pentaho podem ajud\'{a}-lo a descobrir, analisar e visualizar dados para encontrar as respostas que você precisa, mesmo se você n\~{a}o tiver experiência em codifica\c{c}\~{a}o. 
-Usu\'{a}rios avan\c{c}ados com experiência em programa\c{c}\~{a}o podem usar nossa ampla API\index{API}\footnote{API: Ë um conjunto de rotinas e padr\~{o}es de programa\c{c}\~{a}o para acesso a um aplicativo de software ou plataforma baseado na Web. A sigla API refere-se ao termo em inglês ``\textit{Application Programming Interface}'' que significa em tradu\c{c}\~{a}o para o português "Interface de Programa\c{c}\~{a}o de Aplicativos".} para personalizar relat\'orios, consultas e transforma\c{c}\~{o}es para estender a funcionalidade.
+Os produtos Pentaho s\~{a}o abrangentes e usados para acessar, integrar, manipular, visualizar e analisar seus dados. 
+Quer os dados sejam armazenados em um arquivo simples, banco de dados relacional, \textit{cluster Hadoop}, banco de dados 
+NoSQL, banco de dados anal\'{i}tico, fluxos de m\'{i}dia social, lojas operacionais ou na nuvem, os produtos Pentaho 
+podem ajud\'{a}-lo a descobrir, analisar e visualizar dados para encontrar as respostas que você precisa, mesmo se 
+você n\~{a}o tiver experiência em codifica\c{c}\~{a}o. 
+Usu\'{a}rios avan\c{c}ados com experiência em programa\c{c}\~{a}o podem usar nossa ampla API\index{API}\footnote{API: 
+Ë um conjunto de rotinas e padr\~{o}es de programa\c{c}\~{a}o para acesso a um aplicativo de software ou plataforma 
+baseado na Web. A sigla API refere-se ao termo em inglês ``\textit{Application Programming Interface}'' que 
+significa em tradu\c{c}\~{a}o para o português ``Interface de Programa\c{c}\~{a}o de Aplicativos``.} para personalizar 
+relat\'orios, consultas e transforma\c{c}\~{o}es para estender a funcionalidade.
 
-Os produtos Pentaho incluem componentes baseados na web e ferramentas de \textit{design}. Os componentes e ferramentas que você usa dependem do seu fluxo de trabalho e do que seu ambiente oferece suporte
+Os produtos Pentaho incluem componentes baseados na web e ferramentas de \textit{design}. Os componentes e 
+ferramentas que você usa dependem do seu fluxo de trabalho e do que seu ambiente oferece suporte
 
 Toda plataforma est\'{a} dividida em duas partes: Componentes baseados na web e as Ferramentas de \textit{Design}.
 
@@ -84,50 +98,53 @@ Os componentes baseados na web s\~{a}o:
 
 \begin{itemize}
     \item Console de usu\'{a}rio: O \textit{Pentaho User Console} (PUC) \'{e} um ambiente de design para acessar \textit{Analyzer}, Relat\'orios Interativos e \textit{Dashboard Designer}. \textit{Pentaho User Console} tamb\'{e}m oferece recursos de administra\c{c}\~{a}o do sistema para configurar seu servidor Pentaho.
-    
-    \item Analisador: O \textit{Analyzer} ajuda a visualizar dados para tomar decis\~{o}es de neg\'ocios informadas. Você pode criar visualiza\c{c}\~{o}es geogr\'{a}ficas, gr\'{a}fico de dispers\~{a}o, grade de calor e múltiplos gr\'{a}ficos. Você tamb\'{e}m pode filtrar dados, adicionar parâmetros de consulta, configurar links de pesquisa detalhada, aplicar formata\c{c}\~{a}o condicional e gerar \textit{hiperlinks}. Em nosso trabalho iremos utilizar dois analisadores: o \textit{Saiku} e o \textit{JPivo}t.
-    
+    \item Analisador: O \textit{Analyzer} ajuda a visualizar dados para tomar decis\~{o}es de neg\'ocios informadas. Você pode criar visualiza\c{c}\~{o}es geogr\'{a}ficas, gr\'{a}fico de dispers\~{a}o, grade de calor e múltiplos gr\'{a}ficos. Você tamb\'{e}m pode filtrar dados, adicionar par\^{a}metros de consulta, configurar links de pesquisa detalhada, aplicar formata\c{c}\~{a}o condicional e gerar \textit{hiperlinks}. Em nosso trabalho iremos utilizar dois analisadores: o \textit{Saiku} e o \textit{JPivo}t.
     \item Relat\'orios Interativos: Relat\'orios interativos s\~{a}o uma interface de design usada para criar relat\'orios operacionais simples e sob demanda, sem depender de TI ou desenvolvedores de relat\'orios. Você pode adicionar rapidamente elementos ao seu relat\'orio e format\'{a}-los da maneira que desejar.
-    
     \item \textit{Dashboard Designer}: O \textit{Dashboard Designer} \'{e} usado para escolher modelos de layout, temas e conteúdo para criar pain\'{e}is visualmente atraentes que ajudam os tomadores de decis\~{a}o a obter conhecimento cr\'{i}tico rapidamente. Você pode combinar uma ampla variedade de conteúdo, incluindo relat\'orios interativos, visualiza\c{c}\~{o}es do \textit{Analyzer} e conteúdo colaborativo.
-    
-    \item CTools: CTools \'{e} uma estrutura orientada pela comunidade para a cria\c{c}\~{a}o de pain\'{e}is usando tecnologias da web, como \textit{JavaScript}, CSS e HTML. Você pode criar facilmente pain\'{e}is dinâmicos para os usu\'{a}rios explorarem e entenderem grandes quantidades de dados usando uma variedade de gr\'{a}ficos, tabelas e outros componentes.
-    
+    \item CTools: CTools \'{e} uma estrutura orientada pela comunidade para a cria\c{c}\~{a}o de pain\'{e}is usando tecnologias da web, como \textit{JavaScript}, CSS e HTML. Você pode criar facilmente pain\'{e}is din\^{a}micos para os usu\'{a}rios explorarem e entenderem grandes quantidades de dados usando uma variedade de gr\'{a}ficos, tabelas e outros componentes.
     \item Assistente de fonte de dados: O \textit{Data Source Wizard} ajuda a definir uma fonte de dados que cont\'{e}m suas informa\c{c}\~{o}es e o orienta na cria\c{c}\~{a}o de seus primeiros modelos relacionais ou multidimensionais para uso na cria\c{c}\~{a}o de relat\'orios e an\'{a}lises.
-    
     \item Editor de modelo de fonte de dados: O Editor de modelo de fonte de dados ajuda a ajustar e refinar modelos de dados relacionais e multidimensionais. Você pode arrastar campos para seus locais apropriados, misturar e combinar campos de diferentes tabelas, adicionar campos a mais de uma categoria ou remover um campo.
 \end{itemize}
 
 As ferramentas de design da Pentaho s\~{a}o usadas para desenvolver e refinar como os valores dos dados s\~{a}o relatados, modelados, transformados e armazenados. Elas s\~{a}o:
 
 \begin{itemize}
-   \item Integra\c{c}\~{a}o de dados: \textit{Pentaho Data Integration} (PDI) fornece acesso a um motor de Extra\c{c}\~{a}o, Transforma\c{c}\~{a}o e Carregamento (ETL) que captura os dados certos, limpa os dados e armazena os dados usando um formato uniforme que \'{e} acess\'{i}vel e relevante para os usu\'{a}rios finais e tecnologias IoT\index{NewR}\footnote{IoT: \textit{Internet Of Tink} ou Internet das coisas \'{e} um conceito que se refere \`{a} interconex\~{a}o digital de objetos cotidianos com a internet, conex\~{a}o dos objetos mais do que das pessoas. Em outras palavras, a internet das coisas nada mais \'{e} que uma rede de objetos f\'{i}sicos capaz de reunir e de transmitir dados.}
-   
-   \item \textit{Report Designer}: O \textit{Report Designer} \'{e} usado para gerar relat\'orios detalhados e perfeitos em pixels, usando virtualmente qualquer fonte de dados. Ele permite que os profissionais de \textit{business intelligence} criem relat\'orios altamente detalhados e com qualidade de impress\~{a}o, com base em dados preparados de maneira adequada.
-
-   \item Designer de agrega\c{c}\~{a}o: O \textit{Aggregation Designer} fornece uma interface simples que permite criar tabelas agregadas de n\'{i}veis dentro das dimens\~{o}es que você especificar. Use esta ferramenta para melhorar o desempenho de seus cubos OLAP \textit{Pentaho Analysis} (Mondrian).
-
-   \item Editor de Metadados: O Editor de Metadados simplifica a constru\c{c}\~{a}o de relat\'orios. Use o Editor de Metadados para construir dom\'{i}nios e modelos de metadados Pentaho. Um \textit{Pentaho Metadata Model} mapeia a estrutura f\'{i}sica do seu banco de dados em um modelo de neg\'ocio l\'ogico.
-
+    \item Integra\c{c}\~{a}o de dados: \textit{Pentaho Data Integration} (PDI) fornece acesso a um motor de Extra\c{c}\~{a}o, Transforma\c{c}\~{a}o e Carregamento (ETL) que captura os dados certos, limpa os dados e armazena os dados usando um formato uniforme que \'{e} acess\'{i}vel e relevante para os usu\'{a}rios finais e tecnologias IoT\index{NewR}\footnote{IoT: \textit{Internet Of Tink} ou Internet das coisas \'{e} um conceito que se refere \`{a} interconex\~{a}o digital de objetos cotidianos com a internet, conex\~{a}o dos objetos mais do que das pessoas. Em outras palavras, a internet das coisas nada mais \'{e} que uma rede de objetos f\'{i}sicos capaz de reunir e de transmitir dados.}
+    \item \textit{Report Designer}: O \textit{Report Designer} \'{e} usado para gerar relat\'orios detalhados e perfeitos em pixels, usando virtualmente qualquer fonte de dados. Ele permite que os profissionais de \textit{business intelligence} criem relat\'orios altamente detalhados e com qualidade de impress\~{a}o, com base em dados preparados de maneira adequada.
+    \item Designer de agrega\c{c}\~{a}o: O \textit{Aggregation Designer} fornece uma interface simples que permite criar tabelas agregadas de n\'{i}veis dentro das dimens\~{o}es que você especificar. Use esta ferramenta para melhorar o desempenho de seus cubos OLAP \textit{Pentaho Analysis} (Mondrian).
+    \item Editor de Metadados: O Editor de Metadados simplifica a constru\c{c}\~{a}o de relat\'orios. Use o Editor de Metadados para construir dom\'{i}nios e modelos de metadados Pentaho. Um \textit{Pentaho Metadata Model} mapeia a estrutura f\'{i}sica do seu banco de dados em um modelo de neg\'ocio l\'ogico.
     \item \textit{Schema Workbench}: \textit{Schema Workbench} permite editar e criar modelos multidimensionais (Mondrian). Você pode criar modelos Mondrian graficamente ou defini-los codificando manualmente os arquivos XML.
 \end{itemize}
 
-Nesta plataforma est\~{a}o dispon\'{i}veis componentes para execu\c{c}\~{a}o de processos de ETL, que fazem carga de \textit{Data Warehouses}, cria\c{c}\~{a}o de relat\'orios pr\'{e}-formatados e ad hoc, cubos OLAP, pain\'{e}is de instrumentos (\textit{Dashboards}) e garimpagem de dados (\textit{Data Mining}). 
+Nesta plataforma est\~{a}o dispon\'{i}veis componentes para execu\c{c}\~{a}o de processos de ETL, que fazem 
+carga de \textit{Data Warehouses}, cria\c{c}\~{a}o de relat\'orios pr\'{e}-formatados e ad hoc, cubos OLAP, 
+pain\'{e}is de instrumentos (\textit{Dashboards}) e garimpagem de dados (\textit{Data Mining}). 
 
-Todos esses recursos podem ser combinados e acionados sequencialmente para cria\c{c}\~{a}o de solu\c{c}\~{o}es mais sofisticadas. Al\'{e}m disso, a plataforma executa todas as solu\c{c}\~{o}es de BI como servi\c{c}os e, por isso, \'{e} poss\'{i}vel prover acesso \`{a}s solu\c{c}\~{o}es para sistemas externos, via \textit{web services}, atrav\'{e}s de um mecanismo baseado em SOAP/WSDL/UDDI.
+Todos esses recursos podem ser combinados e acionados sequencialmente para cria\c{c}\~{a}o de solu\c{c}\~{o}es 
+mais sofisticadas. Al\'{e}m disso, a plataforma executa todas as solu\c{c}\~{o}es de BI como servi\c{c}os e, 
+por isso, \'{e} poss\'{i}vel prover acesso \`{a}s solu\c{c}\~{o}es para sistemas externos, via 
+\textit{web services}, atrav\'{e}s de um mecanismo baseado em SOAP/WSDL/UDDI.
 
-Por\'{e}m, n\~{a}o iremos neste trabalho nos deter em todos estes recurso, apenas o m\'{i}nimo para uma solu\c{c}\~{a}o vi\'{a}vel para o servi\c{c}o do 181.
+Por\'{e}m, n\~{a}o iremos neste trabalho nos deter em todos estes recurso, apenas o m\'{i}nimo para 
+uma solu\c{c}\~{a}o vi\'{a}vel para o servi\c{c}o do 181.
 
 % DESENVOLVENDO A SOLU\c{c}\~{a}O
 
 \section{Desenvolvimento da Solu\c{c}\~{a}o}
 
-Com base nos conceitos do capitulo de Fundamenta\c{c}\~{a}o, e as t\'{e}cnicas de Kimball(2013), iremos aplicar estes conhecimentos na implementa\c{c}\~{a}o de um BI/DW, que ser\'{a} desenvolvido sobre um servidor local, usando todo o potencial e simplicidade da Plataforma Pentaho, desde o download do arquivo no formato ".XLS", com os dados de denúncias consultadas na aplica\c{c}\~{a}o web SISGOU, ao processamento ETL usando o PDI do Pentaho, e o OLAP usando o \textit{Saiku Analytics} e at\'{e} o \textit{dashboard} (painel) usando o CTOOLS e a cria\c{c}\~{a}o de um relat\'orio com o PRD.
+Com base nos conceitos do capitulo de Fundamenta\c{c}\~{a}o, e as t\'{e}cnicas de Kimball(2013), 
+iremos aplicar estes conhecimentos na implementa\c{c}\~{a}o de um BI/DW, que ser\'{a} desenvolvido 
+sobre um servidor local, usando todo o potencial e simplicidade da Plataforma Pentaho, desde o download 
+do arquivo no formato ``.XLS``, com os dados de denúncias consultadas na aplica\c{c}\~{a}o web SISGOU, ao 
+processamento ETL usando o PDI do Pentaho, e o OLAP usando o \textit{Saiku Analytics} e at\'{e} o 
+\textit{dashboard} (painel) usando o CTOOLS e a cria\c{c}\~{a}o de um relat\'orio com o PRD.
 
 % Banco de dados
 \subsection{Criando nosso Banco de dados}
 
-O nosso trabalho ir\'{a} precisar de um Banco de dados no SGBD PostgreSQL, que podemos criar via terminal do macOSX, por\'{e}m, usamos o aplicativo ``pgAdmin'' vers\~{a}o 4 que gerencia todos o banco de dados visualmente, economizando tempo de digita\c{c}\~{a}o, conforme figura abaixo.
+O nosso trabalho ir\'{a} precisar de um Banco de dados no SGBD PostgreSQL, que podemos 
+criar via terminal do macOSX, por\'{e}m, usamos o aplicativo ``pgAdmin4''
+que gerencia todos o banco de dados visualmente, economizando tempo de digita\c{c}\~{a}o, conforme figura abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -139,15 +156,19 @@ O nosso trabalho ir\'{a} precisar de um Banco de dados no SGBD PostgreSQL, que p
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Acessando o ``pdAmin'', e digitando esse comando da figura acima e basta apenas executar o mesmo na ferramenta que o Banco de dados ser\'{a} criando. Iniciando assim o primeiro passado para criarmos nossa ETL.
+Acessando o ``pdAmin4'', e digitando esse comando da figura acima e basta apenas executar o mesmo na ferramenta 
+que o Banco de dados ser\'{a} criando. Iniciando assim o primeiro passado para criarmos nossa ETL.
 
 \subsection{Criando o processo de ETL}
 
-Ap\'os termos dado o primeiro passo, teremos como base do processo de Extra\c{c}\~{a}o o arquivo no formato do \textit{Microsoft Excel} denominado ``181.xls'', lembrando que o mesmo foi exportado ``do Aplicativo Web SISGOU'' na op\c{c}\~{a}o de consulta. 
-Ele ter\'{a} o mesmo formado da figura abaixo, como suas linhas e colunas totalmente sem normatiza\c{c}\~{a}o aparente e sem nenhum tratamento nos dados.
+Ap\'os termos dado o primeiro passo, teremos como base do processo de Extra\c{c}\~{a}o o arquivo no 
+formato do \textit{Microsoft Excel} denominado ``181.xls'', lembrando que o mesmo foi exportado ``do 
+Aplicativo Web SISGOU'' na op\c{c}\~{a}o de consulta. 
+
+Ele ter\'{a} o mesmo formado da figura abaixo, como suas 
+linhas e colunas totalmente sem normatiza\c{c}\~{a}o aparente e sem nenhum tratamento nos dados.
 
 % FALTA A figura
-
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
@@ -599,7 +620,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_mes" atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
+    \caption{Criando a tabela ``dim\_mes`` atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-mes}
     \label{fig:ilustfigdimmes}
 \end{figure}
@@ -620,7 +641,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_trimestre" atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
+    \caption{Criando a tabela ``dim\_trimestre`` atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-trimestre}
     \label{fig:ilustfigdimtrimestre}
 \end{figure}
@@ -630,7 +651,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_trimestre" no banco de dados usando o \textit{step Table} dim\_trimestre}
+    \caption{Criando a tabela ``dim\_trimestre`` no banco de dados usando o \textit{step Table} dim\_trimestre}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-trimestre}
     \label{fig:ilustfigtbdimtrimestre}
 \end{figure}
@@ -641,7 +662,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_semestre" atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
+    \caption{Criando a tabela ``dim\_semestre`` atrav\'{e}s da Transforma\c{c}\~{a}o ``dim\_data.ktr''}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-semestre}
     \label{fig:ilustfigdimsemestre}
 \end{figure}
@@ -651,7 +672,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Criando a tabela ``dim\_semestre" no banco de dados usando o \textit{step Table} dim\_semestre}
+    \caption{Criando a tabela ``dim\_semestre`` no banco de dados usando o \textit{step Table} dim\_semestre}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-tb-dim-semestre}
     \label{fig:ilustfigtbdimsemestre}
 \end{figure}
@@ -680,7 +701,7 @@ um entendimento melhor da fun\c{c}\~{a}o de cada dimens\~{a}o aqui desenvolvida 
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 Ao final dos processos quando executamos a transforma\c{c}\~{a}o, conforme figura abaixo, na se\c{c}\~{a}o posterior da tela do PDI, 
-em "Execution Results". aparecer\'{a} na aba ``Preview data'', os dados padronizados dos campos: 
+em ``Execution Results``. aparecer\'{a} na aba ``Preview data'', os dados padronizados dos campos: 
 ``dt\_denuncia'', ``ds\_dia''e ``id\_dia''. O pr\'{o}ximo passo ser\'{a} percorrer a grade com os resultado e 
 perceber se o processo de transforma\c{c}\~{a}o e carga sai conforme planejado para todas as transforma\c{c}\~{o}es. 
 
@@ -888,10 +909,10 @@ retornados da tabela \textit{lookup}, que est\'{a} no campo ``campo'' do \textit
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Outra caracter\'{i}stica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'' é o uso do \textit{step Calculator}, como no 
+Outra caracter\'{i}stica da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'' \'{e} o uso do \textit{step Calculator}, como no 
 t\'{o}pico ``Criando a transforma\c{c}\~{a}o ``dim\_data.ktr'' '' e  de dois componentes de \textit{step Select values}, o primeiro com os 
 campos do arquivo do ``181.xls'' no formato do \textit{Microsoft Excel} e o outro que ap\'{o}s passar por v\'{a}rios \textit{steps} possui 
-os futuros campos da tabela de fato ``fato\_denuncia'' que será criada e receberá os dados conforme o processo de ETL configurado nesta transformação.
+os futuros campos da tabela de fato ``fato\_denuncia'' que ser\'{a} criada e receber\'{a} os dados conforme o processo de ETL configurado nesta transforma\c{c}\~{a}o.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -913,9 +934,9 @@ os futuros campos da tabela de fato ``fato\_denuncia'' que será criada e recebe
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Depois da configura\c{c}\~{a}o do \textit{step Table output} - fato\_denuncia, clicando no botão ``SQL'' na tela do \textit{step}, 
+Depois da configura\c{c}\~{a}o do \textit{step Table output} - fato\_denuncia, clicando no bot\~{a}o ``SQL'' na tela do \textit{step}, 
 da figura abaixo, na sequência aparecer\'{a} a tela do \textit{Simple SQL editor}, e ap\'{o}s, um clique no bot\~{a}o ``execute'' 
-desta tela, a tela do \textit{Results of the SQL statements} apresenta o resultado da cria\c{c}\~{a}o f\í{i}sica da tabela 
+desta tela, a tela do \textit{Results of the SQL statements} apresenta o resultado da cria\c{c}\~{a}o f\\'{i}{i}sica da tabela 
 ``fato\_denuncia'' dentro do ``DW\_181'' no Postgres. 
 
 \begin{figure}[H]
@@ -928,27 +949,27 @@ desta tela, a tela do \textit{Results of the SQL statements} apresenta o resulta
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Ao ser executada a transformação ``fato\_denuncia.ktr'', o resultado do 
-processo aparecerá no quadro "Execution Results" da figura abaixo.
+Ao ser executada a transforma\c{c}\~{a}o ``fato\_denuncia.ktr'', o resultado do 
+processo aparecer\'{a} no quadro ``Execution Results`` da figura abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Executando a transformação ``fato\_denuncia.ktr''}
+    \caption{Executando a transforma\c{c}\~{a}o ``fato\_denuncia.ktr''}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-trans-fato-denuncia}
     \label{fig:ilustfigtransfatodenuncia}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-O resultado final da transformação ``fato\_denuncia.ktr'', após ser executada é apresentada na Figura 85, 
-abaixo, é percebermos os campos da tabela ``fato\_denuncia'', com os códigos de cada tabela de dimensão.
-Assim, o objetivo desta transformações foi alcançado.
+O resultado final da transforma\c{c}\~{a}o ``fato\_denuncia.ktr'', ap\'{o}s ser executada \'{e} apresentada na figura 85, 
+abaixo, \'{e} percebermos os campos da tabela ``fato\_denuncia'', com os c\'{o}digos de cada tabela de dimens\~{a}o.
+Assim, o objetivo desta transforma\c{c}\~{o}es foi alcan\c{c}ado.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Resultado da transformação e carga no Banco de Dados ``DW\_181'' na tabela fato\_denuncia}
+    \caption{Resultado da transforma\c{c}\~{a}o e carga no Banco de Dados ``DW\_181'' na tabela fato\_denuncia}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-res-fato-denuncia}
     \label{fig:ilustfigresfatodenuncia}
 \end{figure}
@@ -991,8 +1012,8 @@ alguma transforma\c{c}\~{a}o''.
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 
-Quando executamos o ``job\_denuncia.kjb'' \'{e} o mesmo não tem nenhum erro no fluxo das transformações, 
-este job se apresentará conforme a figura logo abaixo:
+Quando executamos o ``job\_denuncia.kjb'' \'{e} o mesmo n\~{a}o tem nenhum erro no fluxo das transforma\c{c}\~{o}es, 
+este job se apresentar\'{a} conforme a figura logo abaixo:
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -1004,10 +1025,10 @@ este job se apresentará conforme a figura logo abaixo:
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Neste t\ó{o}pico finalizamos a fase de ETL usando o PDI, e seus recursos usando os componentes de \textit{Steps, Transformations e Jobs}.
+Neste t\\'{o}{o}pico finalizamos a fase de ETL usando o PDI, e seus recursos usando os componentes de \textit{Steps, Transformations e Jobs}.
 
 % MODELO DIMENSIONAL
-\subsubsection{O modelo Dimensional do BI/DW do 181}
+\subsubsection{O modelo dimensional do BI/DW do 181}
 
 Ap\'os a conclus\~{a}o de todas as transforma\c{c}\~{o}es, usando o PDI para desenvolver toda ETL teremos ao final o ``modelo estrela'', 
 conforme figura abaixo, com destaque para o conjunto de dimens\~{o}es que comp\~{o}em o tempo (dim\_ano, dim\_mes, dim\_dia, dim\_semana, 
@@ -1029,7 +1050,11 @@ funcional e poderemos extrair dele as an\'{a}lises que precisaremos para as toma
 % CUBO OLAP
 \subsection{Criando o CUBO OLAP}
 
-Em nosso trabalho n\~{a}o iremos nos deter no uso do PSW(\textit{Pentaho Schema Workbench} ou Mondrian), apenas iremos demonstrar como poderemos criar um cubo usando essa ferramenta que faz parte do pacote do Pentaho sem muitos detalhes, pois, podemos criar o cubo dentro do PUC(\textit{Pentaho User Console}), como mostraremos nos pr\'oximos t\'opicos.
+Em nosso trabalho n\~{a}o iremos nos deter no uso do 
+PSW(\textit{Pentaho Schema Workbench} ou Mondrian), apenas iremos demonstrar como 
+poderemos criar um cubo usando essa ferramenta que faz parte do pacote do
+ Pentaho sem muitos detalhes, pois, podemos criar o cubo dentro do 
+ PUC(\textit{Pentaho User Console}), como mostraremos nos pr\'oximos t\'opicos.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -1041,14 +1066,48 @@ Em nosso trabalho n\~{a}o iremos nos deter no uso do PSW(\textit{Pentaho Schema 
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Publicando o CUBO usando o Mondrian}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-psw-publicando}
+    \label{fig:ilustfigpentahopswpublicando}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{CUBO publicado com sucesso}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-psw-publicado-sucesso}
+    \label{fig:ilustfigpentahopswpublicadosucesso}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{PME (\textit{Pentaho Meta Data Editor})}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-pentaho-pme}
+    \label{fig:ilustfigpentahopentahopme}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
 % PENTAHO
-\subsection{Iniciando o Servidor Pentaho}
+\subsection{Iniciando o servidor Pentaho}
 
-Ap\'os a fase de ETL utilizando o PDI (Pentaho Data Integration), a mesma sendo testada no SGBD Postgres, e logo ap\'os a cria\c{c}\~{a}o do cubo atrav\'{e}s do PSW (\textit{Pentaho Schema Workbench}) iremos para a fase de implementa\c{c}\~{a}o do BI com objetivo de usarmos o PUC (\textit{Pentaho User Console}).
+Ap\'os a fase de ETL utilizando o PDI (Pentaho Data Integration), a mesma sendo testada no SGBD Postgres, 
+e logo ap\'os a cria\c{c}\~{a}o do cubo atrav\'{e}s do PSW (\textit{Pentaho Schema Workbench}) iremos para a fase de implementa\c{c}\~{a}o do BI com objetivo de usarmos o PUC (\textit{Pentaho User Console}).
 
-Inicialmente executaremos o servidor \textit{Tomcat} conforme a figura abaixo, e para isso devemos usar o terminal em linha de comando do Sistema Operacional MacOSX Catalina, e nos direcionando via comando do console para a pasta:
+Inicialmente executaremos o servidor \textit{Tomcat} conforme a figura abaixo, 
+e para isso devemos usar o terminal em linha de comando do Sistema Operacional MacOSX Catalina, e 
+nos direcionando via comando do console para a pasta:
 
-"Applications/Pentaho/pentaho-server'' usando o comando "cd" e se localizar na pasta ``Pentaho-server'', usaremos o comando: "./start-pentaho.sh".
+``Applications/Pentaho/pentaho-server'' usando o comando ``cd`` e se 
+localizar na pasta ``Pentaho-server'', usaremos o comando: ``./start-pentaho.sh``.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -1060,7 +1119,8 @@ Inicialmente executaremos o servidor \textit{Tomcat} conforme a figura abaixo, e
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Ap\'os executarmos o comando do par\'{a}grafo anterior a aparece na tela do console as informa\c{c}\~{o}es de conex\~{a}o com o servidor \textit{Tomcat}, conforme figura logo abaixo.
+Ap\'os executarmos o comando do par\'{a}grafo anterior a aparece na tela do console as informa\c{c}\~{o}es de 
+conex\~{a}o com o servidor \textit{Tomcat}, conforme figura logo abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -1072,15 +1132,23 @@ Ap\'os executarmos o comando do par\'{a}grafo anterior a aparece na tela do cons
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Ap\'os os procedimentos e comandos realizados nos par\'{a}grafos acima, devemos acompanhar o pr\'oximo t\'opico destinado ao uso do PUC (\textit{Pentaho User Console}).
+Ap\'{o}s os procedimentos e comandos realizados nos par\'{a}grafos acima, devemos acompanhar o pr\'{o}ximo t\'{o}pico 
+destinado ao uso do PUC (\textit{Pentaho User Console}).
 
 % PUC
+\subsection{Utilizando o PUC (\textit{Pentaho User Console})}
 
-\subsection{Utilizando o PUC}
+O princ\'{i}pio do uso do \textit{Pentaho User Console} tem a similaridade de quando usamos as 
+ferramentas de gerenciamento de arquivos ou qualquer navegador da Web, \'{e} como se estiv\'{e}ssemos 
+usando o PUC. \'{e} essa a analogia em rela\c{c}\~{a}o ao Console de Usu\'{a}rios Pentaho (PUC) que 
+devemos ter em mente para usar esse console. Assim para se familiarizar com as diferentes p\'{a}ginas e 
+controles da PUC, nesse t\'opico iremos detalhar seu uso de uma forma simplificada seguindo o padr\~{a}o do 
+manual do Pentaho (2020).
 
-O princ\'{i}pio do uso do \textit{Pentaho User Console} tem a similaridade de quando usamos as ferramentas de gerenciamento de arquivos ou qualquer navegador da Web, \'{e} como se estiv\'{e}ssemos usando o PUC. \'{e} essa a analogia em rela\c{c}\~{a}o ao Console de Usu\'{a}rios Pentaho (PUC) que devemos ter em mente para usar esse console. Assim para se familiarizar com as diferentes p\'{a}ginas e controles da PUC, nesse t\'opico iremos detalhar seu uso de uma forma simplificada seguindo o padr\~{a}o do manual do Pentaho (2020).
-
-Primeiramente iniciaremos o navegador que pode ser qualquer um, por\'{e}m, em nosso trabalho iremos usar o navegador web denominado Safari, que \'{e} o padr\~{a}o dos SOs, iOS e macOSX da Apple, e usaremos a URL do servidor Pentaho em nosso trabalho ser\'{a}: "http://localhost:8080".  Ao digitarmos a p\'{a}gina carrega uma tela introdut\'oria com uma se\c{c}\~{a}o de login, como na figura , abaixo.
+Primeiramente iniciaremos o navegador que pode ser qualquer um, por\'{e}m, em nosso trabalho 
+iremos usar o navegador web denominado Safari, que \'{e} o padr\~{a}o dos SOs, iOS e macOSX da Apple, 
+e usaremos a URL do servidor Pentaho em nosso trabalho ser\'{a}: ``http://localhost:8080``.  
+Ao digitarmos a p\'{a}gina carrega uma tela introdut\'oria com uma se\c{c}\~{a}o de login, como na figura , abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -1092,11 +1160,302 @@ Primeiramente iniciaremos o navegador que pode ser qualquer um, por\'{e}m, em no
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-% PENTAHO REPORT DESIGER
+Como padr\~{a}o o console possui a op\c{c}\~{a}o ``Entre como um Avaliador'', que nos fornece as senhas conforme a figura acima.
 
+Ao entramos com o usu\'{a}rio e a senha no PUC podemos escolher os temas pr\'{e}-instalados 
+(\textit{Crystal, Ruby e Sapphire}), em nossos exemplos iremos usar o tema \textit{Crystal}, por\'{e}m, o na vers\~{a}o que usamos 
+neste trabalho o tema padr\~{a}o \'{e} o \textit{Ruby}, logo abaixo os exemplos dos temas nas figuras.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Tela inicial do PUC com o tema \textit{Crystal}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-tema-cristal}
+    \label{fig:ilustfiguctemacristal}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Tela inicial do PUC com o tema \textit{Ruby}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-tema-ruby}
+    \label{fig:ilustfigpuctemaruby}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Tela inicial do PUC com o tema \textit{Sapphyre}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-tema-sapphyre}
+    \label{fig:ilustfigpuctemasapphyre}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Para que o Console do Usu\'{a}rio tenha a sua funcionalidade melhorada precisamos criar a 
+fonte de Dados e nela criar o esquema estrela dentro do PUC. No pr\'{o}ximo t\'{o}pico iremos criar a 
+foto de dados para podermos ter acesso às an\'{a}lises que ser\~{a}o implementadas nessa monografia.
+
+% Gerenciando as fontes de dados
+\subsubsection{Gerenciando as fontes de dados}
+
+Ao clicarmos com o mouse no bot\~{a}o ``Gerenciar Fonte de Dados'', a tela da figura abaixo, aparece, nela 
+temos um grid com as fontes de dados e os tipos j\'{a} definidos ou e no bot\~{a}o ``Nova Origem de Dados'' 
+no lado direito superior da janela, ou podemos editar e fazer outras opera\c{c}\~{o}es nas fontes de dados, 
+conforme as nossas necessidades usando o \'{i}cone de engrenagem ao lado do bot\~{a}o ``Nova Origem de Dados''.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Tela da op\c{c}\~{a}o Gerenciar Fonte de Dados no PUC}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-fonte-de-dados}
+    \label{fig:ilustfigpucfontededados}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Antes de criarmos nossas fontes de dados e an\'{a}lises, teremos que criar uma nova conex\~{a}o 
+com o Banco de dados dentro do PUC, e para isso deveremos observar a figura abaixo:
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Janela da Fonte de Dados na Op\c{c}\~{a}o ``Nova Conex\~{a}o''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-fonte-de-dados-nova-conexao}
+    \label{fig:ilustfigppucfontededadosnovaconexao}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ap\'{o}s a sele\c{c}\~{a}o da op\c{c}\~{a}o ``Nova conex\~{a}o'' da janela da figura acima, poderemos configurar essa nova 
+conex\~{a}o, conforme a Tela da figura 99, abaixo.
+
+Por padr\~{a}oo usamos o prefixo ``cnn'' ou ``CNN'' para qualquer conex\~{a}o dentro do PUC.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Configurando uma nova conex\~{a}o de Banco de Dados no PUC}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-conexao-bd}
+    \label{fig:ilustfigpucconexaobd}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Quando todos os par\^{a}metros da janela de conex\~{a}o com o Banco de Dados estiver configurado, 
+podemos fazer o teste na conex\~{a}o, e em caso da conex\~{a}o est\'{a} bem sucedida a janela da figura abaixo, aparece no PUC.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Testando a nova conex\~{a}o}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-testando-uma-nova-conexao}
+    \label{fig:ilustfigppuctestandoumanovaconexao}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Com a conex\~{a}o denominada ``CNN\_DW\_181'' configurada e testada, iremos criar a an\'{a}lise 
+no pr\'{o}ximo t\'{o}pico, com base no esquema estrela j\'{a} explicado neste trabalho no 
+t\'{o}pico de Modelagem multidimensional.
+
+% Esquema estrela CUBO_DW_181
+\subsubsection{Criando o esquema estrela no PUC e o CUBO\_DW\_181}
+
+Para criamos a an\'{a}lise precisamos preencher os par\^{a}metros, conforme a figura abaixo, \textit{a priori} digitando 
+o nome da fonte de dados que ser\'{a} a base da nossa an\'{a}lise fundamentada em um esquema estrela denominada
+``CUBO\_DW_\181'', logo ap\'{o}s nome\'{a}-la, devemos selecionar o Tipo da Fonte como ``Tabela(s) do Banco de Dado(s), 
+a conex\~{a}o ``CNN\_DW\_181'', \'{e} a depois de selecionarmos a conex\~{a}o, devemos selecionar a op\c{c}\~{a}o ``Relat\'{o}rio e An\'{a}lises
+(Requer um Esquema Estrela)``, esta \'{e} a forma mais simples de criar um esquema estrela, sem o uso do Mondrian. 
+Ao final selecionaremos o bot\~{a}o  ``Pr\'{o}ximo >'', e continuar as configura\c{c}\~{a}o das telas que vir\~{a}o.  
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Utilit\'{a}rio de fonte de Dados (Selecione Tipo)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-utiliario-fonte-de-dados-selecione-tipo}
+    \label{fig:ilustfigpucutiliariofontededadosselecionetipo}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Depois de toda configura\c{c}\~{a}o da figura acima iremos configurar o esquema estrela a partir das janelas que se seguem nas pr\'{o}ximas figuras.
+
+Na figura abaixo, deveremos selecionar todas as tabelas no quadro das Tabelas Dispon\'{i}veis e enviaremos para o quadro das Tabelas Selecionadas como na 
+figura abaixo, e na combo grid Tabela de Fato, deveremos selecionar a tabela ``public``.``fato_denuncia``, para que o bot\~{a}o ``Pr\'{o}ximo >`` possa ser 
+selecionado, caso contr\'{a}rio o mesmo fica indispon\'{i}vel e n\~{a}o dar\'{a} acesso a Janela da figura. Como todas as configura\c{c}\~{o}es da janela da 
+figura  realizadas precisamos apenas selecionar o bot\~{a}o ``Pr\'{o}ximo >`` para que, possamos continuar a cria\c{c}\~{a}o do an\'{a}lise cujo modelo ser\'{a} 
+o estrela onde poderemos us\'{a}-la dentro dos plugins: \textit{Saiku Analytics e o Jpivot Analysis} que foram detalhas nos T\'{o}picos: 4.4.6.3 e 4.4.6.4. 
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Utilit\'{a}rio de fonte de Dado (Tabelas}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-utiliario-fonte-de-dados-tabelas}
+    \label{fig:ilustfigpucutiliariofontededadostabelas}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ao finalizarmos o processo de configura\c{c}\~{a}o da Tela da figura, deveremos relacionar as Tabelas da Esquerda, com as Tabelas da Direita, 
+sempre pelos campos iniciados com o ``id\_'' de suas respectivas tabelas. Com esse recurso teremos as rela\c{c}\~{o}es entre as Tabela de dimens\~{o}es 
+com a Tabela de Fato denominada anteriormente de ``fato_denuncia''. Quando todos os relacionamentos estiverem prontos no campo ``Relacionamento(s)'' 
+o bot\~{a}o ``Finalizar'' ficarem dispon\'{i}vel para que finalizarmos o esquema estrela do ``CUBO\_DW\_181``, conforme a Tela da figura que tem os 
+par\^{a}metros para a defini\c{c}\~{a}o das rela\c{c}\~{o}es entre as tabelas.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Utilit\'{a}rio de fonte de Dados (Definir Rela\c{c}\~{o}es)}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-utiliario-fonte-de-dados-relacoes}
+    \label{fig:ilustfigpucutiliariofontededadosrelacoes}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Quando selecionarmos o bot\~{a}o finalizar da figura, poderemos modelar a fonte de dados 
+criada, por\'{e}m, neste trabalho n\~{a}o iremos precisar de tal processo, pois os nomes dos campos 
+est\~{a}o bastantes intuitivos e de f\'{a}cil compreens\~{a}o. O importante \'{e} que o PUC, em sua modelagem 
+de fonte de dados, conforme a figura abaixo, nos permite personalizar os nomes, tamanhos e etc dos 
+campos das tabelas de dimens\~{o}es e a de fato, sem que necessitarmos de uma ferramenta externa como 
+o \textit{Mondrian}, facilitando assim o trabalho de um projeto b\'{a}sico de BI usando o Pentaho e o PUC, para 
+um DW simples, eficiente e funcional.
+
+Quando terminarmos todas as configura\c{c}\~{o}es contidas nesse T\'{o}pico, relacionadas com a Fonte de dados, 
+poderemos us\'{a}-la, dentro de alguns \textit{plugins} disponibilizados dentro do \textit{Marketplace} do Pentaho, principalmente
+ no \textit{Saiku Analytics} e o \textit{Jpivot Analysis} que nos ajudaram a dar vaz\~{a}o aos CUBOS, gr\'{a}ficos e tabelas com dados 
+ estat\'{i}sticos fundamentos esses do nosso DW.
+
+ \begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Fontes de Dados}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-modelagem-fonte-de-dados}
+    \label{fig:ilustfigpucmodelagemfontededados}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Ao final de toda configura\c{c}\~{a}o teremos dispon\'{i}vel a fonte de dados ``CUBO_DW_181``, 
+conforme a figura abaixo.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Fontes de Dados}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-testando-uma-nova-conexao}
+    \label{fig:ilustfigpuctestandoumanovaconexao}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% Saiku Analytics
+\subsubsection{Usando o \textit{Saiku Analytics}}
+
+No cap\'{i}tulo 4 Desenvolvimento, T\'{o}pico 4.3.2.4.1, teorizamos sobre o plugin Saiku Analytics neste, iremos us\'{a}-lo 
+para analisar informa\c{c}\~{o}es sobre os dados provenientes da Fonte de Dados ``CUBO\_DW\_181'', criado no t\'{o}pico acima.
+Na figura 106, demonstramos as op\c{c}\~{o}es de acesso ao plugin, o mesmo n\~{a}o vem por padr\~{a}o pr\'{e}-instalado dentro do PUC, 
+precisamos selecionar o mesmo no Marketplace do Pentaho, esta passo n\~{a}o iremos demonstrar em nosso material. Iremos apenas us\'{a}-lo.
+Conforme a figura abaixo, a primeira op\c{c}\~{a}o (Op\c{c}\~{a}o 1 - Acesso pelo Menu do PUC) nos dar acesso ao plugin atrav\'{e}s do menu 
+de contexto do PUC a segunda op\c{c}\~{a}o (Op\c{c}\~{a}o 2 - Acesso pelo Bot\~{a}o do PUC) se utiliza dos bot\~{o}es apresentados na tela do PUC.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Op\c{c}\~{o}es de acesso ao \textit{Saiku Analytics}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-saiku-opcoes-acesso}
+    \label{fig:ilustfigpucsaikuopcoesacesso}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Para usarmos o Saiku, precisamos acessar o mesmo ap\'{o}s termos escolhido uma das op\c{c}\~{o}es de acesso da figura 106, acima, 
+quando escolhemos uma nova tela aparece e logo abaixo dela h\'{a} a descri\c{c}\~{a}o em inglês do plugin, e depois desta descri\c{c}\~{a}o
+ usaremos o menu de bot\~{o}es denominado Quick Links, e selecionaremos o bot\~{a}o ``Create a new query'', conforme a figura 107,  ap\'{o}s 
+ acesso a esse bot\~{a}o a tela da figura 108, ser\'{a} apresentada.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Op\c{c}\~{o}es do \textit{Saiku Analytics}}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-saiku-opcoes}
+    \label{fig:ilustfigpucsaikuopcoes}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Na figura 108, \'{e} onde h\'{a} a m\'{a}gica se inicia, nela iremos atrav\'{e}s de sele\c{c}\~{a}o do cubo, da configura\c{c}\~{a}o das: medidas e as dimens\~{o}es. 
+Para podermos ver os resultados precisamos apenas arrastar e soltar os campos das dimens\~{o}es nos quadros: medidas, colunas, linhas e filtros de acordo com a necessidade 
+do analista de dados ou do gestor do BI.
+
+Conforme a figura 108, temos um pool de op\c{c}\~{o}es, para podermos personalizar, os gr\'{a}ficos as formas de demonstrar os dados vindo do CUBO e ao final 
+salva a an\'{a}lise para consultas futuras.   
+Ser\'{a} nesse ambiente dentro do PUC que iremos trabalhar e criar as nossas an\'{a}lises de acordo com nossas necessidades, fornecendo informa\c{c}\~{o}es e 
+conhecimentos que far\~{a}o parte de futuras decis\~{o}es que pode ajudar a solucionar um determinado problema, no nosso trabalho estes problemas est\~{a}o 
+relacionados às denúncias do servi\c{c}o 181 (disque denúncia), que precisam de filtros e an\'{a}lises bem apuradas para que possamos direcionar o policiamento de maneira mais eficiente.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Tela do Saiku Analytics dentro do PUC}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-saiku-tela}
+    \label{fig:ilustfigpucsaiktela}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Logo abaixo, temos a figura 109, nela h\'{a} a demonstra\c{c}\~{a}o de uma configura\c{c}\~{a}o baseada na dimens\~{a}o ``Dim ano``, nela percebemos que a Janela
+tem bastante parâmetros basta apenas configur\'{a}-lo para a nossa necessidade.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Sele\c{c}\~{o}es para ``Ds ano''}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-saiku-selecao-ds-ano}
+    \label{fig:ilustfigpucsaikuselecaodsano}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+Na figura 110, abaixo temos uma consulta analitica, baseada nas dimens\~{o}es: ``Dim ano, Dim cidade e Dim tipo denuncia``. Atrav\'{e}s dos campos de suas respectivas 
+tabelas, o cruzamento desses dados criam a consulta analitica abaixo. E na figura 111, temos um dos modelos de gr\'{a}ficos gerado pelo plugin.
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Exemplo Tabular do uso do Saiku Analytics}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-saiku-resultado-tabular}
+    \label{fig:ilustfigpucsaikuresultadotabular}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+\begin{figure}[H]
+	\vspace*{0,2cm}
+    \centering
+    \caption{Exemplo Gr\'{a}fico do uso do Saiku Analytic}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-puc-saiku-resultado-grafico}
+    \label{fig:ilustfigpucsaikuresultadografico}
+\end{figure}
+\vspace*{-0,9cm}
+{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+
+% Jpivot Analytsis
+\subsubsection{Usando o \textit{Jpivot Analysis}}
+\dots PARA FAZER \dots
+
+% PENTAHO REPORT DESIGNER
 \subsection{Utilizando o \textit{Pentaho Report Designer}}
 
-O Report Designer \'{e} uma das v\'{a}rias maneiras de criar relat\'orios com o software Pentaho. Em nosso trabalho, n\~{a}o iremos nos deter nessa ferramenta. Basta apenas saber que, por meio do console do usu\'{a}rio Pentaho baseado na Web do servidor Pentaho, poderemos usar a interface de relat\'orios interativos ou integrar o mecanismo de relat\'orios Pentaho (no qual o \textit{Report Designer} \'{e} constru\'{i}do) ao seu pr\'oprio software.
+O Report Designer \'{e} uma das v\'{a}rias maneiras de criar relat\'{o}rios com o software 
+Pentaho. Em nosso trabalho, n\~{a}o iremos nos deter nessa ferramenta. Basta apenas saber 
+que, por meio do console do usu\'{a}rio Pentaho baseado na Web do servidor Pentaho, 
+poderemos usar a interface de relat\'orios interativos ou integrar o mecanismo de relat\'{o}rios 
+Pentaho (no qual o \textit{Report Designer} \'{e} constru\'{i}do) ao seu pr\'{o}prio software.
 
 Para criar um relat\'orio no \textit{Report Designer}, precisamos seguir estes passos:
 
@@ -1177,4 +1536,4 @@ Usando nossos dados padronizados providos do ``DW\_181'', criamos nossos \textit
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-O parâmetro passado \'{e} o campo ano, que est\'{a} no combo box, no lado esquerdo e na parte alta desta coluna. Na segunda coluna h\'{a} o cruzamento dos dados das cidades, denúncias e meses das mesmas, com o parâmetro cidade sendo passado nesta coluna.
+O par\^{a}metro passado \'{e} o campo ano, que est\'{a} no combo box, no lado esquerdo e na parte alta desta coluna. Na segunda coluna h\'{a} o cruzamento dos dados das cidades, denúncias e meses das mesmas, com o par\^{a}metro cidade sendo passado nesta coluna.
