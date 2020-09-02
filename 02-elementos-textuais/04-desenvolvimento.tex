@@ -1287,8 +1287,9 @@ Depois de toda configura\c{c}\~{a}o da figura acima iremos configurar o esquema 
 
 Na figura abaixo, deveremos selecionar todas as tabelas no quadro das Tabelas Dispon\'{i}veis e enviaremos para o quadro das Tabelas Selecionadas como na 
 figura abaixo, e na combo grid Tabela de Fato, deveremos selecionar a tabela ``public``.``fato_denuncia``, para que o bot\~{a}o ``Pr\'{o}ximo >`` possa ser 
-selecionado, caso contr\'{a}rio o mesmo fica indispon\'{i}vel e n\~{a}o dar\'{a} acesso a Janela da figura. Como todas as configura\c{c}\~{o}es da janela da 
-figura  realizadas precisamos apenas selecionar o bot\~{a}o ``Pr\'{o}ximo >`` para que, possamos continuar a cria\c{c}\~{a}o do an\'{a}lise cujo modelo ser\'{a} 
+selecionado, caso contr\'{a}rio o mesmo fica indispon\'{i}vel e n\~{a}o dar\'{a} acesso a Janela da figura. 
+
+Como todas as configura\c{c}\~{o}es da janela da figura realizadas precisamos apenas selecionar o bot\~{a}o ``Pr\'{o}ximo >`` para que, possamos continuar a cria\c{c}\~{a}o do an\'{a}lise cujo modelo ser\'{a} 
 o estrela onde poderemos us\'{a}-la dentro dos plugins: \textit{Saiku Analytics e o Jpivot Analysis} que foram detalhas nos T\'{o}picos: 4.4.6.3 e 4.4.6.4. 
 
 \begin{figure}[H]
@@ -1302,8 +1303,12 @@ o estrela onde poderemos us\'{a}-la dentro dos plugins: \textit{Saiku Analytics 
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 Ao finalizarmos o processo de configura\c{c}\~{a}o da Tela da figura, deveremos relacionar as Tabelas da Esquerda, com as Tabelas da Direita, 
-sempre pelos campos iniciados com o ``id\_'' de suas respectivas tabelas. Com esse recurso teremos as rela\c{c}\~{o}es entre as Tabela de dimens\~{o}es 
-com a Tabela de Fato denominada anteriormente de ``fato_denuncia''. Quando todos os relacionamentos estiverem prontos no campo ``Relacionamento(s)'' 
+sempre pelos campos iniciados com o ``id\_'' de suas respectivas tabelas. 
+
+Com esse recurso teremos as rela\c{c}\~{o}es entre as Tabela de dimens\~{o}es 
+com a Tabela de Fato denominada anteriormente de ``fato_denuncia''. 
+
+Quando todos os relacionamentos estiverem prontos no campo ``Relacionamento(s)'' 
 o bot\~{a}o ``Finalizar'' ficarem dispon\'{i}vel para que finalizarmos o esquema estrela do ``CUBO\_DW\_181``, conforme a Tela da figura que tem os 
 par\^{a}metros para a defini\c{c}\~{a}o das rela\c{c}\~{o}es entre as tabelas.
 
@@ -1358,6 +1363,8 @@ conforme a figura abaixo.
 
 No cap\'{i}tulo 4 Desenvolvimento, T\'{o}pico 4.3.2.4.1, teorizamos sobre o plugin Saiku Analytics neste, iremos us\'{a}-lo 
 para analisar informa\c{c}\~{o}es sobre os dados provenientes da Fonte de Dados ``CUBO\_DW\_181'', criado no t\'{o}pico acima.
+
+
 Na figura 106, demonstramos as op\c{c}\~{o}es de acesso ao plugin, o mesmo n\~{a}o vem por padr\~{a}o pr\'{e}-instalado dentro do PUC, 
 precisamos selecionar o mesmo no Marketplace do Pentaho, esta passo n\~{a}o iremos demonstrar em nosso material. Iremos apenas us\'{a}-lo.
 Conforme a figura abaixo, a primeira op\c{c}\~{a}o (Op\c{c}\~{a}o 1 - Acesso pelo Menu do PUC) nos dar acesso ao plugin atrav\'{e}s do menu 
@@ -1375,8 +1382,8 @@ de contexto do PUC a segunda op\c{c}\~{a}o (Op\c{c}\~{a}o 2 - Acesso pelo Bot\~{
 
 Para usarmos o Saiku, precisamos acessar o mesmo ap\'{o}s termos escolhido uma das op\c{c}\~{o}es de acesso da figura 106, acima, 
 quando escolhemos uma nova tela aparece e logo abaixo dela h\'{a} a descri\c{c}\~{a}o em inglês do plugin, e depois desta descri\c{c}\~{a}o
- usaremos o menu de bot\~{o}es denominado Quick Links, e selecionaremos o bot\~{a}o ``Create a new query'', conforme a figura 107,  ap\'{o}s 
- acesso a esse bot\~{a}o a tela da figura 108, ser\'{a} apresentada.
+usaremos o menu de bot\~{o}es denominado Quick Links, e selecionaremos o bot\~{a}o ``Create a new query'', conforme a figura 107,  ap\'{o}s 
+acesso a esse bot\~{a}o a tela da figura 108, ser\'{a} apresentada.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -1394,6 +1401,7 @@ do analista de dados ou do gestor do BI.
 
 Conforme a figura 108, temos um pool de op\c{c}\~{o}es, para podermos personalizar, os gr\'{a}ficos as formas de demonstrar os dados vindo do CUBO e ao final 
 salva a an\'{a}lise para consultas futuras.   
+
 Ser\'{a} nesse ambiente dentro do PUC que iremos trabalhar e criar as nossas an\'{a}lises de acordo com nossas necessidades, fornecendo informa\c{c}\~{o}es e 
 conhecimentos que far\~{a}o parte de futuras decis\~{o}es que pode ajudar a solucionar um determinado problema, no nosso trabalho estes problemas est\~{a}o 
 relacionados às denúncias do servi\c{c}o 181 (disque denúncia), que precisam de filtros e an\'{a}lises bem apuradas para que possamos direcionar o policiamento de maneira mais eficiente.
@@ -1452,8 +1460,9 @@ tabelas, o cruzamento desses dados criam a consulta analitica abaixo. E na figur
 \subsection{Utilizando o \textit{Pentaho Report Designer}}
 
 O Report Designer \'{e} uma das v\'{a}rias maneiras de criar relat\'{o}rios com o software 
-Pentaho. Em nosso trabalho, n\~{a}o iremos nos deter nessa ferramenta. Basta apenas saber 
-que, por meio do console do usu\'{a}rio Pentaho baseado na Web do servidor Pentaho, 
+Pentaho. Em nosso trabalho, n\~{a}o iremos nos deter nessa ferramenta. 
+
+Basta apenas saber que, por meio do console do usu\'{a}rio Pentaho baseado na Web do servidor Pentaho, 
 poderemos usar a interface de relat\'orios interativos ou integrar o mecanismo de relat\'{o}rios 
 Pentaho (no qual o \textit{Report Designer} \'{e} constru\'{i}do) ao seu pr\'{o}prio software.
 
