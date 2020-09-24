@@ -4,7 +4,7 @@
 
 \chapter{DESENVOLVIMENTO}
 
-Neste cap\'{i}tulo iremos utilizar \`{a}s teorias do cap\'{i}tulo 2 (Revis\~{a}o liter\'{a}ria) juntamente com as t\'{e}cnicas de Kimball R. e Ross, M. (2013), que se baseiam na modelagem dimensional e iremos teorizar as ferramentas de banco de dados PostgreSQL e Pentaho, para que tenhamos uma base de conhecimento s\'olida em rela\c{c}\~{a}o ao uso e funcionalidades destas ferramentas.
+Neste cap\'{i}tulo iremos utilizar \`{a}s teorias do cap\'{i}tulo 2 (Revis\~{a}o liter\'{a}ria) juntamente com as t\'{e}cnicas de \cite{dw-kimball-2013}, fundamentados na modelagem dimensional e iremos teorizar as ferramentas de banco de dados PostgreSQL e \textit{Pentaho}, para que tenhamos uma base de conhecimento s\'olida em rela\c{c}\~{a}o ao uso e funcionalidades destas ferramentas.
 
 O objetivo deste cap\'{i}tulo \'{e} a implementa\c{c}\~{a}o de um BI/DW, partindo da infraestrutura b\'{a}sica, cria\c{c}\~{a}o do Banco de dados de nome: ``DW\_181'' no PostgreSQL, ETL dos dados de três meses  (janeiro, fevereiro e mar\c{c}o de 2020) de transa\c{c}\~{o}es, provindos do arquivo no formato ``.XLS'' do \textit{Microsoft Excel},  extra\'{i}do do SISGOU, na op\c{c}\~{a}o consulta do disque denúncia, que ser\'{a} processada usando uma das ferramentas do suite Pentaho, o PDI (\textit{Pentaho Data Integration}).
 
@@ -12,22 +12,22 @@ No PDI iremos criar as transforma\c{c}\~{o}es que criaram as tabelas de dimens\~
 
 \section{Infraestrutura}
 
-A infraestrutura utilizada neste trabalho \'{e} baseada em ferramentas de softwares gratuitos ou \textit{freeware} , da suite de BI ao SGDB relacional, para a base de dados, usamos oPostgreSQL, como dito no t\'opico anterior, juntamente com a Plataforma Pentaho na vers\~{a}o 9.0 \textit{Community} (sem custos), adquirida no site da Hitachi Vantara atualmente \'{e} detentora dos direitos da plataforma e o Java SE \textit{Runtime Environment} vers\~{a}o 1.8.0-151-b12, toda estrutura instalada localmente em um ambiente de desenvolvimento, em um notebook MacBook Pro da Apple (mem\'oria de 16 gb de ram e SSD de 1 Tb), com Sistema Operacional macOS Catalina vers\~{a}o 10.15.6.
+A infraestrutura utilizada neste trabalho \'{e} baseada em ferramentas de \textit{softwares} gratu\'{i}tos ou \textit{freeware} , da suite de BI ao SGDB relacional, para a base de dados, usamos o PostgreSQL, como informado no t\'opico anterior, juntamente com a Plataforma Pentaho na vers\~{a}o 9.0 \textit{Community} (sem custos), adquirida no site da \textit{Hitachi Vantara} atualmente \'{e} detentora dos direitos da plataforma e o Java SE \textit{Runtime Environment} vers\~{a}o 1.8.0-151-b12, toda estrutura instalada localmente em um ambiente de desenvolvimento, em um notebook MacBook Pro da Apple (mem\'oria de 16 gb de ram e SSD de 1 Tb), com Sistema Operacional macOS Catalina vers\~{a}o 10.15.6.
 
 \section{SISGOU}
 
-O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'odulo ``Aplicativos``, ``disque Denúncia'' e ``Consultar Denúncias``, conforme figura abaixo.
+O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os dados \'{e} o SISGOU, desenvolvidos pelo equipe de TI da SSP/AL, conforme figura abaixo, nele todos os dados das denúncias s\~{a}o registrados pelos atendentes, e ou, denunciantes (via web ou aplicativo), s\~{a}o armazenados em uma base de dados em ORACLE, \'{e} os usu\'{a}rios finais têm acesso apenas pelo menus da aplica\c{c}\~{a}o, em nosso caso m\'{o}dulo ``Aplicativos``, ``disque Den\'{u}ncia'' e ``Consultar Den\'{u}ncias``, conforme figura abaixo.
 
 % figuras
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{SISGOU (Sistema de Gerenciamento Operacional Unificado}
+    \caption{SISGOU (Sistema de Gerenciamento Operacional Unificado)}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-13}
     \label{fig:ilustfig13}
 \end{figure}
 \vspace*{-0,9cm}
-{\raggedright \fonte{Dispon\'{i}vel em: <https://https://www.sisgou.seds.al.gov.br>. Acesso em: 13 ago. 2020.}}\\
+{\raggedright \fonte{Dispon\'{i}vel em: <https://https://www.sisgou.seds.al.gov.br>. Acesso em: 10 ago. 2020.}}\\
 
 % FERRAMENTAS
 
@@ -38,7 +38,9 @@ O sistema de processamentos de transa\c{c}\~{o}es de onde se extra\'{i}ram os da
 \subsection{SGDB PostgreSQL}
 
 O PostgreSQL \'{e} um sistema de gerenciamento de banco de dados relacional de objeto (ORDBMS) baseado no 
-PostgreSQL, vers\~{a}o 4.2, desenvolvido no Departamento de Ciência da Computa\c{c}\~{a}o da Universidade da Calif\'ornia em \textit{Berkeley}. O PostgreSQL foi pioneiro em muitos conceitos que s\'{o} se tornaram dispon\'{i}veis em alguns sistemas de bancos de dados comerciais muito depois.
+PostgreSQL, vers\~{a}o 4.2, desenvolvido no Departamento de Ci\^{e}ncia da Computa\c{c}\~{a}o da Universidade da Calif\'ornia na cidade de \textit{Berkeley}. 
+
+O PostgreSQL foi pioneiro em muitos conceitos que s\'{o} se tornaram dispon\'{i}veis em alguns sistemas de bancos de dados comerciais muitos anos depois.
 
 Al\'{e}m disso, o PostgreSQL pode ser estendido pelo usu\'{a}rio de v\'{a}rias maneiras, por exemplo, 
 adicionando tipos de dados, fun\c{c}\~{o}es, operadores, fun\c{c}\~{o}es agregadas, m\'{e}todos de \'{i}ndice e uma linguagens processuais. Que n\~{a}o ser\~{a}o especificados nesse trabalho.
@@ -49,7 +51,7 @@ qualquer pessoa, seja para fins particulares, comerciais ou acadêmicos.
 Em nosso trabalho a cria\c{c}\~{a}o, modelagem e o armazenamento dos dados do \textit{Data Warehouse} foi 
 utilizado o PostgreSQL, vers\~{a}o 9.5, e com gerenciador administrativo o aplicativo ``pgAdmin'' vers\~{a}o 4. 
 
-Para gerenciar o PostgreSQL, podemos fazê-lo de duas maneiras: uma por meio de uma 
+Para gerenciar o PostgreSQL, podemos faz\^{e}-lo de duas maneiras: uma por meio de uma 
 s\'{e}rie de comandos SQL e ou atrav\'{e}s do aplicativo ``pgAdmin''. Neste trabalho enfocaremos o artif\'{i}cio da cria\c{c}\~{a}o do banco de dados, suas tabelas e \textit{constraints}, usando a interface gr\'{a}fica do aplicativo acima, e tamb\'{e}m atrav\'{e}s do PDI, que gera \textit{scripts} com as instru\c{c}\~{o}es para a cria\c{c}\~{a}o da tabela, atrav\'{e}s do processo de transforma\c{c}\~{a}o, criado no PDI, que ser\'{a} mencionado em um t\'opico espec\'{i}fico.
 
 \begin{figure}[H]
@@ -64,9 +66,9 @@ s\'{e}rie de comandos SQL e ou atrav\'{e}s do aplicativo ``pgAdmin''. Neste trab
 
 % PENTAHO
 
-\subsection{Plataforma Pentaho}
+\subsection{Plataforma \textit{Pentaho}}
 
-Outra ferramenta fundamental neste trabalho \'{e} a Plataforma de Integra\c{c}\~{a}o de Dados e An\'{a}lise Pentaho, nele iremos implementar todos os conceitos de DW/BI. Para isso precisamos conhecer um pouco sobre essa ferramenta, conforme figura abaixo.
+Outra ferramenta fundamental neste trabalho \'{e} a Plataforma de Integra\c{c}\~{a}o de Dados e An\'{a}lise \textit{Pentaho}, nele iremos implementar todos os conceitos de DW/BI. Para isso precisamos conhecer um pouco sobre essa ferramenta, conforme figura abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -76,20 +78,21 @@ Outra ferramenta fundamental neste trabalho \'{e} a Plataforma de Integra\c{c}\~
     \label{fig:ilustfig15}
 \end{figure}
 \vspace*{-0,9cm}
-{\raggedright \fonte{Dispon\'{i}vel em: <https://https://www.hitachivantara.com/en\_us/pdf/datasheet/pentaho-business-analytics-platform-datasheet.pdf>. Acesso em: 16 ago. 2020.}}\\
+{\raggedright \fonte{Dispon\'{i}vel em: <https://https://www.hitachivantara.com/en\_us/pdf/datasheet/pentaho-business-analytics-platform-datasheet.pdf>. Acesso em: 11 ago. 2020.}}\\
 
-Os produtos Pentaho s\~{a}o abrangentes e usados para acessar, integrar, manipular, visualizar e analisar seus dados. 
+Os produtos \textit{Pentaho} s\~{a}o abrangentes e usados para acessar, integrar, manipular, visualizar e analisar seus dados. 
 Quer os dados sejam armazenados em um arquivo simples, banco de dados relacional, \textit{cluster Hadoop}, banco de dados 
 NoSQL, banco de dados anal\'{i}tico, fluxos de m\'{i}dia social, lojas operacionais ou na nuvem, os produtos Pentaho 
 podem ajud\'{a}-lo a descobrir, analisar e visualizar dados para encontrar as respostas que você precisa, mesmo se 
 você n\~{a}o tiver experiência em codifica\c{c}\~{a}o. 
+
 Usu\'{a}rios avan\c{c}ados com experiência em programa\c{c}\~{a}o podem usar nossa ampla API\index{API}\footnote{API: 
 Ë um conjunto de rotinas e padr\~{o}es de programa\c{c}\~{a}o para acesso a um aplicativo de software ou plataforma 
 baseado na Web. A sigla API refere-se ao termo em inglês ``\textit{Application Programming Interface}'' que 
 significa em tradu\c{c}\~{a}o para o português ``Interface de Programa\c{c}\~{a}o de Aplicativos``.} para personalizar 
 relat\'orios, consultas e transforma\c{c}\~{o}es para estender a funcionalidade.
 
-Os produtos Pentaho incluem componentes baseados na web e ferramentas de \textit{design}. Os componentes e 
+Os conjunto de ferramentas do \textit{Pentaho} incluem componentes baseados na web e ferramentas de \textit{design}. Os componentes e 
 ferramentas que você usa dependem do seu fluxo de trabalho e do que seu ambiente oferece suporte
 
 Toda plataforma est\'{a} dividida em duas partes: Componentes baseados na web e as Ferramentas de \textit{Design}.
@@ -97,23 +100,23 @@ Toda plataforma est\'{a} dividida em duas partes: Componentes baseados na web e 
 Os componentes baseados na web s\~{a}o:
 
 \begin{itemize}
-    \item Console de usu\'{a}rio: O \textit{Pentaho User Console} (PUC) \'{e} um ambiente de design para acessar \textit{Analyzer}, Relat\'orios Interativos e \textit{Dashboard Designer}. \textit{Pentaho User Console} tamb\'{e}m oferece recursos de administra\c{c}\~{a}o do sistema para configurar seu servidor Pentaho.
-    \item Analisador: O \textit{Analyzer} ajuda a visualizar dados para tomar decis\~{o}es de neg\'ocios informadas. Você pode criar visualiza\c{c}\~{o}es geogr\'{a}ficas, gr\'{a}fico de dispers\~{a}o, grade de calor e múltiplos gr\'{a}ficos. Você tamb\'{e}m pode filtrar dados, adicionar par\^{a}metros de consulta, configurar links de pesquisa detalhada, aplicar formata\c{c}\~{a}o condicional e gerar \textit{hiperlinks}. Em nosso trabalho iremos utilizar dois analisadores: o \textit{Saiku} e o \textit{JPivo}t.
-    \item Relat\'orios Interativos: Relat\'orios interativos s\~{a}o uma interface de design usada para criar relat\'orios operacionais simples e sob demanda, sem depender de TI ou desenvolvedores de relat\'orios. Você pode adicionar rapidamente elementos ao seu relat\'orio e format\'{a}-los da maneira que desejar.
-    \item \textit{Dashboard Designer}: O \textit{Dashboard Designer} \'{e} usado para escolher modelos de layout, temas e conteúdo para criar pain\'{e}is visualmente atraentes que ajudam os tomadores de decis\~{a}o a obter conhecimento cr\'{i}tico rapidamente. Você pode combinar uma ampla variedade de conteúdo, incluindo relat\'orios interativos, visualiza\c{c}\~{o}es do \textit{Analyzer} e conteúdo colaborativo.
-    \item CTools: CTools \'{e} uma estrutura orientada pela comunidade para a cria\c{c}\~{a}o de pain\'{e}is usando tecnologias da web, como \textit{JavaScript}, CSS e HTML. Você pode criar facilmente pain\'{e}is din\^{a}micos para os usu\'{a}rios explorarem e entenderem grandes quantidades de dados usando uma variedade de gr\'{a}ficos, tabelas e outros componentes.
-    \item Assistente de fonte de dados: O \textit{Data Source Wizard} ajuda a definir uma fonte de dados que cont\'{e}m suas informa\c{c}\~{o}es e o orienta na cria\c{c}\~{a}o de seus primeiros modelos relacionais ou multidimensionais para uso na cria\c{c}\~{a}o de relat\'orios e an\'{a}lises.
+    \item Console de usu\'{a}rio: O \textit{Pentaho User Console} (PUC) \'{e} um ambiente de design para acessar \textit{Analyzer}, Relat\'orios Interativos e \textit{Dashboard Designer}. \textit{Pentaho User Console} tamb\'{e}m oferece recursos de administra\c{c}\~{a}o do sistema para configurar seu servidor \textit{Pentaho};
+    \item Analisador: O \textit{Analyzer} ajuda a visualizar dados para tomar decis\~{o}es de neg\'ocios informadas. Você pode criar visualiza\c{c}\~{o}es geogr\'{a}ficas, gr\'{a}fico de dispers\~{a}o, grade de calor e múltiplos gr\'{a}ficos. Você tamb\'{e}m pode filtrar dados, adicionar par\^{a}metros de consulta, configurar links de pesquisa detalhada, aplicar formata\c{c}\~{a}o condicional e gerar \textit{hiperlinks}. Em nosso trabalho iremos utilizar dois analisadores: o \textit{Saiku} e o \textit{JPivot};
+    \item Relat\'orios Interativos: Relat\'orios interativos s\~{a}o uma interface de design usada para criar relat\'orios operacionais simples e sob demanda, sem depender de TI ou desenvolvedores de relat\'orios. Você pode adicionar rapidamente elementos ao seu relat\'orio e format\'{a}-los da maneira que desejar;
+    \item \textit{Dashboard Designer}: O \textit{Dashboard Designer} \'{e} usado para escolher modelos de layout, temas e conteúdo para criar pain\'{e}is visualmente atraentes que ajudam os tomadores de decis\~{a}o a obter conhecimento cr\'{i}tico rapidamente. Você pode combinar uma ampla variedade de conteúdo, incluindo relat\'orios interativos, visualiza\c{c}\~{o}es do \textit{Analyzer} e conteúdo colaborativo;
+    \item CTools: CTools \'{e} uma estrutura orientada pela comunidade para a cria\c{c}\~{a}o de pain\'{e}is usando tecnologias da web, como \textit{JavaScript}, CSS e HTML. Você pode criar facilmente pain\'{e}is din\^{a}micos para os usu\'{a}rios explorarem e entenderem grandes quantidades de dados usando uma variedade de gr\'{a}ficos, tabelas e outros componentes;
+    \item Assistente de fonte de dados: O \textit{Data Source Wizard} ajuda a definir uma fonte de dados que cont\'{e}m suas informa\c{c}\~{o}es e o orienta na cria\c{c}\~{a}o de seus primeiros modelos relacionais ou multidimensionais para uso na cria\c{c}\~{a}o de relat\'orios e an\'{a}lises;
     \item Editor de modelo de fonte de dados: O Editor de modelo de fonte de dados ajuda a ajustar e refinar modelos de dados relacionais e multidimensionais. Você pode arrastar campos para seus locais apropriados, misturar e combinar campos de diferentes tabelas, adicionar campos a mais de uma categoria ou remover um campo.
 \end{itemize}
 
-As ferramentas de design da Pentaho s\~{a}o usadas para desenvolver e refinar como os valores dos dados s\~{a}o relatados, modelados, transformados e armazenados. Elas s\~{a}o:
+As ferramentas de design da \textit{Pentaho} s\~{a}o usadas para desenvolver e refinar como os valores dos dados s\~{a}o relatados, modelados, transformados e armazenados. Elas s\~{a}o:
 
 \begin{itemize}
     \item Integra\c{c}\~{a}o de dados: \textit{Pentaho Data Integration} (PDI) fornece acesso a um motor de Extra\c{c}\~{a}o, Transforma\c{c}\~{a}o e Carregamento (ETL) que captura os dados certos, limpa os dados e armazena os dados usando um formato uniforme que \'{e} acess\'{i}vel e relevante para os usu\'{a}rios finais e tecnologias IoT\index{NewR}\footnote{IoT: \textit{Internet Of Tink} ou Internet das coisas \'{e} um conceito que se refere \`{a} interconex\~{a}o digital de objetos cotidianos com a internet, conex\~{a}o dos objetos mais do que das pessoas. Em outras palavras, a internet das coisas nada mais \'{e} que uma rede de objetos f\'{i}sicos capaz de reunir e de transmitir dados.}
     \item \textit{Report Designer}: O \textit{Report Designer} \'{e} usado para gerar relat\'orios detalhados e perfeitos em pixels, usando virtualmente qualquer fonte de dados. Ele permite que os profissionais de \textit{business intelligence} criem relat\'orios altamente detalhados e com qualidade de impress\~{a}o, com base em dados preparados de maneira adequada.
     \item Designer de agrega\c{c}\~{a}o: O \textit{Aggregation Designer} fornece uma interface simples que permite criar tabelas agregadas de n\'{i}veis dentro das dimens\~{o}es que você especificar. Use esta ferramenta para melhorar o desempenho de seus cubos OLAP \textit{Pentaho Analysis} (Mondrian).
-    \item Editor de Metadados: O Editor de Metadados simplifica a constru\c{c}\~{a}o de relat\'orios. Use o Editor de Metadados para construir dom\'{i}nios e modelos de metadados Pentaho. Um \textit{Pentaho Metadata Model} mapeia a estrutura f\'{i}sica do seu banco de dados em um modelo de neg\'ocio l\'ogico.
-    \item \textit{Schema Workbench}: \textit{Schema Workbench} permite editar e criar modelos multidimensionais (Mondrian). Você pode criar modelos Mondrian graficamente ou defini-los codificando manualmente os arquivos XML.
+    \item Editor de Metadados: O Editor de Metadados simplifica a constru\c{c}\~{a}o de relat\'orios. Use o Editor de Metadados para construir dom\'{i}nios e modelos de metadados \textit{Pentaho}. Um \textit{Pentaho Metadata Model} mapeia a estrutura f\'{i}sica do seu banco de dados em um modelo de neg\'ocio l\'ogico.
+    \item \textit{Schema Workbench}: \textit{Schema Workbench} permite editar e criar modelos multidimensionais (Mondrian). Você pode criar modelos \textit{Mondrian} graficamente ou defini-los codificando manualmente os arquivos XML.
 \end{itemize}
 
 Nesta plataforma est\~{a}o dispon\'{i}veis componentes para execu\c{c}\~{a}o de processos de ETL, que fazem 
@@ -132,19 +135,19 @@ uma solu\c{c}\~{a}o vi\'{a}vel para o servi\c{c}o do 181.
 
 \section{Desenvolvimento da Solu\c{c}\~{a}o}
 
-Com base nos conceitos do capitulo de Fundamenta\c{c}\~{a}o, e as t\'{e}cnicas de Kimball(2013), 
+Com base nos conceitos do cap\'{i}tulo de Fundamenta\c{c}\~{a}o, e as t\'{e}cnicas de BI/DW de \cite{dw-kimball-2013}, 
 iremos aplicar estes conhecimentos na implementa\c{c}\~{a}o de um BI/DW, que ser\'{a} desenvolvido 
-sobre um servidor local, usando todo o potencial e simplicidade da Plataforma Pentaho, desde o download 
+sobre um servidor local, usando todo o potencial e simplicidade da Plataforma \textit{Pentaho}, desde o \textit{download} 
 do arquivo no formato ``.XLS``, com os dados de denúncias consultadas na aplica\c{c}\~{a}o web SISGOU, ao 
-processamento ETL usando o PDI do Pentaho, e o OLAP usando o \textit{Saiku Analytics} e at\'{e} o 
-\textit{dashboard} (painel) usando o CTOOLS e a cria\c{c}\~{a}o de um relat\'orio com o PRD.
+processamento ETL usando o \textit{Pentaho Data Integration}, e o OLAP usando o \textit{Saiku Analytics} e at\'{e} alguns 
+\textit{dashboards} ou pain\'{e}is usando o CTOOLS e a cria\c{c}\~{a}o de relat\'orio com o \textit{Pentaho Report Designer}.
 
 % Banco de dados
 \subsection{Criando nosso Banco de dados}
 
 O nosso trabalho ir\'{a} precisar de um Banco de dados no SGBD PostgreSQL, que podemos 
-criar via terminal do macOSX, por\'{e}m, usamos o aplicativo ``pgAdmin4''
-que gerencia todos o banco de dados visualmente, economizando tempo de digita\c{c}\~{a}o, conforme figura abaixo.
+criar via terminal do macOSX, por\'{e}m, usamos o aplicativo ``pgAdmin'' na versão 4.0, ele 
+ajuda a gerencia todo o banco de dados visualmente, economizando tempo de digita\c{c}\~{a}o de comandos em modo texto, conforme figura abaixo.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -156,30 +159,30 @@ que gerencia todos o banco de dados visualmente, economizando tempo de digita\c{
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Acessando o ``pdAmin4'', e digitando esse comando da figura acima e basta apenas executar o mesmo na ferramenta 
-que o Banco de dados ser\'{a} criando. Iniciando assim o primeiro passado para criarmos nossa ETL.
+Acessando o ``pdAmin'', e digitando e depois executando o comando da figura acima, para à ferramenta criar o Banco de dados.
+
+Com a cria\c{c}o do banco de dados, inicia-se à fase de emplementa\c{c}\~{a}o da Extra\c{c}\~{a}o, Transforma\c{c}\~{a}o e Leitura ou carga.
 
 \subsection{Criando o processo de ETL}
 
-Ap\'os termos dado o primeiro passo, teremos como base do processo de Extra\c{c}\~{a}o o arquivo no 
-formato do \textit{Microsoft Excel} denominado ``181.xls'', lembrando que o mesmo foi exportado ``do 
-Aplicativo Web SISGOU'' na op\c{c}\~{a}o de consulta. 
+Ap\'{o}s a cria\c{c}o do banco de dados foi usado para o processo de Extra\c{c}\~{a}o um arquivo no 
+formato do \textit{Microsoft Excel} denominado ``181.xls'', que foi exportado  do Aplicativo Web SISGOU na  op\c{c}\~{a}o de consulta da aplica\c{c}\~{a}o. 
 
-Ele ter\'{a} o mesmo formado da figura abaixo, como suas 
-linhas e colunas totalmente sem normatiza\c{c}\~{a}o aparente e sem nenhum tratamento nos dados.
+Ele tem o mesmo formado da figura abaixo, como suas 
+linhas e colunas totalmente sem normatiza\c{c}\~{a}o aparente e com os dados sem formata\c{c}\~{a}o.
 
 % FALTA A figura
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
     \caption{Arquivo extra\'{i}do da consulta do Disque denúncia do  SISGOU}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/falta-figura.png}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/arquivo-excel-181.png}
     \label{fig:ilustfigfaltafigura01}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-Para criarmos nosso processo de ETL no arquivo acima, precisamos usar o \textit{Pentaho Data Integration}, para isso precisamos instalar o mesmo junto com toda Plataforma Pentaho. E ap\'os instalado,  clicaremos com o mouse no \'{i}cone do \textit{Data Integration}, a tela de boas vindas do PDI aparece, de acordo com a figura abaixo e depois surge a interface da aplica\c{c}\~{a}o que ser\'{a} usada para a configura\c{c}\~{a}o dos processo de ETL, que transformar\~{a}o os dados em \textit{Microsoft Excel} com dados formatado por um SGBD relacional.
+Para criarmos nosso processo de ETL no arquivo acima, precisamos usar o \textit{Pentaho Data Integration}, para isso precisamos instalar o mesmo junto com toda Plataforma Pentaho. E ap\'{o}s instalado,  clicaremos com o mouse no \'{i}cone do \textit{Data Integration}, a tela de boas vindas do PDI aparece, de acordo com a figura abaixo e depois surge a interface da aplica\c{c}\~{a}o que ser\'{a} usada para a configura\c{c}\~{a}o dos processo de ETL, que transformar\~{a}o os dados em \textit{Microsoft Excel} com dados formatado por um SGBD relacional.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -191,7 +194,7 @@ Para criarmos nosso processo de ETL no arquivo acima, precisamos usar o \textit{
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
-O \textit{Pentaho Data Integration}, fornece os recursos \textit{Extract, Transform e Load} (ETL) que facilitam o processo de captura, limpeza e armazenamento de dados usando um formato uniforme e consistente que \'{e} acess\'{i}vel e relevante para os usu\'{a}rios finais e tecnologias IoT.
+O \textit{Pentaho Data Integration}, fornece os recursos \textit{Extract, Transform e Load} (ETL) que facilitam o processo de captura, limpeza e armazenamento de dados usando um formato uniforme e consistente que \'{e} acess\'{i}vel e relevante para os usu\'{a}rios finais e tecnologias IoT. \cite{pentaho-pdi-hitachi-vantara}
 
 O PDI \'{e} formado por duas categorias de artefatos, \textit{Jobs} e Transforma\c{c}\~{o}es, e estes artefatos s\~{a}o constru\'{i}dos por meio de sua interface gr\'{a}fica, o \textit{Spoon}. 
 
@@ -205,7 +208,7 @@ O \textit{Spoon} \'{e} a interface gr\'{a}fica do \textit{Pentaho Data Integrati
     \label{fig:ilustfigpentaho-pdi-spoon}
 \end{figure}
 \vspace*{-0,9cm}
-{\raggedright \fonte{Autor desta monografia, 2020.}} \\
+{\raggedright \fonte{\cite{pentaho-pdi-hitachi-vantara}}} \\
 
 Que ser\~{a}o nomeadas no banco de dados ``DW\_181'' como: dim\_bairro, dim\_cidade, dim\_origem, dim\_tipo-denncia, dim\_data, dim\_hora e o fato\_denuncia.
 
@@ -226,14 +229,14 @@ O primeiro passo \'{e} criar a conex\~{a}o usando o componente \textit{Database 
 % TRANSFORMA\c{c}\~{o}ES
 \subsubsection{Criando as transforma\c{c}\~{o}es no PDI}
 
-Ap\'os a termos criado no t\'opico anterior a conex\~{a}o ``CNN\_DW\_181'', iniciaremos a desenvolvimento das transforma\c{c}\~{o}es. Para isso se faz necess\'{a}rio o uso de alguns \textit{steps}. que iniciam do do acesso aos dados no arquivo com os dados a serem transformado at\'{e} a cria\c{c}\~{a}o e carga da dimens\~{a}o que far\~{a}o parte do modelo Dimensional Estrela j\'{a} definido neste trabalho.
+Ap\'os a criação da conex\~{a}o denominada ``CNN\_DW\_181'', iniciaremos a desenvolvimento das transforma\c{c}\~{o}es. Para isso se faz necess\'{a}rio o uso de alguns \textit{steps}. que iniciam do do acesso aos dados no arquivo com os dados a serem transformado at\'{e} a cria\c{c}\~{a}o e carga da dimens\~{a}o que far\~{a}o parte do modelo dimensional estrela j\'{a} definido neste trabalho  \cite{dw-kimball-2013}.
 
 Para criarmos as transforma\c{c}\~{o}es que ao final sejam geradas \`{a}s dimens\~{o}es, precisamos usar a aba \textit{Design} e os componentes nela presentes.
 
-Para melhorar o entendimento padronizamos um nomenclatura para os arquivos das transforma\c{c}\~{o}es, formato ``.ktr'', e do \textit{Job}\index{job}\footnote{\textit{Job}: \'{e} o processo que une todas \`{a}s transforma\c{c}\~{o}es para uma execu\c{c}\~{a}o de todas dentro do PDI}, formato ``.kjb'', para ajudar no desenvolvimento do DW/BI. Para transforma\c{c}\~{o}es de dimens\~{o}es: ``dim\_nome da dimens\~{a}o.ktr'' e para o fato: ``fato\_nome do fato.ktr
-''.
+Para melhorar o entendimento usamos um nomenclatura padr\~{a} para os arquivos das transforma\c{c}\~{o}es, formato ``.ktr'', e do \textit{Job}\index{job}\footnote{\textit{Job}: \'{e} o processo que une todas \`{a}s transforma\c{c}\~{o}es para uma execu\c{c}\~{a}o de todas dentro do PDI}, formato ``.kjb'', para ajudar no desenvolvimento do DW/BI. 
+Para transforma\c{c}\~{o}es de dimens\~{o}es: ``dim\_nome da dimens\~{a}o.ktr'' e para o fato: ``fato\_nome do fato.ktr''.
 
-Na constru\c{c}\~{a}o das nossas transforma\c{c}\~{o}es e nesta fase de ETL como um todo utilizaremos o componente de step: \textit{Microsoft Excel Input}, figura abaixo, que est\'{a} localizado na barra lateral de Design do \textit{Spoon}, na categoria \textit{input}. Este componente em especial ser\'{a} o padr\~{a}o para o acesso aos dados da planilha em no formato do \textit{Microsoft Excel}, e nome ``181.xls'' em todas as transforma\c{c}\~{o}es.
+Na constru\c{c}\~{a}o dastransforma\c{c}\~{o}es e nesta fase de ETL como um todo utilizaremos o componente de step: \textit{Microsoft Excel Input}, figura abaixo, que est\'{a} localizado na barra lateral de Design do \textit{Spoon}, na categoria \textit{input}. Este componente em especial ser\'{a} o padr\~{a}o para o acesso aos dados da planilha em no formato do \textit{Microsoft Excel}, e nome ``181.xls'' em todas as transforma\c{c}\~{o}es.
 
 O \textit{step Microsoft Excel Input} tem como principais fun\c{c}\~{o}es dar acesso ao dados e fazer ajustes nos nomes, tipos e tamanhos das colunas.
 
@@ -241,8 +244,8 @@ O \textit{step Microsoft Excel Input} tem como principais fun\c{c}\~{o}es dar ac
 	\vspace*{0,2cm}
     \centering
     \caption{Barra lateral do PDI e o Componente \textit{step Microsoft Excel Input}}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/falta-figura.png}
-    \label{fig:ilustfigfaltafigura02}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-barra-lateral-step-mei.png}
+    \label{fig:ilustfigbarralateralstepmei}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
@@ -255,8 +258,8 @@ Nela podemos fazer os ajustes necess\'{a}rios para que a transforma\c{c}\~{a}o a
 	\vspace*{0,2cm}
     \centering
     \caption{Componente \textit{step Microsoft Excel Input}}
-    \includegraphics[width=0.6\textwidth]{./04-figuras/falta-figura.png}
-    \label{fig:ilustfigfaltafigura03}
+    \includegraphics[width=0.6\textwidth]{./04-figuras/figura-componente-step-mei.png}
+    \label{fig:ilustfigcomponentestepmei}
 \end{figure}
 \vspace*{-0,9cm}
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
@@ -271,7 +274,7 @@ Os componentes que far\~{a}o parte da transforma\c{c}\~{a}o ``dim\_bairro.ktr'',
 \begin{figure}[H]
 	\vspace*{0,2cm}
     \centering
-    \caption{Componente \textit{step Microsoft Excel Input.}}
+    \caption{Transforma\c{c}\~{a}o dim\_bairro.ktr}
     \includegraphics[width=0.6\textwidth]{./04-figuras/figura-dim-bairro}
     \label{fig:ilustfigdimbairro}
 \end{figure}
@@ -316,7 +319,7 @@ Ap\'os ter ajustado a configura\c{c}\~{a}o do \textit{step Table output}, seleci
 % dim\_cidade.ktr
 \subsubsection{Criando a transforma\c{c}\~{a}o ``dim\_cidade.ktr''}
 
-Os componentes que far\~{a}o parte da transforma\c{c}\~{a}o ``dim\_cidade.ktr'', ser\~{a}o: \textit{Microsoft Excel Input, Select values, Sort rows, Unique rows, Value Mapper, Add sequence} e finalmente \textit{Table Table output} conforme figura sabaixo. 
+Os componentes que far\~{a}o parte da transforma\c{c}\~{a}o ``dim\_cidade.ktr'', ser\~{a}o: \textit{Microsoft Excel Input, Select values, Sort rows, Unique rows, Value Mapper, Add sequence} e finalmente \textit{Table Table output} conforme figura abaixo. 
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -535,6 +538,7 @@ Na figura abaixo, podemos perceber que esta transforma\c{c}\~{a}o tem como prior
 as tabelas ``dim\_dia'', ``dim\_semana'', ``dim\_mes'', ``dim\_trimestre'', ``dim\_semestre'' e 
 a ``dim\_ano'', ao final de todo processo iremos produzir um DW, e criar an\'{a}lises que podem 
 usar essas dimens\~{o}es/tabelas.
+
 Iremos, passo a passo e atrav\'{e}s de figuras construir a ETL da transforma\c{c}\~{a}o ``dim\_data.ktr''.
 
 \begin{figure}[H]
@@ -753,10 +757,10 @@ Iremos, passo a passo e atrav\'{e}s de figuras construir a ETL da transforma\c{c
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 Dividimos a transforma\c{c}\~{o}es em três caminhos, um caminho como sendo o principal que parte do \textit{
-step Microsoft Excel Input} at\'{e} o componente Unique rows e dois caminhos que  levam a cria\c{c}\~{a}o das tabelas de cada 
+step Microsoft Excel Input} at\'{e} o componente \textit{Unique rows} e dois caminhos que  levam a cria\c{c}\~{a}o das tabelas de cada 
 dimens\~{a}o: ``dim\_hora'' e ``dim\_minuto'', conforme as figura acima.
 
-A figura logo abaixo, demonstra a configura\c{c}\~{a}o dos steps do caminho principais.
+A figura logo abaixo, demonstra a configura\c{c}\~{a}o dos \textit{steps} do caminho principais.
 
 \begin{figure}[H]
 	\vspace*{0,2cm}
@@ -811,7 +815,7 @@ que ap\'{o}s execu\c{c}\~{a}o, homologamente ao anterior, criar\'{a} a tabela ``
 {\raggedright \fonte{Autor desta monografia, 2020.}} \\
 
 Tendo como base a configura\c{c}\~{a}o do \textit{step Table} dim\_hora, configuramos o \textit{step Table} dim\_minuto, 
-acessando o bot\~{a}o ``SQL'' na tela do \textit{step}, a figura abaixo, na sequência aparecer\'{a} a tela do \textit{Simple 
+acessando o bot\~{a}o ``SQL'' na tela do \textit{step}, a figura abaixo, na sequ\^{e}ncia aparecer\'{a} a tela do \textit{Simple 
 SQL editor}, e ap\'{o}s, acesso ao bot\~{a}o execute desta tela, a tela do \textit{Results of the SQL statements} 
 nos mostra o resultado da cria\c{c}\~{a}o da tabela f\'{i}sica ``dim\_hora'' dentro do SGDB. 
 
@@ -866,10 +870,7 @@ que gerou duas dimens\~{o}es com os dados padronizados inseridos nelas.
 % TRANSFORMA\C{C}\~{A}O: FATO\_DEN\]'{U}CIA
 \subsubsection{Criando a transforma\c{c}\~{a}o ``fato\_denuncia.ktr''}
 
-Ap\'os criarmos todas as transforma\c{c}\~{o}es nos t\'opicos anteriores,
- precisamos criar a transforma\c{c}\~{a}o que criar\'{a} a tabela fato\_denuncia, 
- que ser\'{a} o centro do modelo estrela segundo Machado (2000), conectada com as dimens\~{o}es j\'{a} 
- criadas nas transforma\c{c}\~{o}es dos t\'opicos anteriores.
+Ap\'os criarmos todas as transforma\c{c}\~{o}es nos t\'opicos anteriores, precisamos criar a transforma\c{c}\~{a}o que criar\'{a} a tabela fato\_denuncia, que ser\'{a} o centro do modelo estrela segundo Machado (2000), conectada com as dimens\~{o}es j\'{a} criadas nas transforma\c{c}\~{o}es dos t\'opicos anteriores.
 
 Na figura abaixo, podemos destacar o uso de um componente novo no contexto desse trabalho, \'{e} o 
 \textit{step Database lookup}, os outros componentes j\'{a} foram usando em t\'opicos anteriores.
@@ -896,7 +897,7 @@ A chave para examinar o valor: devemos inserir os campos de compara\c{c}\~{a}o n
 figura abaixo, a compara\c{c}\~{a}o ficou por conta dos campos: ``ds\_dia''  da tabela de pesquisa, na campo do 
 \textit{Grid} ``Campo da tabela'', no campo ``Comparador'', escolhemos a op\c{c}\~{a}o de ``='', e no 
 ``Campo1'', colocamos o campo provindo e configurado no \textit{step Select values}. Quando a compara\c{c}\~{a}o 
-entre os campos \'{e} verificada e encontrada o step retorna o valor configurado no \textit{Grid} Valores a serem 
+entre os campos \'{e} verificada e encontrada o \textit{step} retorna o valor configurado no \textit{Grid} Valores a serem 
 retornados da tabela \textit{lookup}, que est\'{a} no campo ``campo'' do \textit{Grid} acima, conforme figura abaixo.
 
 \begin{figure}[H]

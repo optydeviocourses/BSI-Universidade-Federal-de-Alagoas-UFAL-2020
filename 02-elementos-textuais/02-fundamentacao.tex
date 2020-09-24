@@ -36,11 +36,11 @@ Os processamentos anal\'{i}ticos dos SAD permitem ao usu\'{a}rio analisar uma gr
 
 Os Sistemas de Informa\c{c}\~{a}o executiva, s\~{a}o um tipo especial de SAD destinado \`{a} tomada de decis\~{o}es de alto n\'{i}vel da organiza\c{c}\~{a}o, oferecendo informa\c{c}\~{o}es estruturadas, tanto internas quanto externas a respeito de aspectos da organiza\c{c}\~{a}o considerados fatores \cite{si-stair-1998} \cite{si-falsarella-chaves-1998}.
 
-Enquanto um SAD oferece apoio para decis\~{o}es focadas em uma \'{a}rea espec\'{i}fica, geralmente oferecendo suporte \`{a} m\'{e}dia e baixa gerência, um EIS (Executive Information Systems) oferece informa\c{c}\~{o}es consolidadas de alto n\'{i}vel e an\'{a}lises multidimensionais para os executivos de alto n\'{i}vel \cite{si-gupta-2001}.
+Enquanto um SAD oferece apoio para decis\~{o}es focadas em uma \'{a}rea espec\'{i}fica, geralmente oferecendo suporte \`{a} m\'{e}dia e baixa ger\^{̂e}ncia, um EIS (Executive Information Systems) oferece informa\c{c}\~{o}es consolidadas de alto n\'{i}vel e an\'{a}lises multidimensionais para os executivos de alto n\'{i}vel \cite{si-gupta-2001}.
 
 \section{BI (Business Intelligence)}
 
-A Origem do Termo \textit{Business Intelligence} (BI) foi utilizado pela primeira vez na d\'{e}cada de 50 por Hans Peter Luhn, um pesquisador da IBM, no artigo intitulado “A Business Intelligence System” \cite{bi-elena-2011}. O autor prop\~{o}e o desenvolvimento de sistema autom\'{a}tico, baseado em m\'{a}quinas de processamento de dados, que indexa e codifica automaticamente documentos e dissemina informa\c{c}\~{o}es nas organiza\c{c}\~{o}es conforme o ponto de a\c{c}\~{a}o.
+A Origem do Termo \textit{Business Intelligence} (BI) foi utilizado pela primeira vez na d\'{e}cada de 50 por \textit{Hans Peter Luhn}, um pesquisador da IBM, no artigo intitulado “A Business Intelligence System” \cite{bi-elena-2011}. O autor prop\~{o}e o desenvolvimento de sistema autom\'{a}tico, baseado em m\'{a}quinas de processamento de dados, que indexa e codifica automaticamente documentos e dissemina informa\c{c}\~{o}es nas organiza\c{c}\~{o}es conforme o ponto de a\c{c}\~{a}o.
 
 Assim em 1989, \textit{Howard Dresner}, um membro de pesquisa do \textit{Gartner Group} popularizou “BI” com um termo gen\'{e}rico, usado para descrever um conjunto de conceitos e m\'{e}todos para aperfei\c{c}oar a tomada de decis\~{o}es de neg\'{o}cios utilizando sistemas de suporte baseados em fatos.
 
@@ -83,7 +83,6 @@ As principais prioridades dos sistemas de origem s\~{a}o o desempenho e a dispon
 O segundo \'{e} o ETL (\textit{Extract, Transformation, and Load System}) s\~{a}o os sistemas respons\'{a}veis pela: extra\c{c}\~{a}o, transforma\c{c}\~{a}o e carregamento. E que consiste em uma \'{a}rea de trabalho, estruturas de dados instanciadas e um conjunto de processos.
 
 A cria\c{c}\~{a}o de estruturas normalizadas para o ETL e estruturas dimensionais para apresenta\c{c}\~{a}o, significa que os dados s\~{a}o potencialmente extra\'{i}dos, transformados e carregados duas vezes - uma vez no banco de dados normalizado e depois novamente quando voc\^{e} carrega o modelo dimensional. 
-
 A terceira \'{e} \textit{Presentation Area to Support Business Intelligence} \'{e} nela onde os dados s\~{a}o organizados, armazenados e disponibilizados para consulta direta por usu\'{a}rios, redatores de relat\'{o}rios e outros aplicativos de BI anal\'{i}ticos.
 
 A quarta \'{e} o \textit{Business Intelligence Applications} que \'{e} o componente final da arquitetura Kimball DW/BI. \'{e} o aplicativo de \textit{Business Intelligence} (BI) composto de uma variedade de recursos fornecidos aos usu\'{a}rios de neg\'{o}cios para alavancar a \'{a}rea de apresenta\c{c}\~{a}o para tomada de decis\~{a}o anal\'{i}tica.
@@ -142,13 +141,13 @@ A seguir uma breve explica\c{c}\~{a}o sobre cada um de seus componentes. O bom e
     
     \item OLTP (\textit{Online Transaction Processing}):, ou seja, processamento de transa\c{c}\~{o}es em tempo real. S\~{a}o sistemas que registram as transa\c{c}\~{o}es, como, por exemplo, os ERPs (\textit{Enterprise Resource Planning});
     
-    \item \textit{Real Time ETL}: Processo de extra\c{c}\~{a}o, transforma\c{c}\~{a}o e carga de dados em tempo real. Basicamente falando \'{e} uma forma de integrar os dados em tempo real, podendo ser feitos por intervalos de lotes em curto espa\c{c}o de tempo ou dependendo do segmento feito apenas algumas vezes ao dia, ser\'{a} mais aprofundado no t\'{o}pico 2.4;
+    \item \textit{Real Time ETL}: Processo de extra\c{c}\~{a}o, transforma\c{c}\~{a}o e carga de dados em tempo real. Basicamente falando \'{e} uma forma de integrar os dados em tempo real, podendo ser feitos por intervalos de lotes em curto espa\c{c}o de tempo ou dependendo do segmento feito apenas algumas vezes ao dia;
     
-    \item \textit{Data Warehouse}: Grande banco de dados ou armaz\'{e}m de dados, respons\'{a}vel pelo armazenamento de altos volumes de dados, ou seja, os dados brutos de uma organiza\c{c}\~{a}o, teremos no t\'{o}pico 2.5, mais detalhes sobre DW; 
+    \item \textit{Data Warehouse}: Grande banco de dados ou armaz\'{e}m de dados, respons\'{a}vel pelo armazenamento de altos volumes de dados, ou seja, os dados brutos de uma organiza\c{c}\~{a}o; 
     
-    \item \textit{Data Mart}: Reposit\'{o}rio de dados, subdivis\~{a}o de um DW, tamb\'{e}m respons\'{a}vel pelo armazenamento de dados, por\'{e}m mais espec\'{i}ficos e em menor escala, no t\'{o}pico 2.6, daremos \^{e}nfase ao DM;
+    \item \textit{Data Mart}: Reposit\'{o}rio de dados, subdivis\~{a}o de um DW, tamb\'{e}m respons\'{a}vel pelo armazenamento de dados, por\'{e}m mais espec\'{i}ficos e em menor escala;
     
-    \item OLAP: An\'{a}lise e processamento on-line de dados, conhecidos tamb\'{e}m como cubos decis\'{o}rios, local onde os dados s\~{a}o analisados e processados gerando informa\c{c}\~{o}es essenciais ao neg\'{o}cio, t\'{o}pico 2.8; 
+    \item OLAP: An\'{a}lise e processamento on-line de dados, conhecidos tamb\'{e}m como cubos decis\'{o}rios, local onde os dados s\~{a}o analisados e processados gerando informa\c{c}\~{o}es essenciais ao neg\'{o}cio; 
     
     \item \textit{Cloud Computing}: Que se refere a computa\c{c}\~{a}o nas nuvens e tem como base a utiliza\c{c}\~{a}o da mem\'{o}ria e das capacidades de armazenamento, compartilhados e interligados por meio da Internet;
     
@@ -162,7 +161,7 @@ A seguir uma breve explica\c{c}\~{a}o sobre cada um de seus componentes. O bom e
 
 A arquitetura orientada a servi\c{c}os (SOA) abriu caminho para o BI 2.0, pois facilita o acesso em tempo real e a coleta de dados. BI 2.0 \'{e} tamb\'{e}m mais uma vis\~{a}o de web orientada para dados tradicionais de consultas e ferramentas de an\'{a}lise.
 
-A arquitetura de uma aplica\c{c}\~{a}o de BI 2.0 difere em alguns pontos da arquitetura de uma aplica\c{c}\~{a}o de BI tradicional ou BI 1.0. A base da arquitetura foi praticamente mantida, por\'{e}m alguns componentes foram inseridos, tais como: Web 2.0, \textit{Real Time ETL}, OLTP, Redes Sociais, Software como um servi\c{c}o.
+A arquitetura de uma aplica\c{c}\~{a}o de BI 2.0 difere em alguns pontos da arquitetura de uma aplica\c{c}\~{a}o de BI tradicional ou BI 1.0. A base da arquitetura foi praticamente mantida, por\'{e}m alguns componentes foram inseridos, tais como: Web 2.0, \textit{Real Time ETL}, OLTP, Redes Sociais, SaaS ou Software como um servi\c{c}o.
 
 Levando-se em considera\c{c}\~{a}o que o objetivo do BI 2.0 \'{e} reduzir a lat\^{e}ncia, ou seja, o tempo. Torna-se necess\'{a}rio reduzir o tempo entre quando um evento ocorre e quando uma a\c{c}\~{a}o \'{e} tomada, a fim de melhorar o desempenho empresarial, esse \'{e} o foco das arquiteturas de BI 2.0. 
 
@@ -176,7 +175,7 @@ Finalizando esta se\c{c}\~{a}o um breve comparativo do BI tradicional ou BI 1.0 
 
 \input{./06-quadros/quadro-02}
 
-Assim, com base na tabela acima, podemos dizer que o BI 2.0, apresenta inova\c{c}\~{o}es e novas pr\'{a}ticas que o torna mais eficaz em rela\c{c}\~{a}o ao BI tradicional, por\'{e}m aos poucos e na pr\'{a}tica, ele traz muitos questionamentos e dúvidas em rela\c{c}\~{a}o ao seu funcionamento e desempenho no dia-a-dia
+Assim, com base na tabela acima, podemos dizer que o BI 2.0, apresenta inova\c{c}\~{o}es e novas pr\'{a}ticas que o torna mais eficaz em rela\c{c}\~{a}o ao BI tradicional, por\'{e}m aos poucos e na pr\'{a}tica, ele traz muitos questionamentos e d\'{u}vidas em rela\c{c}\~{a}o ao seu funcionamento e desempenho no dia-a-dia.
 
 \subsection{Tend\^{e}ncias futuras}
 
@@ -184,7 +183,7 @@ Antes de concluirmos esta revis\~{a}o liter\'{a}ria, falaremos um poucos sobre a
 
 A An\'{a}lises Preditivas pode ser resumida como \`{a} pr\'{a}tica de extrair informa\c{c}\~{o}es relevantes pensando em prever futuras probabilidades. J\'{a} na an\'{a}lise prescritiva, a previs\~{a}o do futuro n\~{a}o \'{e} o suficiente, \'{e} preciso encontrar uma forma de constru\'{i}-lo.
 
-A Intelig\^{e}ncia Artificial (AI), que para muitos ainda pare\c{c}a um tema de fic\c{c}\~{a}o cient\'{i}fica, est\'{a} sendo bastante usada em diversos campos da TI, e vem forte para os pr\'{o}ximos anos e ser\'{a} uma pe\c{c}a fundamental para o \textit{Business Intelligence}. O maior motivo para seu uso e a melhora de qualidade dos processos que envolvem as tomadas de decis\~{a}o das organiza\c{c}\~{o}es. Simples assim.
+A Intelig\^{e}ncia Artificial (IA), que para muitos ainda pare\c{c}a um tema de fic\c{c}\~{a}o cient\'{i}fica, est\'{a} sendo bastante usada em diversos campos da TI, e vem forte para os pr\'{o}ximos anos e ser\'{a} uma pe\c{c}a fundamental para o \textit{Business Intelligence}. O maior motivo para seu uso e a melhora de qualidade dos processos que envolvem as tomadas de decis\~{a}o das organiza\c{c}\~{o}es. Simples assim.
 
 A Intelig\^{e}ncia Empresarial Colaborativa, \'{e} est\'{a} em um contexto em que inúmeras empresas ao redor do mundo j\'{a} chegaram \`{a} conclus\~{a}o de que para aumentar as chances de sucesso do neg\'{o}cio, \'{e} necess\'{a}rio adotar uma gest\~{a}o colaborativa e que contribua para todos os colaboradores no que diz respeito \`{a} consecu\c{c}\~{a}o dos resultados.
 
@@ -572,11 +571,11 @@ O produto esperado da extra\c{c}\~{a}o de conhecimento \'{e} uma informa\c{c}\~{
 
 O OLAP \'{e}composto por inúmeras t\'{e}cnicas e ferramentas que possibilitam a explora\c{c}\~{a}o de dados armazenados em um data warehouse, utilizando t\'{e}cnicas que permitem a visualiza\c{c}\~{a}o de v\'{a}rios dados. 
 
-Diariamente as organiza\c{c}\~{o}es acumulam grandes quantidades de dados e o OLAP as ajuda a fazer uma an\'{a}lise mais segura e confi\'{a}vel desse grande volume de dados transformando-os em informa\c{c}\~{o}es. (JACOBSON; MISNER, 2007).
+Diariamente as organiza\c{c}\~{o}es acumulam grandes quantidades de dados e o OLAP as ajuda a fazer uma an\'{a}lise mais segura e confi\'{a}vel desse grande volume de dados transformando-os em informa\c{c}\~{o}es \cite{olap-jacobson-misner-2007}.
 
 O OLAP \'{e}composto por v\'{a}rios processos usados para criar, gerenciar e manipular os dados contido no banco de dados, o mesmo tem a fun\c{c}\~{a}o de agilizar a recupera\c{c}\~{a}o dos dados, podendo ainda executar e examinar uma grande quantidade de dados. 
 
-Os gestores das empresas usam OLAP em qualquer setor da organiza\c{c}\~{a}o, pois lhes proporciona realizar an\'{a}lises comparativas para auxili\'{a}-los nas decis\~{o}es tomadas no dia-a-dia. (JACOBSON; MISNER, 2007).
+Os gestores das empresas usam OLAP em qualquer setor da organiza\c{c}\~{a}o, pois lhes proporciona realizar an\'{a}lises comparativas para auxili\'{a}-los nas decis\~{o}es tomadas no dia-a-dia  \cite{olap-jacobson-misner-2007}.
 
 Os sistemas OLAP s\~{a}o conhecidos por representar algumas caracter\'{i}sticas com:
 
@@ -591,13 +590,13 @@ Os sistemas OLAP s\~{a}o conhecidos por representar algumas caracter\'{i}sticas 
     \item Permite que haja uma repeti\c{c}\~{a}o de dados para melhorar as consultas;
     Permite que se fa\c{c}am c\'{a}lculos com uma complexidade alta e uma visualiza\c{c}\~{a}o desses c\'{a}lculos em diversas dimens\~{o}es; e;
     
-    \item Permite que se fa\c{c}am ajustes para que as consultas se tornem mais segura, para que a partir desses resultados se possam concluir analises de tendências.
+    \item Permite que se fa\c{c}am ajustes para que as consultas se tornem mais segura, para que a partir desses resultados se possam concluir analises de tend\^{e}̂ncias.
 
 \end{itemize}
 
-Uma organiza\c{c}\~{a}o, seja pública ou privada que usa OLAP ter\'{a} um desempenho melhor diante das concorrentes, pois com o uso dessa t\'{e}cnica pode trazer informa\c{c}\~{o}es com mais rapidez, da melhor forma para seu entendimento e tudo de uma forma bem interativa. 
+Uma organiza\c{c}\~{a}o, seja p\'{u} blica ou privada que usa OLAP ter\'{a} um desempenho melhor diante das concorrentes, pois com o uso dessa t\'{e}cnica pode trazer informa\c{c}\~{o}es com mais rapidez, da melhor forma para seu entendimento e tudo de uma forma bem interativa. 
 
-Hoje no ambiente competitivo globalizado o que vale \'{e}ter informa\c{c}\~{a}o e estar sempre informado do que esta acontecendo no mundo, mas, principalmente, dentro de sua pr\'{o}pria empresa e essa t\'{e}cnica possibilita que todos os membros fiquem integrados do que acontece na organiza\c{c}\~{a}o de forma simples, r\'{a}pida e interativa. (JACOBSON; MISNER, 2007).
+Hoje no ambiente competitivo globalizado o que vale \'{e}ter informa\c{c}\~{a}o e estar sempre informado do que esta acontecendo no mundo, mas, principalmente, dentro de sua pr\'{o}pria empresa e essa t\'{e}cnica possibilita que todos os membros fiquem integrados do que acontece na organiza\c{c}\~{a}o de forma simples, r\'{a}pida e interativa \cite{olap-jacobson-misner-2007}.
 
 Segundo \cite{dw-kimball-2013} o mesmo, classifica os sistemas OLAP em ROLAP, MOLAP, HOLAP E DOLAP, essas ferramentas possibilitam diferentes formas de organizar os dados antes de apresent\'{a}-los ao usu\'{a}rio final.
 
@@ -610,11 +609,11 @@ A HOLAP \'{e}o resultado da combina\c{c}\~{a}o entre as ferramentas MOLAP e ROLA
 As ferramentas DOLAP \textit{(Desktop Online Analytical Processing)} disparam uma instru\c{c}\~{a}o
 SQL \textit{(Structure Query Language)} de computador simples, configurado como cliente, com um servidor de dados que retorna um microcubo de informa\c{c}\~{o}es a serem analisadas no cliente, permitindo o processamento da m\'{a}quina cliente, sem problemas de tr\'{a}fego de rede e nem problemas de escalabilidade. 
 
-Por\'{e}m existe uma desvantagem neste processo, o microcubo n\~{a}o deve ser muito grande para que n\~{a}o haja uma perda de largura de banda. (MICROSOFT CORPORATION, 2007)
+Por\'{e}m existe uma desvantagem neste processo, o microcubo n\~{a}o deve ser muito grande para que n\~{a}o haja uma perda de largura de banda \cite{olap-microsoft-2020}.
 
 \subsection{Tipos de opera\c{c}\~{a}o sobre OLAP}
 
-Segundo \cite{olap-ballard-2006}, as principais opera\c{c}\~{o}es utilizadas nas ferramentas OLAP s\~{a}o : \textit{Drill Across, Drill Down, Drill Up, Drill Throught, Alertas, Ranking, Filtros, Sorts, Breaks, Slice and Dice e o pivot.}
+Segundo \cite{olap-ballard-2006}, as principais opera\c{c}\~{o}es utilizadas nas ferramentas OLAP s\~{a}o : \textit{Drill Across, Drill Down, Drill Up, Drill Throught, Alertas, Ranking, Filtros, Sorts, Breaks, Slice and Dice e o pivot}.
 
 \begin{itemize}
 
@@ -628,14 +627,13 @@ Segundo \cite{olap-ballard-2006}, as principais opera\c{c}\~{o}es utilizadas nas
     
     \item Alertas: servem para informar sobre as situa\c{c}\~{o}es importantes e mostrar os valores mediante as condi\c{c}\~{o}es;
     
-    \item \textit{Ranking}: possibilita juntar todos os resultados por ordem decrescente ou crescente, baseando-se em objetos num\'{e}ricos conhecidos como as Measures;
-    Filtros: d\~{a}o as permiss\~{o}es para os usu\'{a}rios aperfei\c{c}oarem, as pesquisas (Query) solicitadas por mais de uma vez, como se fossem filtros de informa\c{c}\~{o}es;
+    \item \textit{Ranking}: possibilita juntar todos os resultados por ordem decrescente ou crescente, baseando-se em objetos num\'{e}ricos conhecidos como as \textit{Measures}; Filtros: d\~{a}o as permiss\~{o}es para os usu\'{a}rios aperfei\c{c}oarem, as pesquisas (Query) solicitadas por mais de uma vez, como se fossem filtros de informa\c{c}\~{o}es;
     
     \item \textit{Sorts}: serve para ordenar as informa\c{c}\~{o}es de forma crescente ou decrescente, de acordo com a escolha do usu\'{a}rio;
     
-    \item \textit{Breaks}: serve para agrupar as informa\c{c}\~{o}es em blocos. Ex: O usu\'{a}rio que ver as informa\c{c}\~{o}es por cidades, ent\~{a}o ele executou um break. Ap\'{o}s esta a\c{c}\~{a}o ter sido executada, as informa\c{c}\~{o}es estar\~{a}o agrupadas por cidades;
+    \item \textit{Breaks}: serve para agrupar as informa\c{c}\~{o}es em blocos. Exemplo: O usu\'{a}rio que ver as informa\c{c}\~{o}es por cidades, ent\~{a}o ele executou um break. Ap\'{o}s esta a\c{c}\~{a}o ter sido executada, as informa\c{c}\~{o}es estar\~{a}o agrupadas por cidades;
     
-    \item \textit{Slice and Dice}: como o OLAP gera ou recupera um micro-cubo, o Slice and Dice têm a responsabilidade de fazer altera\c{c}\~{a}o na posi\c{c}\~{a}o de uma informa\c{c}\~{a}o, alterar linhas e colunas para facilitar a compreens\~{a}o dos usu\'{a}rios e girar o cubo sempre que tiver necessidade, esse recurso faz parte das principais caracter\'{i}sticas da ferramenta;
+    \item \textit{Slice and Dice}: como o OLAP gera ou recupera um micro-cubo, o Slice and Dice t\^{e}̂m a responsabilidade de fazer altera\c{c}\~{a}o na posi\c{c}\~{a}o de uma informa\c{c}\~{a}o, alterar linhas e colunas para facilitar a compreens\~{a}o dos usu\'{a}rios e girar o cubo sempre que tiver necessidade, esse recurso faz parte das principais caracter\'{i}sticas da ferramenta;
     
     \item \textit{Pivot}: Permite a troca de linhas por colunas em uma tabela ou modifica\c{c}\~{a}o da posi\c{c}\~{a}o das dimens\~{o}es em um gr\'{a}fico. Ou seja, \'{e} o ângulo pelo qual os dados s\~{a}o visualizados.
     
@@ -649,18 +647,17 @@ Logo, s\~{a}o a base dos relat\'{o}rios de tabelas ou gr\'{a}ficos dinâmicos, 
 
 \subsection{Os componentes do OLAP}
 
-Os tipos de dados que constituem os bancos de dados OLAP s\~{a}o as medidas e as dimens\~{o}es, sendo as medidas, os dados num\'{e}ricos, ou seja, as quantidades e m\'{e}dias que você usa para tomar decis\~{o}es comerciais, e as dimens\~{o}es s\~{a}o as categorias que você usa para organizar essas medidas.
+Os tipos de dados que constituem os bancos de dados OLAP s\~{a}o as medidas e as dimens\~{o}es, sendo as medidas, os dados num\'{e}ricos, ou seja, as quantidades e m\'{e}dias que você usa para tomar decis\~{o}es comerciais, e as dimens\~{o}es s\~{a}o as categorias que voc\^{e}̂ usa para organizar essas medidas.
 
-Os bancos de dados OLAP auxiliam na organiza\c{c}\~{a}o dos dados por muitos n\'{i}veis de detalhe, utilizando algumas categorias que ser\~{a}o descritas a seguir: (MICROSOFT CORPORATION, 2007).
+Os bancos de dados OLAP auxiliam na organiza\c{c}\~{a}o dos dados por muitos n\'{i}veis de detalhe, utilizando algumas categorias que ser\~{a}o descritas a seguir \cite{olap-microsoft-2020}:
 
 \begin{itemize}
 
-    \item Cubo: s\~{a}o formas de dados que ajudam na realiza\c{c}\~{a}o de an\'{a}lises, sem eles n\~{a}o seria poss\'{i}vel realizar an\'{a}lises de dados em diversas dimens\~{o}es. Eles possibilitam combinar o tempo, a geografia e os produtos com números de vendas de forma r\'{a}pida, eficiente e resumida, mais detalhes sobre cubo no t\'{o}pico 2.9;
+    \item Cubo: s\~{a}o formas de dados que ajudam na realiza\c{c}\~{a}o de an\'{a}lises, sem eles n\~{a}o seria poss\'{i}vel realizar an\'{a}lises de dados em diversas dimens\~{o}es. Eles possibilitam combinar o tempo, a geografia e os produtos com números de vendas de forma r\'{a}pida, eficiente e resumida;
     
     \item Medida: s\~{a}o todos os valores num\'{e}ricos encontrados na regi\~{a}o central de um cubo, como por exemplo, as vendas, os lucros, as receitas e os custos, todos processados, agregados e analisados;
     
-    \item Membro: \'{e} caracterizado por objetos que podem desempenhar um ou mais impacto de dados em uma hierarquia;
-    Membro calculado: o valor de um membro \'{e}calculado enquanto esta ocorrendo uma execu\c{c}\~{a}o por meio de uma express\~{a}o. O valor de um membro calculado pode ser originado do valor de outro membro;
+    \item Membro: \'{e} caracterizado por objetos que podem desempenhar um ou mais impacto de dados em uma hierarquia; Membro calculado: o valor de um membro \'{e}calculado enquanto esta ocorrendo uma execu\c{c}\~{a}o por meio de uma express\~{a}o. O valor de um membro calculado pode ser originado do valor de outro membro;
     
     \item Dimens\~{a}o: \'{e} composta por uma ou mais hierarquias organizadas de n\'{i}veis em um cubo de uma forma que o usu\'{a}rio possa entender e assim us\'{a}-las para fazer an\'{a}lise de dados;
     
@@ -672,7 +669,7 @@ Os bancos de dados OLAP auxiliam na organiza\c{c}\~{a}o dos dados por muitos n\'
 
 \subsection{As Aplica\c{c}\~{o}es do OLAP}
 
-O OLAP \'{e}caracterizado por ser diversificado, podendo ser aplicado em diversos setores de uma organiza\c{c}\~{a}o como no setor de: (MICROSOFT CORPORATION, 2007)
+O OLAP \'{e}caracterizado por ser diversificado, podendo ser aplicado em diversos setores de uma organiza\c{c}\~{a}o como no setor de \cite{olap-microsoft-2020}:
 
 \begin{itemize}
 
@@ -686,16 +683,21 @@ O OLAP \'{e}caracterizado por ser diversificado, podendo ser aplicado em diverso
 
 \subsection{As Ferramentas OLAP}
 
-Os gestores das organiza\c{c}\~{o}es tem a necessidade de uma ferramenta que os auxiliem na explora\c{c}\~{a}o dos dados que forne\c{c}a informa\c{c}\~{o}es confi\'{a}veis, que de acordo com a an\'{a}lise das mesmas possam os auxiliar na tomada de decis\~{a}o. Para isso existem algumas ferramentas que poder\~{a}o ajuda-los nesse processo de explora\c{c}\~{a}o e analise dos dados como o \textit{Mondrian} ou textit{Schema Workbench} , que ser\'{a} tema de um t\'{o}pico especifico, e que faz parte do Pentaho.
+Os gestores das organiza\c{c}\~{o}es tem a necessidade de uma ferramenta que os auxiliem na explora\c{c}\~{a}o dos dados que forne\c{c}a informa\c{c}\~{o}es confi\'{a}veis, que de acordo com a an\'{a}lise das mesmas possam os auxiliar na tomada de decis\~{a}o. 
+
+Para isso existem algumas ferramentas que poder\~{a}o ajuda-los nesse processo de explora\c{c}\~{a}o e analise dos dados como o \textit{Mondrian} ou textit{Schema Workbench} , que ser\'{a} tema de um t\'{o}pico especifico, e que faz parte do Pentaho.
 
 \section{Cubo}
 
-Segundo Carlo Vercellis (VERCELLIS, 2009), o projeto de DW e data mart s\~{a}o baseados em um paradigma multidimensional para a representa\c{c}\~{a}o de dados que fornece grandes vantagens no momento da consulta de dados, ele pode garantir tempo de resposta r\'{a}pida, mesmo em complexas consultas, enquanto no lado l\'{o}gico, as dimens\~{o}es naturalmente correspondem a crit\'{e}rios normais e facilmente entend\'{i}veis a usu\'{a}rios para realizarem suas an\'{a}lises.
+Segundo Carlo Vercellis \cite{dm-vercellis-2009}, o projeto de DW e \textit{data mart} s\~{a}o baseados em um paradigma multidimensional para a representa\c{c}\~{a}o de dados que fornece grandes vantagens no momento da consulta de dados, ele pode garantir tempo de resposta r\'{a}pida, mesmo em complexas consultas, enquanto no lado l\'{o}gico, as dimens\~{o}es naturalmente correspondem a crit\'{e}rios normais e facilmente entend\'{i}veis a usu\'{a}rios para realizarem suas an\'{a}lises.
 
 A representa\c{c}\~{a}o multidimensional \'{e}baseada em um esquema em estrela que cont\'{e}m os dois tipos de tabelas de dados, as dimens\~{o}es e Fatos.
-Com isso pode-se dizer que um cubo, \'{e}a estrutura multidimensional de dados que expressa a forma na qual os tipos de informa\c{c}\~{o}es se relacionam entre si. \'{e}formado pela tabela Fato e pelas tabelas de dimens\~{a}o que a circundam e representam poss\'{i}veis formas de visualizar e consultar os dados (VERCELLIS, 2009).
 
-Pode-se citar um exemplo de um cubo atrav\'{e}s de um conjunto de lojas, considerando o faturamento de um produto em um mês do ano, em uma loja. Na existência de um cubo tridimensional, uma dimens\~{a}o representa os produtos, a outra o per\'{i}odo e outra as lojas. A figura 12,  representa o exemplo.
+Com isso pode-se dizer que um cubo, \'{e}a estrutura multidimensional de dados que expressa a forma na qual os tipos de informa\c{c}\~{o}es se relacionam entre si. \'{e}formado pela tabela Fato e pelas tabelas de dimens\~{a}o que a circundam e representam poss\'{i}veis formas de visualizar e consultar os dados \cite{dm-vercellis-2009}.
+
+Pode-se citar um exemplo de um cubo atrav\'{e}s de um conjunto de lojas, considerando o faturamento de um produto em um mês do ano, em uma loja.
+
+Na existência de um cubo tridimensional, uma dimens\~{a}o representa os produtos, a outra o per\'{i}odo e outra as lojas. A figura logo abaixo,  representa o exemplo.
 
 % figuras
 \begin{figure}[H]
@@ -706,12 +708,12 @@ Pode-se citar um exemplo de um cubo atrav\'{e}s de um conjunto de lojas, conside
     \label{fig:ilustfig12}
 \end{figure}
 \vspace*{-0,9cm}
-{\raggedright \fonte{VERCELLIS (2009)}} \\
+{\raggedright \fonte{\cite{dm-vercellis-2009}}} \\
 
 \section{\textit{Data mining} (minera\c{c}\~{a}o de dados)}
 
 Alguns profissionais da \'{a}rea de an\'{a}lise de informa\c{c}\~{a}o enfrentam problemas no processo de transformar dados que as empresas acumulam em suas transa\c{c}c\~(oo)es di\'{a}rias em informa\c{c}\~{o}es que ser\~{a}ao de grande utilidade para o desempenho dos neg\'{o}ocios. 
 
-Assim, Segundo CORTES, o \textit{Data Mining} \'{e}um processo feito sobre enormes reposit\'{o}rios de dados como o \textit{data warehouse} buscando identificar padr\~{o}es e alguma rela\c{c}\~{a}o de consumo que n\~{a}o s\~{a}o conhecidos pela empresa e que podem ser usados na tomada de decis\~{a}o. (C\^{O}RTES, 2008).
+Assim, Segundo CORTES, o \textit{Data Mining} \'{e}um processo feito sobre enormes reposit\'{o}rios de dados como o \textit{data warehouse} buscando identificar padr\~{o}es e alguma rela\c{c}\~{a}o de consumo que n\~{a}o s\~{a}o conhecidos pela empresa e que podem ser usados na tomada de decis\~{a}o \cite{bi-cortes-2008}.
 
-Usando o \textit{Data Mining} esse problema ser\'{a} resolvido, pois ele \'{e}um processo pelo qual se descobri informa\c{c}\~{o}es importantes para a empresa, como os padr\~{o}es, as associa\c{c}\~{o}es entre as informa\c{c}\~{o}es da base de dados, mudan\c{c}as, anomalias e as estruturas, em grandes quantidades de dados que s\~{a}o armazenados em base de dados ou outros reposit\'{o}rios de dados. (C\^{O}RTES, 2008)
+Usando o \textit{Data Mining} esse problema ser\'{a} resolvido, pois ele \'{e}um processo pelo qual se descobri informa\c{c}\~{o}es importantes para a empresa, como os padr\~{o}es, as associa\c{c}\~{o}es entre as informa\c{c}\~{o}es da base de dados, mudan\c{c}as, anomalias e as estruturas, em grandes quantidades de dados que s\~{a}o armazenados em base de dados ou outros reposit\'{o}rios de dados \cite{bi-cortes-2008}.
